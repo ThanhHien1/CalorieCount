@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */; };
+		24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D022BD3754700582458 /* CalorieCounterApp.swift */; };
+		24DF9D052BD3754700582458 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D042BD3754700582458 /* ContentView.swift */; };
+		24DF9D072BD3754800582458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DF9D062BD3754800582458 /* Assets.xcassets */; };
+		24DF9D0A2BD3754800582458 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DF9D092BD3754800582458 /* Preview Assets.xcassets */; };
+		24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D1D2BD3792500582458 /* SplashView.swift */; };
+		24DF9D222BD37CE100582458 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D212BD37CE100582458 /* RootView.swift */; };
+		24DF9D272BD37D7000582458 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D262BD37D7000582458 /* Color+.swift */; };
+		24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D2B2BD37F2900582458 /* LoginView.swift */; };
+		24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D2E2BD3800C00582458 /* NormalTextField.swift */; };
+		24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D312BD3AA1000582458 /* LoginViewModel.swift */; };
+		24DF9D392BD3AA4E00582458 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */; };
+		24DF9D3B2BD3AA7200582458 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */; };
+		890D4A028F34A44D3935DE8F /* Pods_CalorieCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24DF9CFF2BD3754700582458 /* CalorieCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24DF9D022BD3754700582458 /* CalorieCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieCounterApp.swift; sourceTree = "<group>"; };
+		24DF9D042BD3754700582458 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		24DF9D062BD3754800582458 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24DF9D092BD3754800582458 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		24DF9D1D2BD3792500582458 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		24DF9D212BD37CE100582458 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		24DF9D262BD37D7000582458 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		24DF9D2B2BD37F2900582458 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		24DF9D2E2BD3800C00582458 /* NormalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextField.swift; sourceTree = "<group>"; };
+		24DF9D312BD3AA1000582458 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.release.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.release.xcconfig"; sourceTree = "<group>"; };
+		7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.debug.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24DF9CFC2BD3754700582458 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890D4A028F34A44D3935DE8F /* Pods_CalorieCounter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12E11584BA8275CD0FF8A652 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24DF9CF62BD3754700582458 = {
+			isa = PBXGroup;
+			children = (
+				249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */,
+				24DF9D012BD3754700582458 /* CalorieCounter */,
+				24DF9D002BD3754700582458 /* Products */,
+				CDC2DCEAAC2234265DA93DE4 /* Pods */,
+				12E11584BA8275CD0FF8A652 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		24DF9D002BD3754700582458 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9CFF2BD3754700582458 /* CalorieCounter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24DF9D012BD3754700582458 /* CalorieCounter */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D232BD37D2F00582458 /* Extension */,
+				24DF9D112BD3757900582458 /* Core */,
+				24DF9D102BD3755800582458 /* Aplication */,
+				24DF9D062BD3754800582458 /* Assets.xcassets */,
+				24DF9D082BD3754800582458 /* Preview Content */,
+			);
+			path = CalorieCounter;
+			sourceTree = "<group>";
+		};
+		24DF9D082BD3754800582458 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D092BD3754800582458 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		24DF9D102BD3755800582458 /* Aplication */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D022BD3754700582458 /* CalorieCounterApp.swift */,
+				24DF9D042BD3754700582458 /* ContentView.swift */,
+			);
+			path = Aplication;
+			sourceTree = "<group>";
+		};
+		24DF9D112BD3757900582458 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D2D2BD37FB700582458 /* Component */,
+				24DF9D1A2BD378CA00582458 /* Profile */,
+				24DF9D192BD378B600582458 /* Recipes */,
+				24DF9D182BD3787E00582458 /* Foods */,
+				24DF9D152BD3766B00582458 /* MainView */,
+				24DF9D172BD3786300582458 /* Selection */,
+				24DF9D132BD375F000582458 /* Login */,
+				24DF9D162BD376BD00582458 /* Register */,
+				24DF9D122BD375A200582458 /* Splash */,
+				24DF9D1F2BD37CCC00582458 /* Root */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		24DF9D122BD375A200582458 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D1C2BD3791200582458 /* View */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		24DF9D132BD375F000582458 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D342BD3AA2000582458 /* ViewModel */,
+				24DF9D332BD3AA1B00582458 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		24DF9D152BD3766B00582458 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		24DF9D162BD376BD00582458 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D302BD3A9FB00582458 /* ViewModel */,
+				24DF9D282BD37F0B00582458 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		24DF9D172BD3786300582458 /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Selection;
+			sourceTree = "<group>";
+		};
+		24DF9D182BD3787E00582458 /* Foods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Foods;
+			sourceTree = "<group>";
+		};
+		24DF9D192BD378B600582458 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		24DF9D1A2BD378CA00582458 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D1B2BD378E700582458 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		24DF9D1B2BD378E700582458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24DF9D1C2BD3791200582458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D1D2BD3792500582458 /* SplashView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24DF9D1F2BD37CCC00582458 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D212BD37CE100582458 /* RootView.swift */,
+				24DF9D202BD37CD500582458 /* View */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		24DF9D202BD37CD500582458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24DF9D232BD37D2F00582458 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D262BD37D7000582458 /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		24DF9D282BD37F0B00582458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24DF9D2D2BD37FB700582458 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D2E2BD3800C00582458 /* NormalTextField.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		24DF9D302BD3A9FB00582458 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		24DF9D332BD3AA1B00582458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D2B2BD37F2900582458 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24DF9D342BD3AA2000582458 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24DF9D312BD3AA1000582458 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CDC2DCEAAC2234265DA93DE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */,
+				763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24DF9CFE2BD3754700582458 /* CalorieCounter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24DF9D0D2BD3754800582458 /* Build configuration list for PBXNativeTarget "CalorieCounter" */;
+			buildPhases = (
+				443FD242D175613996D5F0E7 /* [CP] Check Pods Manifest.lock */,
+				24DF9CFB2BD3754700582458 /* Sources */,
+				24DF9CFC2BD3754700582458 /* Frameworks */,
+				24DF9CFD2BD3754700582458 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalorieCounter;
+			productName = CalorieCounter;
+			productReference = 24DF9CFF2BD3754700582458 /* CalorieCounter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		24DF9CF72BD3754700582458 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					24DF9CFE2BD3754700582458 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 24DF9CFA2BD3754700582458 /* Build configuration list for PBXProject "CalorieCounter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 24DF9CF62BD3754700582458;
+			productRefGroup = 24DF9D002BD3754700582458 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24DF9CFE2BD3754700582458 /* CalorieCounter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		24DF9CFD2BD3754700582458 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24DF9D0A2BD3754800582458 /* Preview Assets.xcassets in Resources */,
+				24DF9D072BD3754800582458 /* Assets.xcassets in Resources */,
+				249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		443FD242D175613996D5F0E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CalorieCounter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24DF9CFB2BD3754700582458 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24DF9D392BD3AA4E00582458 /* RegisterViewModel.swift in Sources */,
+				24DF9D3B2BD3AA7200582458 /* RegisterViewModel.swift in Sources */,
+				24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */,
+				24DF9D222BD37CE100582458 /* RootView.swift in Sources */,
+				24DF9D272BD37D7000582458 /* Color+.swift in Sources */,
+				24DF9D052BD3754700582458 /* ContentView.swift in Sources */,
+				24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */,
+				24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */,
+				24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */,
+				24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		24DF9D0B2BD3754800582458 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		24DF9D0C2BD3754800582458 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		24DF9D0E2BD3754800582458 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
+				DEVELOPMENT_TEAM = ZF3NGCURC2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hien.CalorieCounter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24DF9D0F2BD3754800582458 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
+				DEVELOPMENT_TEAM = ZF3NGCURC2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hien.CalorieCounter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24DF9CFA2BD3754700582458 /* Build configuration list for PBXProject "CalorieCounter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24DF9D0B2BD3754800582458 /* Debug */,
+				24DF9D0C2BD3754800582458 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24DF9D0D2BD3754800582458 /* Build configuration list for PBXNativeTarget "CalorieCounter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24DF9D0E2BD3754800582458 /* Debug */,
+				24DF9D0F2BD3754800582458 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 24DF9CF72BD3754700582458 /* Project object */;
+}

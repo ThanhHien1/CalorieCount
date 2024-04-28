@@ -10,12 +10,12 @@ import SwiftUI
 struct SplashView: View {
     var body: some View {
         ZStack {
-            Color.cl_30D6D7()
+            Color.cl_F24F1D().opacity(0.3)
                 .ignoresSafeArea()
             Image("ic_splash")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 350)
+                .frame(width: Vconst.DESIGN_WIDTH_RATIO * 300)
         }
     }
 }

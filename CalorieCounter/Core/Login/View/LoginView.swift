@@ -8,19 +8,73 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var viewModel = LoginViewModel()
+    @FocusState var focusedField: FocusField?
+    
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: 100)
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 100)
             Image("ic_logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 60)
-            NormalTextField(title: "Name", color: .white, imageURL: "person", text: <#T##String#>)
+                .frame(width:Vconst.DESIGN_WIDTH_RATIO * 80)
+            ErrorText
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 30)
+            TextFieldEmail
+            TextFieldPassword
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
+            ButtonLogin
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 100)
+            ClicktoRegister
             Spacer()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
+extension LoginView {
+    
+    var ErrorText: some View {
+        Text(viewModel.errorMessage)
+            .font(.system(size: 13))
+            .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 20)
+            .foregroundColor(.red)
+            .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
+    }
+    
+    var TextFieldEmail: some View {
+        NormalTextField(title: "Enter your email", text: $viewModel.email, focusFieldType: .email)
+    }
+    
+    var TextFieldPassword: some View {
+        NormalTextField(title: "Enter your password", text: $viewModel.password, isPassword: true, focusFieldType: .password)
+    }
+    
+    var ButtonLogin: some View {
+        NavigationLink(destination: GoalView(), isActive: $viewModel.loginSuccessful) {
+            NormalButton(action: {
+                viewModel.loginAccount()
+            }, title: "Login" , tinColor: .white, color: Color.cl_F24F1D()
+            )
+        }
+    }
+    
+    var ClicktoRegister: some View {
+        HStack {
+            Text("Don't have account?")
+                .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
+                .foregroundStyle(.gray)
+            NavigationLink{
+              RegisterView()
+            } label: {
+                Text("Click here to sign up")
+                    .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
+                    .foregroundStyle(Color.blue)
+                    .underline()
+            }
+        }
+    }
+}
 #Preview {
     LoginView()
 }

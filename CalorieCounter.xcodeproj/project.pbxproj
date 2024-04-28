@@ -7,7 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243800D62BDE784600223577 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D52BDE784600223577 /* Utilities.swift */; };
+		243800D92BDEB29500223577 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D82BDEB29500223577 /* UserData.swift */; };
+		243800DC2BDEB86800223577 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800DB2BDEB86800223577 /* DashBoardView.swift */; };
+		243800DE2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800DD2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift */; };
+		243800E12BDEB98000223577 /* DailySummaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800E02BDEB98000223577 /* DailySummaryData.swift */; };
+		243800E42BDEB9C300223577 /* UserGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800E32BDEB9C300223577 /* UserGoals.swift */; };
+		243800E62BDEBA1200223577 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800E52BDEBA1200223577 /* Food.swift */; };
+		243800E82BDEBA8D00223577 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800E72BDEBA8D00223577 /* CircularProgressView.swift */; };
+		243800EB2BDEBBEC00223577 /* Nutritient_Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */; };
+		243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */; };
+		243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EE2BDEBC6800223577 /* StepsProgressView.swift */; };
 		249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */; };
+		249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0872BD3B2570061017E /* RegisterViewModel.swift */; };
+		249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08A2BD3B7730061017E /* FormValidator.swift */; };
+		249FE08D2BD3BF8C0061017E /* NormalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08C2BD3BF8C0061017E /* NormalButton.swift */; };
+		249FE08F2BD3C33D0061017E /* ViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08E2BD3C33D0061017E /* ViewConst.swift */; };
+		249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0902BD4050A0061017E /* AppConfiguration.swift */; };
+		249FE0932BD406650061017E /* Constanst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0922BD406650061017E /* Constanst.swift */; };
+		249FE0952BD408F40061017E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0942BD408F40061017E /* UserDefault.swift */; };
+		249FE0A82BD4CCAF0061017E /* FocusField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0A72BD4CCAF0061017E /* FocusField.swift */; };
+		249FE0AB2BD4DCAB0061017E /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0AA2BD4DCAB0061017E /* RootViewModel.swift */; };
+		249FE0B02BD4DFD30061017E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0AF2BD4DFD30061017E /* HomeView.swift */; };
+		249FE0B42BD4E3140061017E /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0B32BD4E3140061017E /* GoalView.swift */; };
+		249FE0B82BD4E6730061017E /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0B72BD4E6730061017E /* GoalViewModel.swift */; };
+		249FE0BB2BD4EF770061017E /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0BA2BD4EF770061017E /* GoalModel.swift */; };
+		249FE0BF2BD4F3090061017E /* ActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0BE2BD4F3090061017E /* ActiveView.swift */; };
+		249FE0C22BD4F7330061017E /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0C12BD4F7330061017E /* CalculatorView.swift */; };
+		249FE0C52BD508CF0061017E /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0C42BD508CF0061017E /* CalculatorBrain.swift */; };
+		249FE0C72BD509240061017E /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0C62BD509240061017E /* BMI.swift */; };
+		249FE0CD2BD50B1B0061017E /* CalculatorResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0CC2BD50B1B0061017E /* CalculatorResultView.swift */; };
 		24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D022BD3754700582458 /* CalorieCounterApp.swift */; };
 		24DF9D052BD3754700582458 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D042BD3754700582458 /* ContentView.swift */; };
 		24DF9D072BD3754800582458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DF9D062BD3754800582458 /* Assets.xcassets */; };
@@ -18,13 +47,41 @@
 		24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D2B2BD37F2900582458 /* LoginView.swift */; };
 		24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D2E2BD3800C00582458 /* NormalTextField.swift */; };
 		24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D312BD3AA1000582458 /* LoginViewModel.swift */; };
-		24DF9D392BD3AA4E00582458 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */; };
-		24DF9D3B2BD3AA7200582458 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */; };
+		24DF9D3B2BD3AA7200582458 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D3A2BD3AA7200582458 /* RegisterView.swift */; };
 		890D4A028F34A44D3935DE8F /* Pods_CalorieCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		243800D52BDE784600223577 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		243800D82BDEB29500223577 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		243800DB2BDEB86800223577 /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
+		243800DD2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesEatenAndBurnedView.swift; sourceTree = "<group>"; };
+		243800E02BDEB98000223577 /* DailySummaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryData.swift; sourceTree = "<group>"; };
+		243800E32BDEB9C300223577 /* UserGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGoals.swift; sourceTree = "<group>"; };
+		243800E52BDEBA1200223577 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		243800E72BDEBA8D00223577 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutritient_Card.swift; sourceTree = "<group>"; };
+		243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroProgressCardView.swift; sourceTree = "<group>"; };
+		243800EE2BDEBC6800223577 /* StepsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsProgressView.swift; sourceTree = "<group>"; };
 		249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		249FE0872BD3B2570061017E /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		249FE08A2BD3B7730061017E /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
+		249FE08C2BD3BF8C0061017E /* NormalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalButton.swift; sourceTree = "<group>"; };
+		249FE08E2BD3C33D0061017E /* ViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConst.swift; sourceTree = "<group>"; };
+		249FE0902BD4050A0061017E /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		249FE0922BD406650061017E /* Constanst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constanst.swift; sourceTree = "<group>"; };
+		249FE0942BD408F40061017E /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		249FE0A72BD4CCAF0061017E /* FocusField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusField.swift; sourceTree = "<group>"; };
+		249FE0AA2BD4DCAB0061017E /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		249FE0AF2BD4DFD30061017E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		249FE0B32BD4E3140061017E /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+		249FE0B72BD4E6730061017E /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		249FE0BA2BD4EF770061017E /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
+		249FE0BE2BD4F3090061017E /* ActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveView.swift; sourceTree = "<group>"; };
+		249FE0C12BD4F7330061017E /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		249FE0C42BD508CF0061017E /* CalculatorBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
+		249FE0C62BD509240061017E /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		249FE0CC2BD50B1B0061017E /* CalculatorResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorResultView.swift; sourceTree = "<group>"; };
 		24DF9CFF2BD3754700582458 /* CalorieCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DF9D022BD3754700582458 /* CalorieCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieCounterApp.swift; sourceTree = "<group>"; };
 		24DF9D042BD3754700582458 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,8 +93,7 @@
 		24DF9D2B2BD37F2900582458 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		24DF9D2E2BD3800C00582458 /* NormalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextField.swift; sourceTree = "<group>"; };
 		24DF9D312BD3AA1000582458 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
-		24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		24DF9D3A2BD3AA7200582458 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.release.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.release.xcconfig"; sourceTree = "<group>"; };
 		7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.debug.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +119,162 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		243800D72BDEB27A00223577 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				243800D82BDEB29500223577 /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		243800DA2BDEB84600223577 /* DashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				243800E22BDEB9BB00223577 /* Model */,
+				243800DF2BDEB97400223577 /* ViewModel */,
+			);
+			path = DashBoard;
+			sourceTree = "<group>";
+		};
+		243800DF2BDEB97400223577 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				243800E02BDEB98000223577 /* DailySummaryData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		243800E22BDEB9BB00223577 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				243800E92BDEBA9400223577 /* View */,
+				243800E32BDEB9C300223577 /* UserGoals.swift */,
+				243800E52BDEBA1200223577 /* Food.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		243800E92BDEBA9400223577 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				243800DB2BDEB86800223577 /* DashBoardView.swift */,
+				243800E72BDEBA8D00223577 /* CircularProgressView.swift */,
+				243800DD2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift */,
+				243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */,
+				243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */,
+				243800EE2BDEBC6800223577 /* StepsProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		249FE0892BD3B7520061017E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				249FE08A2BD3B7730061017E /* FormValidator.swift */,
+				249FE0902BD4050A0061017E /* AppConfiguration.swift */,
+				249FE0922BD406650061017E /* Constanst.swift */,
+				249FE0942BD408F40061017E /* UserDefault.swift */,
+				249FE0A72BD4CCAF0061017E /* FocusField.swift */,
+				243800D52BDE784600223577 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		249FE0A92BD4DC9A0061017E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0AA2BD4DCAB0061017E /* RootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		249FE0AE2BD4DFBA0061017E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		249FE0B12BD4DFD80061017E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		249FE0B22BD4E2EC0061017E /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0B32BD4E3140061017E /* GoalView.swift */,
+			);
+			path = Goal;
+			sourceTree = "<group>";
+		};
+		249FE0B52BD4E65A0061017E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0B72BD4E6730061017E /* GoalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		249FE0B92BD4EF6D0061017E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0BA2BD4EF770061017E /* GoalModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		249FE0BC2BD4F2E60061017E /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0BD2BD4F2FB0061017E /* View */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		249FE0BD2BD4F2FB0061017E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0BE2BD4F3090061017E /* ActiveView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		249FE0C02BD4F7210061017E /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0C12BD4F7330061017E /* CalculatorView.swift */,
+			);
+			path = Calculator;
+			sourceTree = "<group>";
+		};
+		249FE0C32BD508C50061017E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0C42BD508CF0061017E /* CalculatorBrain.swift */,
+				249FE0C62BD509240061017E /* BMI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		249FE0C82BD50AE50061017E /* CalculatorResult */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0C92BD50AF20061017E /* View */,
+			);
+			path = CalculatorResult;
+			sourceTree = "<group>";
+		};
+		249FE0C92BD50AF20061017E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				249FE0CC2BD50B1B0061017E /* CalculatorResultView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		24DF9CF62BD3754700582458 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +297,8 @@
 		24DF9D012BD3754700582458 /* CalorieCounter */ = {
 			isa = PBXGroup;
 			children = (
+				243800D72BDEB27A00223577 /* Model */,
+				249FE0892BD3B7520061017E /* Utilities */,
 				24DF9D232BD37D2F00582458 /* Extension */,
 				24DF9D112BD3757900582458 /* Core */,
 				24DF9D102BD3755800582458 /* Aplication */,
@@ -114,11 +328,12 @@
 		24DF9D112BD3757900582458 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				243800DA2BDEB84600223577 /* DashBoard */,
 				24DF9D2D2BD37FB700582458 /* Component */,
 				24DF9D1A2BD378CA00582458 /* Profile */,
 				24DF9D192BD378B600582458 /* Recipes */,
 				24DF9D182BD3787E00582458 /* Foods */,
-				24DF9D152BD3766B00582458 /* MainView */,
+				24DF9D152BD3766B00582458 /* Home */,
 				24DF9D172BD3786300582458 /* Selection */,
 				24DF9D132BD375F000582458 /* Login */,
 				24DF9D162BD376BD00582458 /* Register */,
@@ -145,11 +360,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		24DF9D152BD3766B00582458 /* MainView */ = {
+		24DF9D152BD3766B00582458 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				249FE0C32BD508C50061017E /* Model */,
+				249FE0B12BD4DFD80061017E /* ViewModel */,
+				249FE0AE2BD4DFBA0061017E /* View */,
+				249FE0AF2BD4DFD30061017E /* HomeView.swift */,
 			);
-			path = MainView;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		24DF9D162BD376BD00582458 /* Register */ = {
@@ -164,6 +383,12 @@
 		24DF9D172BD3786300582458 /* Selection */ = {
 			isa = PBXGroup;
 			children = (
+				249FE0B92BD4EF6D0061017E /* Model */,
+				249FE0B52BD4E65A0061017E /* ViewModel */,
+				249FE0C82BD50AE50061017E /* CalculatorResult */,
+				249FE0C02BD4F7210061017E /* Calculator */,
+				249FE0BC2BD4F2E60061017E /* Action */,
+				249FE0B22BD4E2EC0061017E /* Goal */,
 			);
 			path = Selection;
 			sourceTree = "<group>";
@@ -208,7 +433,7 @@
 		24DF9D1F2BD37CCC00582458 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				24DF9D212BD37CE100582458 /* RootView.swift */,
+				249FE0A92BD4DC9A0061017E /* ViewModel */,
 				24DF9D202BD37CD500582458 /* View */,
 			);
 			path = Root;
@@ -217,6 +442,7 @@
 		24DF9D202BD37CD500582458 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24DF9D212BD37CE100582458 /* RootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				24DF9D262BD37D7000582458 /* Color+.swift */,
+				249FE08E2BD3C33D0061017E /* ViewConst.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -232,7 +459,7 @@
 		24DF9D282BD37F0B00582458 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				24DF9D3A2BD3AA7200582458 /* RegisterViewModel.swift */,
+				24DF9D3A2BD3AA7200582458 /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				24DF9D2E2BD3800C00582458 /* NormalTextField.swift */,
+				249FE08C2BD3BF8C0061017E /* NormalButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -248,7 +476,7 @@
 		24DF9D302BD3A9FB00582458 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				24DF9D382BD3AA4E00582458 /* RegisterViewModel.swift */,
+				249FE0872BD3B2570061017E /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -275,7 +503,6 @@
 				7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */,
 				763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -290,6 +517,7 @@
 				24DF9CFB2BD3754700582458 /* Sources */,
 				24DF9CFC2BD3754700582458 /* Frameworks */,
 				24DF9CFD2BD3754700582458 /* Resources */,
+				707F8F0260EEA51ED176E138 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -369,6 +597,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		707F8F0260EEA51ED176E138 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -376,16 +621,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24DF9D392BD3AA4E00582458 /* RegisterViewModel.swift in Sources */,
-				24DF9D3B2BD3AA7200582458 /* RegisterViewModel.swift in Sources */,
+				249FE0952BD408F40061017E /* UserDefault.swift in Sources */,
+				24DF9D3B2BD3AA7200582458 /* RegisterView.swift in Sources */,
+				243800D62BDE784600223577 /* Utilities.swift in Sources */,
+				243800E82BDEBA8D00223577 /* CircularProgressView.swift in Sources */,
+				243800DE2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift in Sources */,
+				249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */,
+				249FE08D2BD3BF8C0061017E /* NormalButton.swift in Sources */,
+				249FE0C22BD4F7330061017E /* CalculatorView.swift in Sources */,
+				243800E42BDEB9C300223577 /* UserGoals.swift in Sources */,
 				24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */,
 				24DF9D222BD37CE100582458 /* RootView.swift in Sources */,
+				243800EB2BDEBBEC00223577 /* Nutritient_Card.swift in Sources */,
 				24DF9D272BD37D7000582458 /* Color+.swift in Sources */,
+				243800E62BDEBA1200223577 /* Food.swift in Sources */,
+				249FE0C52BD508CF0061017E /* CalculatorBrain.swift in Sources */,
+				249FE0B42BD4E3140061017E /* GoalView.swift in Sources */,
+				243800E12BDEB98000223577 /* DailySummaryData.swift in Sources */,
+				249FE0BB2BD4EF770061017E /* GoalModel.swift in Sources */,
+				249FE0A82BD4CCAF0061017E /* FocusField.swift in Sources */,
+				249FE0CD2BD50B1B0061017E /* CalculatorResultView.swift in Sources */,
+				249FE0C72BD509240061017E /* BMI.swift in Sources */,
+				249FE0BF2BD4F3090061017E /* ActiveView.swift in Sources */,
 				24DF9D052BD3754700582458 /* ContentView.swift in Sources */,
+				243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */,
+				249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */,
+				249FE08F2BD3C33D0061017E /* ViewConst.swift in Sources */,
 				24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */,
 				24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */,
+				243800DC2BDEB86800223577 /* DashBoardView.swift in Sources */,
+				249FE0B82BD4E6730061017E /* GoalViewModel.swift in Sources */,
+				243800D92BDEB29500223577 /* UserData.swift in Sources */,
 				24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */,
+				249FE0932BD406650061017E /* Constanst.swift in Sources */,
+				249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */,
+				249FE0AB2BD4DCAB0061017E /* RootViewModel.swift in Sources */,
+				243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */,
 				24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */,
+				249FE0B02BD4DFD30061017E /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,12 +795,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = ZF3NGCURC2;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -552,12 +827,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = ZF3NGCURC2;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

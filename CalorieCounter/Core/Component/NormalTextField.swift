@@ -8,38 +8,35 @@
 import SwiftUI
 
 struct NormalTextField: View {
-    let title: String
-    let color: Color
-    let imageURL: String
-    @State var text: String
-    @FocusState var isFocused: Bool
-    var onTextChange: ((String) -> Void)? = nil
+    var title: String
+    @Binding var text:String
+    @State private var strokeColor:Color = Color.cl_E1E2E7()
+    var isPassword: Bool = false
+    @FocusState var focusedField: FocusField?
+    var focusFieldType: FocusField
     
     var body: some View {
         ZStack(alignment: .leading) {
-            Image("\(imageURL)")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .padding([.leading,.trailing], 12)
-            TextField("Enter \(title.lowercased())", text: $text)
-                .padding(.leading, 50)
-                .frame(height: 48)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(isFocused ? color : Color.cl_E1E2E7(), lineWidth: 1)
-                )
-                .autocapitalization(UITextAutocapitalizationType.none)
-                .focused($isFocused)
-                .padding(.top, 2)
-                .onChange(of: text) { newValue in
-                    onTextChange?(newValue)
-                }
+            VStack(spacing: Vconst.DESIGN_HEIGHT_RATIO * 2.0) {
+                CustomTextField(title: title, text: $text, textContentType: .emailAddress, keyboardType: .emailAddress, focusedField: $focusedField, focusFieldType: .password, strokeColor: $strokeColor)
+                    .onChange(of: focusedField) { newValue in
+                        if newValue == .password {
+                            strokeColor = Color.cl_F24F1D()
+                        } else {
+                            strokeColor = Color.cl_E1E2E7()
+                        }
+                    }
+                    .onChange(of: text) { newValue in
+                        
+                    }
+                
+            }
+            .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
+            .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
         }
-        .padding(.top, 10)
-        .padding(.horizontal, 30)
     }
 }
 
 #Preview {
-    NormalTextField(title: "Name", color: .white, imageURL: "person", text: "")
+    NormalTextField(title: "Enter your password", text: .constant("password"), focusFieldType: .password)
 }

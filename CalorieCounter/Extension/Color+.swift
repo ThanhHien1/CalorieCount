@@ -16,4 +16,8 @@ extension Color {
     static func cl_E1E2E7() -> Color {
         return Color("#E1E2E7")
     }
+    
+    static func cl_F24F1D() -> Color {
+        return Color("#F24F1D")
+    }
 }

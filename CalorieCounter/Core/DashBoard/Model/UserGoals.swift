@@ -10,6 +10,41 @@ import SwiftData
 import FirebaseAuth
 import FirebaseFirestoreInternal
 
+enum MealType: Int, CaseIterable {
+    case breakfast = 0
+    case lunch = 1
+    case dinner = 2
+    case snacks = 3
+    
+    var value: Int {
+        switch self {
+        case .breakfast:
+            0
+        case .lunch:
+            1
+        case .dinner:
+            2
+        case .snacks:
+            3
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .breakfast:
+            "Breakfast"
+        case .lunch:
+            "Lunch"
+        case .dinner:
+            "Dinner"
+        case .snacks:
+            "Snacks"
+        }
+    }
+    
+    
+}
+
 class UserGoals {
     
     let db = Firestore.firestore()
@@ -20,6 +55,10 @@ class UserGoals {
     var dailyFatsGoal: Int?
     var dailyProteinGoal: Int?
     var dailyCarbsGoal: Int?
+    var totalBreakfastCal: Int?
+    var totalLunchCal: Int?
+    var totalDinnerCal: Int?
+    var totalSnacksCal: Int?
     static let instance = UserGoals()
     
     init(_ weightGoal: Double? = nil, _ stepsGoal: Double? = nil) {
@@ -100,13 +139,13 @@ class UserGoals {
         dailyFatsGoal = Int(fatsCalorie / Float(9.2))
         print("dailyFatsGoal \(dailyFatsGoal)")
         // total calorie * 3/10
-        //        totalBreakfastCal = Int(Float(totalCalories ?? Int(0)) * Float(0.3))
-        //        // total calorie * 4/10
-        //        totalLunchCal = Int(Float(totalCalories ?? Int(0)) * Float(0.4))
-        //        // total calorie * 25/100
-        //        totalDinnerCal = Int(Float(totalCalories ?? Int(0)) * Float(0.25))
-        //        // total calorie * 5/100
-        //        totalSnacksCal = Int(Float(totalCalories ?? Int(0)) * Float(0.05))
+        totalBreakfastCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.3))
+        // total calorie * 4/10
+        totalLunchCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.4))
+        // total calorie * 25/100
+        totalDinnerCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.25))
+        // total calorie * 5/100
+        totalSnacksCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.05))
     }
     
     

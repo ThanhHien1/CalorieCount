@@ -11,7 +11,7 @@ import SwiftData
 struct Nutritient_Card: View {
     
     @ObservedObject var viewModel =  DailySummaryData()
-    var foods : [Food] = []
+    var foods : [Foods] = []
     var userGoals  = UserGoals.instance
     @State private var appeared = false
     

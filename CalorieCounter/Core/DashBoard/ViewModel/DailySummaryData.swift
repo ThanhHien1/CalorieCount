@@ -42,7 +42,7 @@ class DailySummaryData: ObservableObject {
         return 0.0
     }
 
-    func updateNutrition(_ foods : [Food], _ userGoals : UserGoals){
+    func updateNutrition(_ foods : [Foods], _ userGoals : UserGoals){
         
         if foods.isEmpty { return }
         

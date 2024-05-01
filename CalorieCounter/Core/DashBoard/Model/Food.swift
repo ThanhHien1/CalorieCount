@@ -8,7 +8,7 @@
 import Foundation
 
 
-class Food {
+class Foods {
     
     var name : String
     var date : String
@@ -70,14 +70,14 @@ class Food {
 extension Food {
 
     @available(iOS 17, *)
-    static func currentPredicate() -> Predicate<Food> {
+    static func currentPredicate() -> Predicate<Foods> {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let dateStringOne = dateFormatter.string(from: Date())
             
-        return #Predicate<Food> { food in
+        return #Predicate<Foods> { food in
             food.date == dateStringOne
         }
     }

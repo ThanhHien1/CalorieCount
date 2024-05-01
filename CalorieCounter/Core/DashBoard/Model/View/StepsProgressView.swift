@@ -35,3 +35,8 @@ struct StepsProgressView: View {
     }
     
 }
+
+#Preview {
+    StepsProgressView()
+}
+

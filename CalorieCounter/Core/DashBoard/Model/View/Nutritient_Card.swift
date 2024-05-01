@@ -12,7 +12,7 @@ struct Nutritient_Card: View {
     
     @ObservedObject var viewModel =  DailySummaryData()
     var foods : [Food] = []
-    var userGoals : [UserGoals] = []
+    var userGoals  = UserGoals.instance
     @State private var appeared = false
     
     var body: some View {
@@ -20,29 +20,28 @@ struct Nutritient_Card: View {
             Text("Macro Progress")
                 .font(.subheadline)
             HStack(spacing: 30) {
-                MacroProgressCardView(title: "Fat",
-                                      value: viewModel.totalFats,
-//                                      total: userGoals[0].dailyFatsGoal ?? 0,
-                                      total:  0,
-                                      color: Color.orange,
-                                      valueInGrams: viewModel.totalFats,
-//                                      totalInGrams: userGoals[0].dailyFatsGoal ?? 0)
-                                      totalInGrams: 0)
-                MacroProgressCardView(title: "Protein",
-                                      value: viewModel.totalProteins,
-                                      total:  0,
-                                      color: Color.indigo,
-                                      valueInGrams: viewModel.totalProteins,
-                                      totalInGrams: 0)
-                
                 MacroProgressCardView(title: "Carbs",
                                       value: viewModel.totalCarbs,
-                                      total: 0,
+                                      total:  userGoals.dailyCarbsGoal ?? 0,
                                       color: Color.mint,
                                       valueInGrams: viewModel.totalCarbs,
-                                      totalInGrams: 0)
-                        }
+                                      totalInGrams: userGoals.dailyCarbsGoal ?? 0)
+                MacroProgressCardView(title: "Protein",
+                                      value: viewModel.totalProteins,
+                                      total:  userGoals.dailyProteinGoal ?? 0,
+                                      color: Color.indigo,
+                                      valueInGrams: viewModel.totalProteins,
+                                      totalInGrams: userGoals.dailyProteinGoal ?? 10)
+                MacroProgressCardView(title: "Fat",
+                                      value: viewModel.totalFats,
+                                      total:  userGoals.dailyFatsGoal ?? 0,
+                                      color: Color.orange,
+                                      valueInGrams: viewModel.totalFats,
+                                      totalInGrams: userGoals.dailyFatsGoal ?? 0)
+                
+            }
             .padding()
+            .frame(width: Vconst.DESIGN_WIDTH_RATIO * 350)
             .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous)
             )
             
@@ -50,7 +49,12 @@ struct Nutritient_Card: View {
                 viewModel.updateNutrition(foods, userGoals)
             }
         }
-        .padding()
+        .padding(.leading, 10)
         
     }
 }
+
+#Preview {
+    Nutritient_Card()
+}
+

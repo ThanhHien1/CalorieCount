@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct CaloriesEatenAndBurnedView: View {
-    @ObservedObject var viewModel =  DailySummaryData()
+    @ObservedObject var viewModel =  DailySummaryData.instance
+    @ObservedObject var healthStore =  HealthStore()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,31 +30,30 @@ struct CaloriesEatenAndBurnedView: View {
                 }
                 
                 Spacer()
-                
                 CircularProgressView(progress: viewModel.progressCalories, remainingCalories: viewModel.remainingCalories)
                 
                 Spacer()
                 
-//                VStack {
-//                    if let caloriesBurned = healthStore.caloriesBurnedToday {
-//                        Text(caloriesBurned.formatted())
-//                            .font(.system(size: 24))
-//                        HStack {
-//                            Text("Burned")
-//                                .font(.caption)
-//                            Image(systemName: "flame")
-//                        }
-//                        
-//                    } else {
-//                        Text("0")
-//                            .font(.system(size: 24))
-//                        HStack {
-//                            Text("Burned")
-//                                .font(.caption)
-//                            Image(systemName: "flame")
-//                        }
-//                    }
-//                }
+                VStack {
+                    if let caloriesBurned = healthStore.caloriesBurnedToday {
+                        Text(caloriesBurned.formatted())
+                            .font(.system(size: 24))
+                        HStack {
+                            Text("Burned")
+                                .font(.caption)
+                            Image(systemName: "flame")
+                        }
+                        
+                    } else {
+                        Text("0")
+                            .font(.system(size: 24))
+                        HStack {
+                            Text("Burned")
+                                .font(.caption)
+                            Image(systemName: "flame")
+                        }
+                    }
+                }
             }
             .foregroundStyle(.orange)
             .padding()
@@ -66,3 +66,8 @@ struct CaloriesEatenAndBurnedView: View {
         .padding()
     }
 }
+
+#Preview {
+    CaloriesEatenAndBurnedView()
+}
+

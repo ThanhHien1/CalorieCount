@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalculatorResultView: View {
     @ObservedObject var viewModel = GoalViewModel.instance
+    @ObservedObject var dailySummaryData = DailySummaryData.instance
     @State var isActive: Bool = false
     var bmiValue: String?
     var advice: String?
@@ -154,9 +155,9 @@ extension CalculatorResultView {
         NavigationLink(destination: DashBoardView(), isActive: $isActive) {
             NormalButton(action: {
                 viewModel.saveDataUser()
-                viewModel.fetchUserData() { user in
-                    print("user\(user)")
-                }
+//                dailySummaryData.fetchUserData() {_ in 
+//                    
+//                }
                 isActive = true
             }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
             )

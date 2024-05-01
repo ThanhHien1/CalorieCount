@@ -13,8 +13,6 @@ class CalculatorBrain {
     var calorie: Float?
     
     func calculateBMI(_ height: Float,_ weight: Float) {
-        print("weight \(weight)")
-        print("height \(height)")
         let bmiValue = weight / pow(height,2)
         
         if bmiValue < 18.5 {
@@ -34,11 +32,6 @@ class CalculatorBrain {
             bmr = 655 + 9.6*weight + 1.8*height*100 - 4.7*age
         }
         calorie = bmr * bmh + Float(changeCalorieAmount)
-        print("bmr \(bmr)")
-        print("changeCalorieAmount \(changeCalorieAmount)")
-        print("height \(height)")
-        print("calorie \(calorie)")
-        
     }
     
     

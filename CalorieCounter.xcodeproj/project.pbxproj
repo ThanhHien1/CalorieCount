@@ -18,6 +18,8 @@
 		243800EB2BDEBBEC00223577 /* Nutritient_Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */; };
 		243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */; };
 		243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800EE2BDEBC6800223577 /* StepsProgressView.swift */; };
+		243800F22BDF4F7C00223577 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800F12BDF4F7C00223577 /* HealthStore.swift */; };
+		243800F52BE2355400223577 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800F42BE2355400223577 /* FoodView.swift */; };
 		249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */; };
 		249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0872BD3B2570061017E /* RegisterViewModel.swift */; };
 		249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08A2BD3B7730061017E /* FormValidator.swift */; };
@@ -63,6 +65,8 @@
 		243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutritient_Card.swift; sourceTree = "<group>"; };
 		243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroProgressCardView.swift; sourceTree = "<group>"; };
 		243800EE2BDEBC6800223577 /* StepsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsProgressView.swift; sourceTree = "<group>"; };
+		243800F12BDF4F7C00223577 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
+		243800F42BE2355400223577 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		249FE0872BD3B2570061017E /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		249FE08A2BD3B7730061017E /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
@@ -163,6 +167,22 @@
 				243800EA2BDEBBEC00223577 /* Nutritient_Card.swift */,
 				243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */,
 				243800EE2BDEBC6800223577 /* StepsProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		243800F02BDF4F6A00223577 /* HeathStore */ = {
+			isa = PBXGroup;
+			children = (
+				243800F12BDF4F7C00223577 /* HealthStore.swift */,
+			);
+			path = HeathStore;
+			sourceTree = "<group>";
+		};
+		243800F32BE2353500223577 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				243800F42BE2355400223577 /* FoodView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,13 +348,14 @@
 		24DF9D112BD3757900582458 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				243800F02BDF4F6A00223577 /* HeathStore */,
 				243800DA2BDEB84600223577 /* DashBoard */,
 				24DF9D2D2BD37FB700582458 /* Component */,
 				24DF9D1A2BD378CA00582458 /* Profile */,
 				24DF9D192BD378B600582458 /* Recipes */,
 				24DF9D182BD3787E00582458 /* Foods */,
-				24DF9D152BD3766B00582458 /* Home */,
 				24DF9D172BD3786300582458 /* Selection */,
+				24DF9D152BD3766B00582458 /* Home */,
 				24DF9D132BD375F000582458 /* Login */,
 				24DF9D162BD376BD00582458 /* Register */,
 				24DF9D122BD375A200582458 /* Splash */,
@@ -396,6 +417,7 @@
 		24DF9D182BD3787E00582458 /* Foods */ = {
 			isa = PBXGroup;
 			children = (
+				243800F32BE2353500223577 /* View */,
 			);
 			path = Foods;
 			sourceTree = "<group>";
@@ -628,6 +650,7 @@
 				243800DE2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift in Sources */,
 				249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */,
 				249FE08D2BD3BF8C0061017E /* NormalButton.swift in Sources */,
+				243800F22BDF4F7C00223577 /* HealthStore.swift in Sources */,
 				249FE0C22BD4F7330061017E /* CalculatorView.swift in Sources */,
 				243800E42BDEB9C300223577 /* UserGoals.swift in Sources */,
 				24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */,
@@ -656,6 +679,7 @@
 				249FE0932BD406650061017E /* Constanst.swift in Sources */,
 				249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */,
 				249FE0AB2BD4DCAB0061017E /* RootViewModel.swift in Sources */,
+				243800F52BE2355400223577 /* FoodView.swift in Sources */,
 				243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */,
 				24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */,
 				249FE0B02BD4DFD30061017E /* HomeView.swift in Sources */,

@@ -37,3 +37,9 @@ struct DashBoardView: View {
         }
     }
 }
+
+
+#Preview {
+    DashBoardView()
+}
+

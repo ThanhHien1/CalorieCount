@@ -43,8 +43,8 @@ struct CircularProgressView : View {
         .animation(.easeInOut, value: progress)
     }
 }
-//
-//#Preview {
-//    CircularProgressView(progress: 800, remainingCalories: 150)
-//}
-//
+
+#Preview {
+    CircularProgressView(progress: 800, remainingCalories: 150)
+}
+

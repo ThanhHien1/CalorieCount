@@ -6,39 +6,43 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseFirestoreInternal
 
 class DailySummaryData: ObservableObject {
     
+    let db = Firestore.firestore()
     var selectedDate = Date()
     var totalCalories = 0
     var totalFats = 0
     var totalProteins = 0
     var totalCarbs = 0
-    var currentUserGoals: UserGoals? 
+    var currentUserGoals =  UserGoals.instance
+    static let instance = DailySummaryData()
     
    
     var remainingCalories: Int? {
-        if let dailyCaloriesGoal = currentUserGoals?.dailyCaloriesGoal {
+        if let dailyCaloriesGoal = currentUserGoals.dailyCaloriesGoal {
             return dailyCaloriesGoal - totalCalories
         }
         return nil
     }
     
     var progressCalories : Double {
-        if let dailyCaloriesGoal = currentUserGoals?.dailyCaloriesGoal {
+        if let dailyCaloriesGoal = currentUserGoals.dailyCaloriesGoal {
             return Double(totalCalories)/Double(dailyCaloriesGoal)
         }
         return 0.0
     }
     
     func progressSteps() -> Double {
-        if let dailyStepsGoal = currentUserGoals?.stepsGoal {
+        if let dailyStepsGoal = currentUserGoals.stepsGoal {
             return dailyStepsGoal
         }
         return 0.0
     }
 
-    func updateNutrition(_ foods : [Food], _ userGoals : [UserGoals]){
+    func updateNutrition(_ foods : [Food], _ userGoals : UserGoals){
         
         if foods.isEmpty { return }
         
@@ -47,9 +51,9 @@ class DailySummaryData: ObservableObject {
         totalProteins = foods.reduce(0, {$0 + (Int($1.protein ?? "") ?? 0)})
         totalCarbs = foods.reduce(0, {$0 + (Int($1.carbohydrate ?? "") ?? 0)})
         
-        if userGoals.isEmpty { return }
+//        if userGoals.isEmpty { return }
         
-        currentUserGoals = userGoals[0]
+        currentUserGoals = userGoals
     }
     
     

@@ -128,7 +128,7 @@ class GoalViewModel: ObservableObject {
     static let instance = GoalViewModel()
     let db = Firestore.firestore()
     
-    func saveDataUser() {
+    func saveDataUser(complete: @escaping() -> Void) {
         if let currentUserEmail = Auth.auth().currentUser?.email {
             db.collection("UserInformations").document("\(currentUserEmail)").setData([
                 "UserEmail": currentUserEmail,
@@ -158,6 +158,7 @@ class GoalViewModel: ObservableObject {
                 if let err = err {
                     print("Error adding document: \(err)")
                 } else {
+                    complete()
                     print("Document successfully written!")
                 }
             }

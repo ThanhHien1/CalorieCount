@@ -33,7 +33,7 @@ struct DashBoardView: View {
                                 carouselItem(mealType: mealType)
                             }
                         }
-                        .background(NavigationLink("", destination: AddMealView(viewModel: foodViewModel), isActive: $isActive).hidden())
+                        .background(NavigationLink("", destination: AddMealView(frequentFoods: foodViewModel.frequentFoods, mealType: mealTypes), isActive: $isActive).hidden())
                         .padding(.bottom, 60)
                         .padding(.horizontal, 30)
                     }
@@ -65,12 +65,13 @@ extension DashBoardView {
     
     private func carouselItem(mealType: MealType) -> some View {
             Button(action: {
-                foodViewModel.frequentFoods = []
-                isActive = true
+//                foodViewModel.frequentFoods = []
                 self.mealTypes = mealType
                 print("mealTypes \(mealTypes)")
                 print(" self.mealTypes.value \( self.mealTypes.value)")
                 foodViewModel.fetchDefaultFoodData(mealType: self.mealTypes.value) {
+                    print("viewModel.frequentFoods2 \(foodViewModel.frequentFoods.count)")
+                    isActive = true
                 }
             }) {
                 MealCarouselItemView(mealType: mealType, userGoals: userGoals)
@@ -88,15 +89,29 @@ struct MealCarouselItemView: View {
             Text(mealType.title)
                 .font(.system(size: 16))
                 .foregroundColor(.white)
-            //.frame(maxWidth: .infinity)
                 .padding(.horizontal, 15)
                 .padding(.top, 65)
             
             HStack(alignment: .firstTextBaseline, spacing: 1) {
                 Spacer()
-                Text("\(String(describing:Int( userGoals.totalLunchCal ?? 0)))")
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
+                switch mealType {
+                case .breakfast:
+                    Text("\(String(describing:Int( userGoals.totalBreakfastCal ?? 0)))")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                case .lunch:
+                    Text("\(String(describing:Int( userGoals.totalLunchCal ?? 0)))")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                case .dinner:
+                    Text("\(String(describing:Int( userGoals.totalDinnerCal ?? 0)))")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                case .snacks:
+                    Text("\(String(describing:Int( userGoals.totalSnacksCal ?? 0)))")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                }
                 
                 Text(" kcal")
                     .font(.system(size: 12))

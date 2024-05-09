@@ -9,6 +9,7 @@ import Foundation
 import SwiftData
 import FirebaseAuth
 import FirebaseFirestoreInternal
+import SwiftUI
 
 enum MealType: Int, CaseIterable {
     case breakfast = 0
@@ -45,7 +46,7 @@ enum MealType: Int, CaseIterable {
     
 }
 
-class UserGoals {
+class UserGoals: ObservableObject  {
     
     let db = Firestore.firestore()
     var user: UserData? = nil
@@ -64,9 +65,9 @@ class UserGoals {
     init(_ weightGoal: Double? = nil, _ stepsGoal: Double? = nil) {
         self.weightGoal = weightGoal
         self.stepsGoal = stepsGoal
-        fetchUserData() { _ in
-            
-        }
+//        fetchUserData() { _ in
+//            
+//        }
     }
     
     
@@ -120,7 +121,7 @@ class UserGoals {
                     self.dailyCaloriesGoal = self.user?.calorie ?? 0
                     print("dailyCaloriesGoal \(self.dailyCaloriesGoal)")
                     self.calculateTotalCalNeeds()
-                    //                    completion(.success(user ?? <#default value#>))
+                    completion(.success(self.user!))
                 } catch let parsingError {
                     completion(.failure(parsingError))
                 }
@@ -146,6 +147,13 @@ class UserGoals {
         totalDinnerCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.25))
         // total calorie * 5/100
         totalSnacksCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.05))
+        
+        let totalAdjustedCalories = (totalBreakfastCal ?? 0) + (totalLunchCal ?? 0) + (totalDinnerCal ?? 0) + (totalSnacksCal ?? 0)
+        let adjustment  = (dailyCaloriesGoal ?? 0) - totalAdjustedCalories
+        if adjustment != 0 {
+            totalBreakfastCal! += adjustment
+        }
+
     }
     
     

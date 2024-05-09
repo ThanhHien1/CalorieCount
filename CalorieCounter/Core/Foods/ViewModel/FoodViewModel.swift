@@ -22,8 +22,6 @@ class FoodViewModel: ObservableObject {
     var updateDelegate: UpdateDelegate?
     var errorDelegate: ErrorDelegate?
     var apiService = FoodApiService()
-    // The list of fetch foods - list type is FoodApiModel FoodData struct
-    // The list of stored foods - list type is FoodApiModel FoodStruct struct
     private var targetFoods1: [FoodStruct] = []
     private let food_app_id = "1587e073"
     private let food_app_key = "602facc0a5347c2e83c1a5932bcb13bc"
@@ -71,10 +69,11 @@ class FoodViewModel: ObservableObject {
             print("Fetching food data.. : ", foodsUrl ?? "ERROR: URL Not Found! (FoodViewModel.swift)")
             apiService.getFoodsData2(foodsUrl: foodsUrl) { [weak self] (result) in
                 print("apiService.getFoodsData:")
-                print(result)
+//                print(result)
                 switch result{
                 case .success(let listOf):
                     self!.fetchFoodImage2(url: listOf.hints[0].food.image!,food: listOf.hints[0].food , measure: listOf.hints[0].measures[0], index: i){ [weak self] in
+                        completion()
                         //self?.Images = Array(repeating: UIImage(named: "background")!, count: listOf.games.count)
                     }
                 case .failure(_):
@@ -83,7 +82,8 @@ class FoodViewModel: ObservableObject {
                 }
             }
         }
-        completion()
+       
+        print("^^^^ \(frequentFoods.count)")
     }
         // The API call to get the foods
         func fetchFoodData(pagination: Bool, completion: @escaping () -> ()) {
@@ -229,12 +229,14 @@ class FoodViewModel: ObservableObject {
     func fetchFoodImage2(url: String,food: Food,measure: Measure, index: Int, completion: @escaping () -> ()) {
         
         apiService.getImageDataFrom(url: url) { [weak self] (result) in
-            print(result)
+//            print(result)
             switch result{
             case .success(let listOf):
-                //FoodStruct değerlerin atanması
+                //FoodStruct
                 self?.frequentFoods.append(FoodStruct(label: food.label,calorie: food.nutrients?.ENERC_KCAL,image: listOf, carbs: food.nutrients?.CHOCDF, fat: food.nutrients?.FAT, protein: food.nutrients?.PROCNT,wholeGram: measure.weight,measureLabel: measure.label
                                                             ))
+                print("### \(self?.frequentFoods.count)")
+                completion()
                 self?.updateDelegate?.didUpdate(sender: self!)
                 //self?.targetFoods1.append(contentsOf: FoodStruct(label: food.label,
                 //                                              calorie: food.nutrients?.ENERC_KCAL,image: listOf))

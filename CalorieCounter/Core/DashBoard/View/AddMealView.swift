@@ -9,49 +9,35 @@ import Foundation
 import SwiftUI
 
 struct AddMealView: View {
-    @ObservedObject var viewModel: FoodViewModel
+//    @ObservedObject var viewModel: FoodViewModel
+    var frequentFoods: [FoodStruct]?
     var foodSearchSuggestions = [String]()
-    var  mealType: MealType = .breakfast
+    var  mealType: MealType?
     //@State var searchText = ""
     
     var body: some View {
         
         //NavigationView {
             VStack {
-                ZStack{
-                    
-                    RoundedCorners(tl: 0, tr: 0, bl: 64, br: 0, mealType: .breakfast)
-//                        .modifier(GradientModifier(mealType: $viewModel.mealType))
-                        .frame(height: 202)
-                        .frame(maxWidth: .infinity)
-                    
-                    
-                    SearchField(searchText: $viewModel.searchText)
-                        .padding(.horizontal, 30)
-                        .padding(.top, 50)
-                    
-                    Text("\(mealType.title)")
-                        .offset(y: -30)
+//                ZStack{
+                    Text("\(mealType?.title ?? "")")
                         .font(.system(size: 17))
                         .foregroundColor(.white)
+//                    SearchField(searchText: $viewModel.searchText)
+//                        .padding(.horizontal, 30)
+//                        .padding(.top, 30)
                 }
                 
                 ScrollView {
                               LazyVStack {
-                                  ForEach(viewModel.frequentFoods, id: \.self) { food in
+                                  ForEach(frequentFoods ?? [], id: \.self) { food in
                                       FoodItemRowView(food: food)
                                   }
                               }
                           }
-                      }
-                      .background(Color(#colorLiteral(red: 0.9607843137, green: 0.9647058824, blue: 0.9803921569, alpha: 1)))
-                      .edgesIgnoringSafeArea(.all)
-            .edgesIgnoringSafeArea(.all)
-//            .modifier(DismissingKeyboardOnSwipe())
-            //.navigationBarHidden(true)
-            .navigationBarTitle("Back")
+//                      }
             .onAppear() {
-                
+                print("viewModel.frequentFoods \(frequentFoods)")
             }
     }
 }
@@ -125,7 +111,7 @@ struct FoodItemRowView: View {
 struct AddMealView_Previews: PreviewProvider {
     
     static var previews: some View {
-        AddMealView(viewModel: FoodViewModel())
+        AddMealView(frequentFoods: [])
 //            .environmentObject(FDCDayMeals())
     }
 }

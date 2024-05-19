@@ -9,15 +9,17 @@ import Foundation
 
 struct UserData {
     let userEmail: String
-    let calorie: Int
+    var calorie: Int
     let sex: String
     let weight: Float
     let height: Float
     let age: Int
-    let bmh: Float
-    let changeCalorieAmount: Int
-    let goalType: String
-    let currentDay: Date
+    var activeness: String
+    var bmh: Float
+    var bmi: Float
+    var changeCalorieAmount: Int
+    var goalType: String
+    var currentDay: String
     let currentCarbs: Int
     let currentPro: Int
     let currentFat: Int

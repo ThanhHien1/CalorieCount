@@ -59,12 +59,16 @@ extension CalculatorView {
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
                 Spacer()
-                Text("\(Int($viewModel.age.wrappedValue))")
+                Text("\($viewModel.age.wrappedValue)")
             }
             .padding(.horizontal, Vconst.DESIGN_HEIGHT_RATIO * 20)
-            Slider(value: $viewModel.age, in: 1...100, step: 1)
-                .padding()
-                .accentColor(Color.cl_F24F1D())
+            Slider(value: Binding(
+                get: { Double(viewModel.age) },
+                set: { viewModel.age = Int($0) }
+            ), in: 1.0...100.0, step: 1.0)
+            .padding()
+            .accentColor(Color.cl_F24F1D())
+
         }
     }
     
@@ -119,15 +123,19 @@ extension CalculatorView {
     
     var ButtonContinue: some View {
 calculatorBrain.calculateBMI(viewModel.height,viewModel.weight)
-        calculatorBrain.calculateCalorie(viewModel.sex, viewModel.weight, viewModel.height, viewModel.age, viewModel.activeness.bmh, viewModel.goalType.changeCalorieAmount)
-        return NavigationLink(destination: CalculatorResultView(bmiValue: calculatorBrain.getBMIValue(), advice: calculatorBrain.getAdvice(), color: calculatorBrain.getColor(), calorie: calculatorBrain.getCalorie()), isActive: $isActive) {
-            NormalButton(action: {
+        calculatorBrain.calculateCalorie(viewModel.sex.rawValue, viewModel.weight, viewModel.height , Int(viewModel.age), viewModel.activeness.bmh, viewModel.goalType.changeCalorieAmount)
+//        return NavigationLink() {
+        return NormalButton(action: {
                 isActive = true
                 viewModel.calorie = Int(calculatorBrain.getCalorie()) ?? 0
+                viewModel.bmi = calculatorBrain.bmi?.value ?? 0.0
                 viewModel.dateUpdate = Utilities.formatDateTime(date: Date())
             }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
             )
-        }
+            .navigationDestination(isPresented: $isActive, destination: {
+                CalculatorResultView(bmiValue: calculatorBrain.getBMIValue(), advice: calculatorBrain.getAdvice(), color: calculatorBrain.getColor(), calorie: calculatorBrain.getCalorie())
+            })
+//        }
     }
 }
 

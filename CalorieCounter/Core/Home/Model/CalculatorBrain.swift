@@ -24,15 +24,30 @@ class CalculatorBrain {
         }
     }
     
-    func calculateCalorie(_ sex: GenderEnum, _ weight: Float, _ height: Float, _ age: Float, _ bmh: Float, _ changeCalorieAmount: Int) {
+    func calculateCalorie(_ sex: String, _ weight: Float, _ height: Float, _ age: Int, _ bmh: Float, _ changeCalorieAmount: Int) {
         var bmr: Float = 0.0
-        if sex == GenderEnum.male {
-            bmr = 66 + 13.7*weight + 5*height*100 - 6.8*age
-        } else {
-            bmr = 655 + 9.6*weight + 1.8*height*100 - 4.7*age
+        print("## \(sex)")
+        print("## \(weight)")
+        print("## \(height)")
+        print("## \(age)")
+        print("## \(bmh)")
+        print("## \(changeCalorieAmount)")
+        if sex == "Male" || sex == "male" {
+            let weightComponent = 13.7 * weight
+            let heightComponent = 5 * height * 100
+            let ageComponent = 6.8 * Float(age)
+            bmr = 66 + weightComponent + heightComponent - ageComponent
         }
-        calorie = bmr * bmh + Float(changeCalorieAmount)
+        else {
+            let weightComponent = 9.6 * weight
+            let heightComponent = 1.8 * height * 100
+            let ageComponent = 4.7 * Float(age)
+            bmr = 655 + weightComponent + heightComponent - ageComponent
+        }
+        let calorieFromBMR = bmr * bmh
+        calorie = calorieFromBMR + Float(changeCalorieAmount)
     }
+
     
     
     func getBMIValue() -> String {

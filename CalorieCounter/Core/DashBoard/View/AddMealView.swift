@@ -9,50 +9,50 @@ import Foundation
 import SwiftUI
 
 struct AddMealView: View {
-//    @ObservedObject var viewModel: FoodViewModel
-    var frequentFoods: [FoodStruct]?
+    @ObservedObject var userGoals = UserGoals.instance
+    @ObservedObject var viewModel = FoodViewModel.instance
+    @ObservedObject var dailySummaryData = DailySummaryData.instance
+    
     var foodSearchSuggestions = [String]()
-    var  mealType: MealType?
+    var  mealType: MealType
+//    var  frequentFoods: [FoodStruct]?
     //@State var searchText = ""
     
     var body: some View {
         
         //NavigationView {
-            VStack {
-//                ZStack{
-                    Text("\(mealType?.title ?? "")")
-                        .font(.system(size: 17))
-                        .foregroundColor(.white)
-//                    SearchField(searchText: $viewModel.searchText)
-//                        .padding(.horizontal, 30)
-//                        .padding(.top, 30)
-                }
-                
+        VStack {
+            //                ZStack{
+            Text("\(mealType.title)")
+                .font(.system(size: 17))
+                .foregroundColor(.white)
+            //                    SearchField(searchText: $viewModel.searchText)
+            //                        .padding(.horizontal, 30)
+            //                        .padding(.top, 30)
+            
                 ScrollView {
-                              LazyVStack {
-                                  ForEach(frequentFoods ?? [], id: \.self) { food in
-                                      FoodItemRowView(food: food)
-                                  }
-                              }
-                          }
-//                      }
-            .onAppear() {
-                print("viewModel.frequentFoods \(frequentFoods)")
+                    LazyVStack {
+                        ForEach(viewModel.frequentFoods, id: \.self) { food in
+                            FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
+                        }
+                    }
+                }
             }
     }
+    
 }
 
 struct SearchField: View {
     @Binding var searchText: String
     var placeholder: LocalizedStringKey = "Search..."
-
+    
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
             TextField(placeholder, text: $searchText)
-                //.offset(y: 10)
+            //.offset(y: 10)
                 .accentColor(.gray)
-                .frame(height: 30)
+                .frame(height: Vconst.DESIGN_HEIGHT_RATIO * 30)
         }
         
         .foregroundColor(.gray)
@@ -68,7 +68,11 @@ struct SearchField: View {
 
 
 struct FoodItemRowView: View {
+    @Environment(\.presentationMode) var presentationMode
     var food: FoodStruct
+    var dailySummaryData: DailySummaryData
+    var userGoals: UserGoals
+    var mealType: MealType
     
     var body: some View {
         HStack(spacing: 10) {
@@ -76,7 +80,7 @@ struct FoodItemRowView: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
+                    .frame(width: Vconst.DESIGN_WIDTH_RATIO * 80, height: Vconst.DESIGN_HEIGHT_RATIO * 80)
                     .cornerRadius(8)
             }
             
@@ -90,7 +94,24 @@ struct FoodItemRowView: View {
             
             Spacer()
             Button(action: {
-                // Handle adding the meal
+                print("food\(food)")
+//                dailySummaryData.totalCalories += Int(food.calorie ?? 0)
+//                dailySummaryData.totalCarbs += Int(food.carbs ?? 0)
+//                dailySummaryData.totalFats += Int(food.fat ?? 0)
+//                dailySummaryData.totalProteins += Int(food.protein ?? 0)
+                dailySummaryData.updateNutrition(food)
+                switch mealType {
+                case .breakfast:
+                    userGoals.totalBreakfastCal! -= Int(food.calorie ?? 0)
+                case .lunch:
+                    userGoals.totalLunchCal! -= Int(food.calorie ?? 0)
+                case .dinner:
+                    userGoals.totalDinnerCal! -= Int(food.calorie ?? 0)
+                case .snacks:
+                    userGoals.totalSnacksCal! -= Int(food.calorie ?? 0)
+                }
+                
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "plus.circle.fill")
                     .foregroundColor(.blue)
@@ -111,7 +132,7 @@ struct FoodItemRowView: View {
 struct AddMealView_Previews: PreviewProvider {
     
     static var previews: some View {
-        AddMealView(frequentFoods: [])
-//            .environmentObject(FDCDayMeals())
+        AddMealView(viewModel: FoodViewModel(), mealType: .lunch)
+        //            .environmentObject(FDCDayMeals())
     }
 }

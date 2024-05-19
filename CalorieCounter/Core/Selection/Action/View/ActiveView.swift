@@ -46,6 +46,7 @@ extension ActiveView {
     func GoalItem(activeItem: ActivenessEnum) -> some View {
         Button(action: {
             viewModel.activeness = activeItem
+            print( viewModel.activeness.bmh)
         }, label: {
             VStack {
                 Text("\(activeItem.title)")

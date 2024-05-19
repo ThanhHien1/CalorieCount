@@ -10,9 +10,9 @@ import SwiftData
 
 struct Nutritient_Card: View {
     
-    @ObservedObject var viewModel =  DailySummaryData()
-    var foods : [Foods] = []
-    var userGoals  = UserGoals.instance
+    @ObservedObject var viewModel =  DailySummaryData.instance
+//    var foods :FoodStruct
+    @ObservedObject var userGoals  = UserGoals.instance
     @State private var appeared = false
     
     var body: some View {
@@ -44,17 +44,13 @@ struct Nutritient_Card: View {
             .frame(width: Vconst.DESIGN_WIDTH_RATIO * 350)
             .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous)
             )
-            
-            .onAppear {
-                viewModel.updateNutrition(foods, userGoals)
-            }
         }
         .padding(.leading, 10)
         
     }
 }
 
-#Preview {
-    Nutritient_Card()
-}
+//#Preview {
+//    Nutritient_Card(foods: FoodStruct(label: "1", calorie: 1, image: , carbs: <#T##Float?#>, fat: <#T##Float?#>, protein: <#T##Float?#>, wholeGram: <#T##Float?#>, measureLabel: <#T##String?#>))
+//}
 

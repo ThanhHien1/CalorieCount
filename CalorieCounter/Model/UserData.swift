@@ -8,19 +8,21 @@
 import Foundation
 
 struct UserData {
-    let userEmail: String
-    let calorie: Int
+    var userEmail: String
+    var calorie: Int
     let sex: String
-    let weight: Float
-    let height: Float
-    let age: Int
-    let bmh: Float
-    let changeCalorieAmount: Int
-    let goalType: String
-    let currentDay: Date
-    let currentCarbs: Int
-    let currentPro: Int
-    let currentFat: Int
+    var weight: Float
+    var height: Float
+    var age: Int
+    var activeness: String
+    var bmh: Float
+    var bmi: Float
+    var changeCalorieAmount: Int
+    var goalType: String
+    var currentDay: String
+    var currentCarbs: Int
+    var currentPro: Int
+    var currentFat: Int
     let currentBreakfastCal: Int
     let currentLunchCal: Int
     let currentDinnerCal: Int
@@ -28,6 +30,7 @@ struct UserData {
     let currentBurnedCal: Int
     let weeklyGoal: Int
     let calorieGoal: Int
+    var caloriesConsumed: Int
     let adviced: Bool
     let goalWeight: Int
     let dietaryType: String

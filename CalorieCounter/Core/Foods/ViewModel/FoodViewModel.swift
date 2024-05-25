@@ -16,14 +16,11 @@ protocol ErrorDelegate {
 }
 
 class FoodViewModel: ObservableObject {
-    @Published var searchText = ""
     var check = 0
     var check2 = false
     var updateDelegate: UpdateDelegate?
     var errorDelegate: ErrorDelegate?
     var apiService = FoodApiService()
-    // The list of fetch foods - list type is FoodApiModel FoodData struct
-    // The list of stored foods - list type is FoodApiModel FoodStruct struct
     private var targetFoods1: [FoodStruct] = []
     private let food_app_id = "1587e073"
     private let food_app_key = "602facc0a5347c2e83c1a5932bcb13bc"
@@ -31,6 +28,7 @@ class FoodViewModel: ObservableObject {
     var frequentFoodsData: [FoodData] = []
     var frequentFoods: [FoodStruct] = []
     var x = 0
+    static let instance = FoodViewModel()
     
     var breakfastRequestList =  ["https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=egg","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=milk","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=multigrain%2Cbread","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=honey","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=cheese","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=butter","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=tea","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=olive","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=coffee","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=tomato","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=cucumber","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=pancake","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=bagel","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=pita","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=jam","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=pepperoni","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=pastry","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=roll","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=cashew","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=walnut","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=nuts","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=toast","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=apricot","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=croissant","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=oats","https://api.edamam.com/api/food-database/v2/parser?&app_id=1587e073&app_key=602facc0a5347c2e83c1a5932bcb13bc&nutrition-type=cooking&ingr=granola"]
     
@@ -54,37 +52,56 @@ class FoodViewModel: ObservableObject {
         
     }
     // 0: breakfast, 1: lunch, 2: dinner, 3: snacks
-    func fetchDefaultFoodData(mealType: Int,completion: @escaping () -> ()) {
+    func fetchDefaultFoodData(mealType: Int, completion: @escaping () -> ()) {
         var reqList: [String]
-        switch mealType{
-            case 0: reqList = breakfastRequestList
-            case 1: reqList = lunchRequestList
-            case 2: reqList = dinnerRequestList
-            case 3: reqList = snacksRequestList
+        switch mealType {
+        case 0: reqList = breakfastRequestList
+        case 1: reqList = lunchRequestList
+        case 2: reqList = dinnerRequestList
+        case 3: reqList = snacksRequestList
         default:
             reqList = breakfastRequestList
         }
-        for (i,req) in reqList.enumerated(){
+        
+        let dispatchGroup = DispatchGroup()
+        
+        for (i, req) in reqList.enumerated() {
+            dispatchGroup.enter()
             //app_id=1587e073   &app_key=602facc0a5347c2e83c1a5932bcb13bc     &nutrition-type=cooking(default)
             let foodsUrl = req
             // weak self - prevent retain cycles
             print("Fetching food data.. : ", foodsUrl ?? "ERROR: URL Not Found! (FoodViewModel.swift)")
             apiService.getFoodsData2(foodsUrl: foodsUrl) { [weak self] (result) in
-                print("apiService.getFoodsData:")
-                print(result)
-                switch result{
+                print("apiService.getFoodsData111222:")
+                //                print(result)
+                switch result {
                 case .success(let listOf):
-                    self!.fetchFoodImage2(url: listOf.hints[0].food.image!,food: listOf.hints[0].food , measure: listOf.hints[0].measures[0], index: i){ [weak self] in
+                    print("%")
+                    print("listOf \(listOf.hints.count)")
+                    self!.fetchFoodImage2(url: listOf.hints[0].food.image!, food: listOf.hints[0].food, measure: listOf.hints[0].measures[0], index: i) { [weak self] in
                         //self?.Images = Array(repeating: UIImage(named: "background")!, count: listOf.games.count)
                     }
+                    dispatchGroup.leave()
+                    //                    print("frequentFoods \(self?.frequentFoods)")
+                    
+                    //                    print("foood \(self?.frequentFoods.count)")
                 case .failure(_):
+                    print("%%")
                     // Something is wrong with the JSON file or the model
                     print("Error processing json data:")
+                    // Retry the request
+                    self?.fetchDefaultFoodData(mealType: mealType, completion: completion)
+                    dispatchGroup.leave()
                 }
             }
         }
-        completion()
+        
+        dispatchGroup.notify(queue: .main) {
+            completion()
+            print("frequentFoodsssss \(self.frequentFoods.count)")
+        }
     }
+
         // The API call to get the foods
         func fetchFoodData(pagination: Bool, completion: @escaping () -> ()) {
             //app_id=1587e073   &app_key=602facc0a5347c2e83c1a5932bcb13bc     &nutrition-type=cooking(default)
@@ -100,7 +117,7 @@ class FoodViewModel: ObservableObject {
             // weak self - prevent retain cycles
             print("Fetching food data.. : ", foodsUrl ?? "ERROR: URL Not Found! (FoodViewModel.swift)")
             apiService.getFoodsData(pagination: pagination, foodsUrl: foodsUrl!) { [weak self] (result) in
-                print("apiService.getFoodsData:")
+                print("apiService.getFoodsData11111:")
                 print(result)
                 switch result{
                 case .success(let listOf):
@@ -158,6 +175,7 @@ class FoodViewModel: ObservableObject {
             else{
                 foodsUrl = nextPageUrl
             }
+            
             // weak self - prevent retain cycles
             print("Fetching food data.. : ", foodsUrl ?? "ERROR: URL Not Found! (FoodViewModel.swift)")
             apiService.getFoodsData(pagination: pagination, foodsUrl: foodsUrl!) { [weak self] (result) in
@@ -165,7 +183,7 @@ class FoodViewModel: ObservableObject {
                 print(result)
                 switch result{
                 case .success(let listOf):
-                    var currentCount = self?.targetFoods1.count
+                    let currentCount = self?.targetFoods1.count
                     var theListWithoutImagelessFoods: [FoodData] = []
                     for food in listOf.hints{
                         if food.food.image != nil{
@@ -178,6 +196,7 @@ class FoodViewModel: ObservableObject {
                     for (i, food) in theListWithoutImagelessFoods.enumerated(){
                         url2 = food.food.image!
                         self!.fetchFoodImage(url: url2,food: food, index: currentCount! + i){ [weak self] in
+                            completion()
                         }
                     }
                     if !(self!.check2) && theListWithoutImagelessFoods.count < 10{
@@ -196,7 +215,6 @@ class FoodViewModel: ObservableObject {
                             }
                         }
                     }
-                    completion()
                 case .failure(let error):
                     self?.errorDelegate?.didError(sender: self!)
                     // Something is wrong with the JSON file or the model
@@ -216,7 +234,8 @@ class FoodViewModel: ObservableObject {
                 case .success(let listOf):
                     //FoodStruct değerlerin atanması
                     self?.targetFoods1.append(FoodStruct(label: foodData.label,calorie: foodData.nutrients?.ENERC_KCAL,image: listOf, carbs: foodData.nutrients?.CHOCDF, fat: foodData.nutrients?.FAT, protein: foodData.nutrients?.PROCNT,wholeGram: measures[0].weight,measureLabel: measures[0].label))
-                    self?.updateDelegate!.didUpdate(sender: self!)
+                    completion()
+//                    self?.updateDelegate!.didUpdate(sender: self!)
                     //self?.targetFoods1.append(contentsOf: FoodStruct(label: food.label,
                     //                                              calorie: food.nutrients?.ENERC_KCAL,image: listOf))
                 case .failure(let error):
@@ -229,13 +248,14 @@ class FoodViewModel: ObservableObject {
     func fetchFoodImage2(url: String,food: Food,measure: Measure, index: Int, completion: @escaping () -> ()) {
         
         apiService.getImageDataFrom(url: url) { [weak self] (result) in
-            print(result)
+//            print(result)
             switch result{
             case .success(let listOf):
-                //FoodStruct değerlerin atanması
+                //FoodStruct
                 self?.frequentFoods.append(FoodStruct(label: food.label,calorie: food.nutrients?.ENERC_KCAL,image: listOf, carbs: food.nutrients?.CHOCDF, fat: food.nutrients?.FAT, protein: food.nutrients?.PROCNT,wholeGram: measure.weight,measureLabel: measure.label
                                                             ))
-                self?.updateDelegate?.didUpdate(sender: self!)
+//                self?.updateDelegate?.didUpdate(sender: self!)
+                completion()
                 //self?.targetFoods1.append(contentsOf: FoodStruct(label: food.label,
                 //                                              calorie: food.nutrients?.ENERC_KCAL,image: listOf))
             case .failure(let error):

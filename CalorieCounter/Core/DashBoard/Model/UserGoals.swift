@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import FirebaseAuth
+import SwiftUI
 import FirebaseFirestoreInternal
 
 enum MealType: Int, CaseIterable {
@@ -45,33 +46,31 @@ enum MealType: Int, CaseIterable {
     
 }
 
-class UserGoals {
+class UserGoals: ObservableObject  {
     
     let db = Firestore.firestore()
     var user: UserData? = nil
-    var weightGoal : Double?
-    var stepsGoal : Double?
-    var dailyCaloriesGoal: Int?
-    var dailyFatsGoal: Int?
-    var dailyProteinGoal: Int?
-    var dailyCarbsGoal: Int?
-    var totalBreakfastCal: Int?
-    var totalLunchCal: Int?
-    var totalDinnerCal: Int?
-    var totalSnacksCal: Int?
+    @Published var weightGoal : Double?
+    @Published var stepsGoal : Double?
+    @Published var dailyCaloriesGoal: Int?
+    @Published var dailyFatsGoal: Int?
+    @Published var dailyProteinGoal: Int?
+    @Published var dailyCarbsGoal: Int?
+    @Published var totalBreakfastCal: Int?
+    @Published var totalLunchCal: Int?
+    @Published var totalDinnerCal: Int?
+    @Published var totalSnacksCal: Int?
     static let instance = UserGoals()
     
     init(_ weightGoal: Double? = nil, _ stepsGoal: Double? = nil) {
         self.weightGoal = weightGoal
         self.stepsGoal = stepsGoal
         fetchUserData() { _ in
-            
         }
     }
     
-    
     func fetchUserData(completion: @escaping (Result<UserData, Error>) -> Void) {
-        print("%%%%%%%%%")
+        print("2")
         if let currentUserEmail = Auth.auth().currentUser?.email {
             db.collection("UserInformations").document(currentUserEmail).getDocument { (document, error) in
                 if let error = error {
@@ -98,10 +97,12 @@ class UserGoals {
                     let weight = userData["weight"] as? Float ?? 0.0
                     let height = userData["height"] as? Float ?? 0.0
                     let age = userData["age"] as? Int ?? 0
-                    let bmh = userData["bmh"] as? Float ?? 0.0
+                    let activeness = userData["activeness"] as? String ?? ""
+                    let bmh = userData["bmh"] as? Float ?? 0
+                    let bmi = userData["bmi"] as? Float ?? 0.0
                     let changeCalorieAmount = userData["changeCalorieAmount"] as? Int ?? 0
                     let goalType = userData["goalType"] as? String ?? ""
-                    let currentDay = userData["currentDay"] as? Date ?? Date()
+                    let currentDay = userData["currentDay"] as? String ?? ""
                     let currentCarbs = userData["currentCarbs"]  as? Int ?? 0
                     let currentPro = userData["currentPro"] as? Int ?? 0
                     let currentFat = userData["currentFat"]  as? Int ?? 0
@@ -112,15 +113,17 @@ class UserGoals {
                     let currentBurnedCal = userData["currentBurnedCal"] as? Int ?? 0
                     let weeklyGoal = userData["weeklyGoal"] as? Int ?? 0
                     let calorieGoal = userData["calorieGoal"] as? Int ?? 0
+                    let caloriesConsumed = userData["caloriesConsumed"] as? Int ?? 0
                     let adviced = userData["adviced"] as? Bool ?? true
                     let goalWeight = userData["goalWeight"]  as? Int ?? 0
                     let dietaryType  = userData["dietaryType"] as? String ?? ""
-                    
-                    self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height: height, age: age, bmh: bmh, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
+                    self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, caloriesConsumed: caloriesConsumed, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
+                    print("#########fetch\(self.user)")
                     self.dailyCaloriesGoal = self.user?.calorie ?? 0
+                    print("&&&& \(self.user?.bmh)")
                     print("dailyCaloriesGoal \(self.dailyCaloriesGoal)")
                     self.calculateTotalCalNeeds()
-                    //                    completion(.success(user ?? <#default value#>))
+                    completion(.success(self.user!))
                 } catch let parsingError {
                     completion(.failure(parsingError))
                 }
@@ -146,6 +149,13 @@ class UserGoals {
         totalDinnerCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.25))
         // total calorie * 5/100
         totalSnacksCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.05))
+        
+        let totalAdjustedCalories = (totalBreakfastCal ?? 0) + (totalLunchCal ?? 0) + (totalDinnerCal ?? 0) + (totalSnacksCal ?? 0)
+        let adjustment  = (dailyCaloriesGoal ?? 0) - totalAdjustedCalories
+        if adjustment != 0 {
+            totalBreakfastCal! += adjustment
+        }
+
     }
     
     

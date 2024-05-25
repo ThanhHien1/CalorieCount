@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RootView: View {
     @ObservedObject var viewModel = RootViewModel()
+    @ObservedObject var userGoals = UserGoals.instance
     @State var isLoadingSpash: Bool = true
     
     var body: some View {
@@ -17,7 +18,9 @@ struct RootView: View {
                 if isLoadingSpash {
                     SplashView()
                 } else if viewModel.isLogin() {
-                   GoalView()
+//                   GoalView()
+//                    DashBoardView()
+                    TabBarView()
                 } else {
                   RegisterView()
                 }
@@ -26,6 +29,8 @@ struct RootView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + AppConfiguration.shared.timeEnableSplash) {
                 self.isLoadingSpash = false
+            }
+            userGoals.fetchUserData() {_ in
             }
         }
     }

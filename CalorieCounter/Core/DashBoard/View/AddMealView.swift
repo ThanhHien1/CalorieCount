@@ -5,84 +5,72 @@
 //  Created by Thanh Hien on 1/5/24.
 //
 
-import Foundation
 import SwiftUI
 
 struct AddMealView: View {
-    @ObservedObject var viewModel: FoodViewModel
-    var foodSearchSuggestions = [String]()
-    var  mealType: MealType = .breakfast
-    //@State var searchText = ""
+    @ObservedObject var viewModel = AddMealViewModel()
+    @ObservedObject var goalViewModel = GoalViewModel.instance
+    @ObservedObject var userGoals = UserGoals.instance
+    @ObservedObject var foodViewModel = FoodViewModel.instance
+    @ObservedObject var dailySummaryData = DailySummaryData.instance
+    @State var searchText = ""
+    var mealType: MealType
     
     var body: some View {
-        
-        //NavigationView {
-            VStack {
-                ZStack{
-                    
-                    RoundedCorners(tl: 0, tr: 0, bl: 64, br: 0, mealType: .breakfast)
-//                        .modifier(GradientModifier(mealType: $viewModel.mealType))
-                        .frame(height: 202)
-                        .frame(maxWidth: .infinity)
-                    
-                    
-                    SearchField(searchText: $viewModel.searchText)
-                        .padding(.horizontal, 30)
-                        .padding(.top, 50)
-                    
-                    Text("\(mealType.title)")
-                        .offset(y: -30)
-                        .font(.system(size: 17))
-                        .foregroundColor(.white)
+        VStack {
+            Text("\(mealType.title)")
+                .font(.system(size: 17))
+                .foregroundColor(.white)
+            
+            // Search Bar with onCommit
+//            TextField("Search for food", text: $searchText, onCommit: {
+//                performSearch()
+//            })
+//            .textFieldStyle(RoundedBorderTextFieldStyle())
+//            .padding(.horizontal, 30)
+//            .padding(.top, 10)
+//            
+            ScrollView {
+                Spacer().frame(height: 5)
+                LazyVStack {
+                    ForEach(searchText.isEmpty ? viewModel.frequentFoods ?? [] :viewModel.foodSearchSuggestions ?? [], id: \.self) { food in
+                        FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
+                    }
                 }
-                
-                ScrollView {
-                              LazyVStack {
-                                  ForEach(viewModel.frequentFoods, id: \.self) { food in
-                                      FoodItemRowView(food: food)
-                                  }
-                              }
-                          }
-                      }
-                      .background(Color(#colorLiteral(red: 0.9607843137, green: 0.9647058824, blue: 0.9803921569, alpha: 1)))
-                      .edgesIgnoringSafeArea(.all)
-            .edgesIgnoringSafeArea(.all)
-//            .modifier(DismissingKeyboardOnSwipe())
-            //.navigationBarHidden(true)
-            .navigationBarTitle("Back")
-            .onAppear() {
-                
+                .searchable(text: $searchText) {
+                    
+                }
+                .onSubmit(of: .search) {
+                    performSearch()
+                }
             }
-    }
-}
-
-struct SearchField: View {
-    @Binding var searchText: String
-    var placeholder: LocalizedStringKey = "Search..."
-
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField(placeholder, text: $searchText)
-                //.offset(y: 10)
-                .accentColor(.gray)
-                .frame(height: 30)
         }
-        
-        .foregroundColor(.gray)
-        .padding(8)
-        .background(Color.white)
-        .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .padding(.top, 40)
-        .padding(2)
-        
-        
+        .onAppear {
+            viewModel.frequentFoods = foodViewModel.frequentFoods
+        }
+    }
+    
+    // Perform search when Enter key is pressed
+    func performSearch() {
+        let searchQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !searchQuery.isEmpty {
+            foodViewModel.clearData()
+            let configuredQuery = searchQuery.replacingOccurrences(of: " ", with: "%20")
+            foodViewModel.fetchSearchedFoodData(searchQuery: configuredQuery, pagination: false) {
+                viewModel.foodSearchSuggestions = foodViewModel.getFoods()
+                print(" viewModel.foodSearchSuggestions \( viewModel.foodSearchSuggestions?.count)")
+            }
+        }
     }
 }
-
 
 struct FoodItemRowView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var goalViewModel = GoalViewModel.instance
     var food: FoodStruct
+    var dailySummaryData: DailySummaryData
+    var userGoals: UserGoals
+    var mealType: MealType
     
     var body: some View {
         HStack(spacing: 10) {
@@ -104,7 +92,26 @@ struct FoodItemRowView: View {
             
             Spacer()
             Button(action: {
-                // Handle adding the meal
+                dailySummaryData.updateNutrition(food)
+                switch mealType {
+                case .breakfast:
+                    userGoals.totalBreakfastCal! -= Int(food.calorie ?? 0)
+                case .lunch:
+                    userGoals.totalLunchCal! -= Int(food.calorie ?? 0)
+                case .dinner:
+                    userGoals.totalDinnerCal! -= Int(food.calorie ?? 0)
+                case .snacks:
+                    userGoals.totalSnacksCal! -= Int(food.calorie ?? 0)
+                }
+                
+                userGoals.user?.caloriesConsumed += Int(food.calorie ?? 0)
+                userGoals.user?.currentFat += Int(food.fat ?? 0)
+                userGoals.user?.currentPro += Int(food.protein ?? 0)
+                userGoals.user?.currentCarbs += Int(food.carbs ?? 0)
+                
+                goalViewModel.updateUserData(user: userGoals.user!) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }) {
                 Image(systemName: "plus.circle.fill")
                     .foregroundColor(.blue)
@@ -121,11 +128,8 @@ struct FoodItemRowView: View {
     }
 }
 
-
 struct AddMealView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        AddMealView(viewModel: FoodViewModel())
-//            .environmentObject(FDCDayMeals())
+        AddMealView(foodViewModel: FoodViewModel(), mealType: .lunch)
     }
 }

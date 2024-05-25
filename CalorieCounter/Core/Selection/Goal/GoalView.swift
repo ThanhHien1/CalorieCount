@@ -8,27 +8,46 @@
 import SwiftUI
 
 struct GoalView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = GoalViewModel.instance
+    @ObservedObject var userGoal = UserGoals.instance
+    @ObservedObject var dailySummaryData = DailySummaryData.instance
+    var calculatorBrain = CalculatorBrain()
     @State var isActive: Bool = false
+    @State var isHideButton: Bool = false
+    
+    
+    
     var body: some View {
         VStack {
             HeaderView
             Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 80)
             goalItemView
             Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 100)
-            ButtonContinue
+            if !isHideButton {
+                ButtonContinue
+            }
             Spacer()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
 extension GoalView {
     var HeaderView: some View {
         VStack {
-            Text("What's your goal?")
-                .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
-                .bold()
-                .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
+            HStack {
+                BackButton(color: .black) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                Text("What's your goal?")
+                    .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
+                    .bold()
+                    .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 60)
+                Spacer()
+            }
+            .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
+            .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 30)
             Text("We'll personalize recommendations based on your goals.")
                 .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                 .multilineTextAlignment(.center)
@@ -48,7 +67,9 @@ extension GoalView {
     func GoalItem(goalItem: GoalEnum) -> some View {
         Button(action: {
             viewModel.goalType = goalItem
-            print( "viewModel.goalType \(viewModel.goalType)")
+            if isHideButton {
+                updateUserGoal(userGoal: userGoal, goalItem: goalItem)
+            }
         }, label: {
             HStack {
                 Text("\(goalItem.title)")
@@ -63,6 +84,23 @@ extension GoalView {
                     .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10 )
             }
         })
+    }
+    
+    private func updateUserGoal(userGoal: UserGoals, goalItem: GoalEnum) {
+        userGoal.user?.goalType = goalItem.name
+        userGoal.user?.changeCalorieAmount = goalItem.changeCalorieAmount
+        calculatorBrain.calculateBMI(userGoal.user?.height ?? 0.0, userGoal.user?.weight ?? 0)
+        calculatorBrain.calculateCalorie(userGoal.user?.sex ?? "", userGoal.user?.weight ?? 0, userGoal.user?.height ?? 0, userGoal.user?.age ?? 0, Float(userGoal.user?.bmh ?? 0), userGoal.user?.changeCalorieAmount ?? 0)
+        userGoal.user?.bmi = calculatorBrain.bmi?.value ?? 0
+        userGoal.user?.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
+        print(calculatorBrain.calorie ?? 0)
+        dailySummaryData.updateRemainingCalories()
+        userGoal.user?.currentDay = "\(Date())"
+        print("calorie: \(calculatorBrain.calorie ?? 0)")
+
+        viewModel.updateUserData(user: userGoal.user!) {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
     
     var ButtonContinue: some View {

@@ -1,0 +1,110 @@
+//
+//  SettingView.swift
+//  CalorieCounter
+//
+//  Created by Thanh Hien on 12/5/24.
+//
+
+import SwiftUI
+
+struct SettingView: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var viewModel = GoalViewModel.instance
+    @ObservedObject var userGoal = UserGoals.instance
+    @State var showProfileView: Bool = false
+    @State var isActive: Bool = false
+    var body: some View {
+        ZStack {
+            Color.cl_FAFAFA()
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 0) {
+                Header
+                Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 20)
+                SettingFeature
+                Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 470)
+            }
+        }
+        .navigationBarBackButtonHidden()
+    }
+}
+
+extension SettingView {
+    var Header: some View {
+        ZStack {
+            Color.cl_F24F1D()
+                .edgesIgnoringSafeArea(.all)
+            VStack() {
+                Spacer().frame(height:  Vconst.DESIGN_HEIGHT_RATIO * 25)
+                HStack {
+                    Spacer()
+                    Text("Setting")
+                        .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 25 ))
+                        .bold()
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 15)
+                Spacer()
+             }
+        }
+    }
+    
+    var SettingFeature: some View {
+        VStack {
+            ForEach(SettingEnum.allCases, id: \.self) { item in
+                switch item {
+                case  .update:
+                    ItemRowSetting(title: item.title, setting: item) {
+                        showProfileView = true
+                    }
+                case .logout:
+                    ItemRowSetting(title: item.title, setting: item) {
+//                        viewModel.logout()
+                        
+                    }
+                }
+
+            }
+        }
+        .sheet(isPresented: $showProfileView) {
+            ProfileView()
+        }
+    }
+}
+
+struct ItemRowSetting: View {
+    @ObservedObject var viewModel = GoalViewModel.instance
+    let title: String
+    var setting: SettingEnum = .update
+    var onAction: (() -> Void)?
+    var body: some View {
+        Button(action: {
+            onAction?()
+        }, label: {
+            HStack {
+                Text(title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 18)
+                Spacer()
+                Image("next")
+                    .resizable()
+                    .frame(width: Vconst.DESIGN_WIDTH_RATIO * 10)
+                    .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 18)
+            }
+            .foregroundColor(.black)
+            .padding(.vertical, Vconst.DESIGN_HEIGHT_RATIO * 18)
+            .background(.white)
+            .cornerRadius(15)
+            .padding(.horizontal,  Vconst.DESIGN_WIDTH_RATIO * 20)
+            .padding(.top,  Vconst.DESIGN_HEIGHT_RATIO * 10)
+        })
+    }
+}
+
+
+
+#Preview {
+    SettingView()
+}

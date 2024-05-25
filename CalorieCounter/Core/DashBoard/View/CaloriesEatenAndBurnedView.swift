@@ -59,6 +59,7 @@ struct CaloriesEatenAndBurnedView: View {
             .padding()
             .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
             .onAppear {
+                viewModel.updateConSumedCalories()
                 viewModel.updateRemainingCalories()
 //                viewModel.updateNutrition(foods, userGoals)
 //                healthStore.readTodaysActivity()

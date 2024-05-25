@@ -5,70 +5,68 @@
 //  Created by Thanh Hien on 1/5/24.
 //
 
-import Foundation
 import SwiftUI
 
 struct AddMealView: View {
+    @ObservedObject var viewModel = AddMealViewModel()
+    @ObservedObject var goalViewModel = GoalViewModel.instance
     @ObservedObject var userGoals = UserGoals.instance
-    @ObservedObject var viewModel = FoodViewModel.instance
+    @ObservedObject var foodViewModel = FoodViewModel.instance
     @ObservedObject var dailySummaryData = DailySummaryData.instance
-    
-    var foodSearchSuggestions = [String]()
-    var  mealType: MealType
-//    var  frequentFoods: [FoodStruct]?
-    //@State var searchText = ""
+    @State var searchText = ""
+    var mealType: MealType
     
     var body: some View {
-        
-        //NavigationView {
         VStack {
-            //                ZStack{
             Text("\(mealType.title)")
                 .font(.system(size: 17))
                 .foregroundColor(.white)
-            //                    SearchField(searchText: $viewModel.searchText)
-            //                        .padding(.horizontal, 30)
-            //                        .padding(.top, 30)
             
-                ScrollView {
-                    LazyVStack {
-                        ForEach(viewModel.frequentFoods, id: \.self) { food in
-                            FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
-                        }
+            // Search Bar with onCommit
+//            TextField("Search for food", text: $searchText, onCommit: {
+//                performSearch()
+//            })
+//            .textFieldStyle(RoundedBorderTextFieldStyle())
+//            .padding(.horizontal, 30)
+//            .padding(.top, 10)
+//            
+            ScrollView {
+                Spacer().frame(height: 5)
+                LazyVStack {
+                    ForEach(searchText.isEmpty ? viewModel.frequentFoods ?? [] :viewModel.foodSearchSuggestions ?? [], id: \.self) { food in
+                        FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
                     }
                 }
+                .searchable(text: $searchText) {
+                    
+                }
+                .onSubmit(of: .search) {
+                    performSearch()
+                }
             }
-    }
-    
-}
-
-struct SearchField: View {
-    @Binding var searchText: String
-    var placeholder: LocalizedStringKey = "Search..."
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField(placeholder, text: $searchText)
-            //.offset(y: 10)
-                .accentColor(.gray)
-                .frame(height: Vconst.DESIGN_HEIGHT_RATIO * 30)
         }
-        
-        .foregroundColor(.gray)
-        .padding(8)
-        .background(Color.white)
-        .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .padding(.top, 40)
-        .padding(2)
-        
-        
+        .onAppear {
+            viewModel.frequentFoods = foodViewModel.frequentFoods
+        }
+    }
+    
+    // Perform search when Enter key is pressed
+    func performSearch() {
+        let searchQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !searchQuery.isEmpty {
+            foodViewModel.clearData()
+            let configuredQuery = searchQuery.replacingOccurrences(of: " ", with: "%20")
+            foodViewModel.fetchSearchedFoodData(searchQuery: configuredQuery, pagination: false) {
+                viewModel.foodSearchSuggestions = foodViewModel.getFoods()
+                print(" viewModel.foodSearchSuggestions \( viewModel.foodSearchSuggestions?.count)")
+            }
+        }
     }
 }
-
 
 struct FoodItemRowView: View {
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var goalViewModel = GoalViewModel.instance
     var food: FoodStruct
     var dailySummaryData: DailySummaryData
     var userGoals: UserGoals
@@ -80,7 +78,7 @@ struct FoodItemRowView: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: Vconst.DESIGN_WIDTH_RATIO * 80, height: Vconst.DESIGN_HEIGHT_RATIO * 80)
+                    .frame(width: 80, height: 80)
                     .cornerRadius(8)
             }
             
@@ -94,11 +92,6 @@ struct FoodItemRowView: View {
             
             Spacer()
             Button(action: {
-                print("food\(food)")
-//                dailySummaryData.totalCalories += Int(food.calorie ?? 0)
-//                dailySummaryData.totalCarbs += Int(food.carbs ?? 0)
-//                dailySummaryData.totalFats += Int(food.fat ?? 0)
-//                dailySummaryData.totalProteins += Int(food.protein ?? 0)
                 dailySummaryData.updateNutrition(food)
                 switch mealType {
                 case .breakfast:
@@ -111,7 +104,14 @@ struct FoodItemRowView: View {
                     userGoals.totalSnacksCal! -= Int(food.calorie ?? 0)
                 }
                 
-                self.presentationMode.wrappedValue.dismiss()
+                userGoals.user?.caloriesConsumed += Int(food.calorie ?? 0)
+                userGoals.user?.currentFat += Int(food.fat ?? 0)
+                userGoals.user?.currentPro += Int(food.protein ?? 0)
+                userGoals.user?.currentCarbs += Int(food.carbs ?? 0)
+                
+                goalViewModel.updateUserData(user: userGoals.user!) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }) {
                 Image(systemName: "plus.circle.fill")
                     .foregroundColor(.blue)
@@ -128,11 +128,8 @@ struct FoodItemRowView: View {
     }
 }
 
-
 struct AddMealView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        AddMealView(viewModel: FoodViewModel(), mealType: .lunch)
-        //            .environmentObject(FDCDayMeals())
+        AddMealView(foodViewModel: FoodViewModel(), mealType: .lunch)
     }
 }

@@ -154,7 +154,7 @@ extension CalculatorResultView {
     }
     
     var ButtonContinue: some View {
-        NavigationLink(destination: DashBoardView(), isActive: $isActive) {
+        NavigationLink(destination: TabBarView(), isActive: $isActive) {
             NormalButton(action: {
                 viewModel.saveDataUser() {
                     userGoals.fetchUserData() { result in

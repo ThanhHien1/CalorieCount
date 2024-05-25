@@ -17,16 +17,9 @@ class DailySummaryData: ObservableObject {
     @Published var totalProteins = 0
     @Published var totalCarbs = 0
     @Published var remainingCalories = 0
+    @Published var progressCalories: Double = 0.0
     var currentUserGoals =  UserGoals.instance
     static let instance = DailySummaryData()
-
-   
-    var progressCalories : Double {
-        if let dailyCaloriesGoal = currentUserGoals.dailyCaloriesGoal {
-            return Double(totalCalories)/Double(dailyCaloriesGoal)
-        }
-        return 0.0
-    }
     
     func progressSteps() -> Double {
         if let dailyStepsGoal = currentUserGoals.stepsGoal {
@@ -36,10 +29,20 @@ class DailySummaryData: ObservableObject {
     }
     
     func updateRemainingCalories() {
-        if let dailyCaloriesGoal = currentUserGoals.user?.calorie {
+        var dailyCaloriesGoal = (currentUserGoals.user?.calorie ?? 0)
             print("dailyCaloriesGoal1111 \(dailyCaloriesGoal)")
             self.remainingCalories =  dailyCaloriesGoal - totalCalories
+        
+        if let dailyCaloriesGoal = currentUserGoals.user?.calorie {
+            progressCalories =  Double(totalCalories)/Double(dailyCaloriesGoal)
         }
+    }
+    
+    func updateConSumedCalories() {
+       totalCalories = (currentUserGoals.user?.caloriesConsumed ?? 0)
+        totalCarbs = (currentUserGoals.user?.currentCarbs ?? 0)
+        totalProteins = (currentUserGoals.user?.currentPro ?? 0)
+        totalFats = (currentUserGoals.user?.currentFat ?? 0)
     }
 
     func updateNutrition(_ food: FoodStruct) {

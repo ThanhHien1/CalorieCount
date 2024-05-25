@@ -8,8 +8,8 @@
 import Foundation
 import SwiftData
 import FirebaseAuth
-import FirebaseFirestoreInternal
 import SwiftUI
+import FirebaseFirestoreInternal
 
 enum MealType: Int, CaseIterable {
     case breakfast = 0
@@ -113,11 +113,11 @@ class UserGoals: ObservableObject  {
                     let currentBurnedCal = userData["currentBurnedCal"] as? Int ?? 0
                     let weeklyGoal = userData["weeklyGoal"] as? Int ?? 0
                     let calorieGoal = userData["calorieGoal"] as? Int ?? 0
+                    let caloriesConsumed = userData["caloriesConsumed"] as? Int ?? 0
                     let adviced = userData["adviced"] as? Bool ?? true
                     let goalWeight = userData["goalWeight"]  as? Int ?? 0
                     let dietaryType  = userData["dietaryType"] as? String ?? ""
-                    
-                    self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
+                    self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, caloriesConsumed: caloriesConsumed, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
                     print("#########fetch\(self.user)")
                     self.dailyCaloriesGoal = self.user?.calorie ?? 0
                     print("&&&& \(self.user?.bmh)")

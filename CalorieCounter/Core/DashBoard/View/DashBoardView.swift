@@ -21,72 +21,71 @@ struct DashBoardView: View {
         NavigationStack{
             LoadingView(isShowing: .constant(isShow)) {
                 VStack {
+                    Header
                     CaloriesEatenAndBurnedView()
                     Nutritient_Card()
                     //                StepsProgressView()
                     //                Spacer()
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Meals today")
-                            .padding(.leading, 25)
-                        
+                            .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 25)
+                            .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 10)
                         ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 20) {
+                            HStack(spacing: Vconst.DESIGN_WIDTH_RATIO * 20) {
                                 
                                 ForEach(MealType.allCases, id: \.self ) { mealType in
                                     carouselItem(mealType: mealType)
                                 }
                             }
                             .background(NavigationLink("", destination: AddMealView(mealType: mealTypes), isActive: $isActive).hidden())
-                            .padding(.bottom, 60)
-                            .padding(.horizontal, 30)
+//                            .padding(.bottom, 60)
+                            .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
                         }
                         
                     }
-                    .padding(.top, 20)
+                    .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 20)
                 }
             }
             .background(
                 LinearGradient(colors: [Color.white.opacity(0.7), Color.orange.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing), ignoresSafeAreaEdges: [.top,.leading,.trailing])
-            .toolbar {
-                ToolbarItemGroup(placement: .primaryAction) {
-                    NavigationLink(destination: ProfileView(), isActive: $isShowSetting, label: {
-                        Button(action: {
-                            isShowSetting = true
-                        }, label:  {
-                            //                        Image(systemName: "bell").badge(4)
-                            Image(systemName: "person").badge(2)
-                                .foregroundColor(.black)
-                        })
-                    })
-                    
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Calories")
-                        .font(.system(size: 24))
-                        .foregroundStyle(.orange)
-                }
-            }
-            .navigationTitle("Today")
             .navigationBarBackButtonHidden()
+//            .navigationTitle("Today")
+//            .navigationBarBackButtonHidden()
         }
     }
 }
 
 extension DashBoardView {
     
+    var Header: some View {
+        HStack {
+            Spacer()
+            Text("Calories")
+                .font(.system(size: 24))
+                .foregroundStyle(.orange)
+            Spacer()
+            NavigationLink(destination: ProfileView(), isActive: $isShowSetting, label: {
+                Button(action: {
+                    isShowSetting = true
+                }, label:  {
+                    Image(systemName: "person").badge(2)
+                        .foregroundColor(.black)
+                        .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 20)
+                })
+            })
+        }
+        .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 20)
+    }
+    
     private func carouselItem(mealType: MealType) -> some View {
             Button(action: {
                 foodViewModel.frequentFoods = []
                 self.mealTypes = mealType
-//                print("mealTypes \(mealTypes)")
                 isShow = true
                 foodViewModel.fetchDefaultFoodData(mealType: self.mealTypes.value) {
                     isActive = true
                     isShow = false
                 }
-//                print("viewModel.frequentFoods3 \(foodViewModel.frequentFoods.count)")
-                
             }) {
                 MealCarouselItemView(mealType: mealType, userGoals: userGoals)
             }

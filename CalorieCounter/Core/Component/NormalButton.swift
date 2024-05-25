@@ -12,6 +12,7 @@ struct NormalButton: View {
     var title: String = "Register"
     var tinColor: Color = .white
     var color: Color = .blue
+    var width: CGFloat = Vconst.DESIGN_WIDTH_RATIO * 300
     var body: some View {
         Button(action: {
             action()
@@ -19,7 +20,7 @@ struct NormalButton: View {
             Text(title)
                 .font(.system(size: 16))
                 .foregroundStyle(tinColor)
-                .frame(width: Vconst.DESIGN_WIDTH_RATIO * 300)
+                .frame(width: width)
                 .padding(.vertical, Vconst.DESIGN_HEIGHT_RATIO * 18)
                 .background(color)
                 .clipShape(RoundedRectangle(cornerRadius: Vconst.DESIGN_WIDTH_RATIO * 30))

@@ -19,7 +19,8 @@ struct RootView: View {
                     SplashView()
                 } else if viewModel.isLogin() {
 //                   GoalView()
-                    DashBoardView()
+//                    DashBoardView()
+                    TabBarView()
                 } else {
                   RegisterView()
                 }

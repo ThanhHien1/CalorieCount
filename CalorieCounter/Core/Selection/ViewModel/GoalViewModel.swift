@@ -68,6 +68,21 @@ enum GoalEnum: CaseIterable {
         case veryActive
         case extraActive
         
+        var name: String {
+            switch self {
+            case .sedentary:
+                return "Sedentary"
+            case .lightlyActive:
+                return "Lightly Active"
+            case .moderatelyActive:
+                return "Moderately Active"
+            case .veryActive:
+                return "Very Active"
+            case .extraActive:
+                return "Extra Active"
+            }
+        }
+        
         var title: String {
             switch self {
             case .sedentary:
@@ -136,14 +151,16 @@ enum GoalEnum: CaseIterable {
         @Published var height: Float = 1.70
         @Published var weight: Float = 100
         @Published var calorie: Int = 0
+        @Published var caloriesConsumed: Int = 0
         @Published var bmi: Float = 1.70
         @Published var dateUpdate: String = ""
         static let instance = GoalViewModel()
         let db = Firestore.firestore()
         
+        
         func saveDataUser(complete: @escaping() -> Void) {
             if let currentUserEmail = Auth.auth().currentUser?.email {
-                let user = UserData(userEmail: currentUserEmail, calorie: calorie, sex: sex.title, weight: weight, height: height, age: age, activeness: activeness.rawValue, bmh: activeness.bmh, bmi: bmi, changeCalorieAmount: goalType.changeCalorieAmount, goalType: goalType.name, currentDay: dateUpdate, currentCarbs: 0, currentPro: 0, currentFat: 0, currentBreakfastCal: 0, currentLunchCal: 0, currentDinnerCal: 0, currentSnacksCal: 0, currentBurnedCal: 0, weeklyGoal: 0, calorieGoal: calorie, adviced: true, goalWeight: 0, dietaryType: "Classic")
+                let user = UserData(userEmail: currentUserEmail, calorie: calorie, sex: sex.title, weight: weight, height: height, age: age, activeness: activeness.rawValue, bmh: activeness.bmh, bmi: bmi, changeCalorieAmount: goalType.changeCalorieAmount, goalType: goalType.name, currentDay: dateUpdate, currentCarbs: 0, currentPro: 0, currentFat: 0, currentBreakfastCal: 0, currentLunchCal: 0, currentDinnerCal: 0, currentSnacksCal: 0, currentBurnedCal: 0, weeklyGoal: 0, calorieGoal: calorie, caloriesConsumed: caloriesConsumed, adviced: true, goalWeight: 0, dietaryType: "Classic")
                 print("#########\(user)")
                 var dataToUpdate: [String: Any] = convertUserDataToDictionary(user: user)
                 db.collection("UserInformations").document("\(currentUserEmail)").setData(dataToUpdate) { err in
@@ -202,10 +219,32 @@ enum GoalEnum: CaseIterable {
             userData["currentBurnedCal"] = user.currentBurnedCal
             userData["weeklyGoal"] = user.weeklyGoal
             userData["calorieGoal"] = user.calorieGoal
+            userData["caloriesConsumed"] = user.caloriesConsumed
             userData["adviced"] = user.adviced
             userData["goalWeight"] = user.goalWeight
             userData["dietaryType"] = user.dietaryType
             
             return userData
+        }
+        
+        func updateInfomation(user: UserData) {
+            calorie = user.calorie
+            height = user.height
+            print("######## height \(height)")
+            weight = user.weight
+            age = user.age
+            if user.sex == sex.rawValue.capitalized {
+                sex = GenderEnum(rawValue: user.sex) ?? .male
+            }
+            if user.activeness  == activeness.title {
+                activeness = ActivenessEnum(rawValue:  user.activeness) ?? .extraActive
+            }
+        }
+        
+        func logout() {
+            do { 
+                try Auth.auth().signOut() }
+            catch { print("already logged out")
+            }
         }
 }

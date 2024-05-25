@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @State var selected = 0
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TabView(selection: $selected) {
+                DashBoardView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Diary")
+                    }.tag(0)
+                Chat()
+                    .tabItem {
+                        Image(systemName: "message.fill")
+                        Text("Chat box")
+                    }.tag(1)
+                SettingView()
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Setting")
+                    }.tag(2)
+            }
+        }
     }
 }
 

@@ -25,9 +25,11 @@ struct ProfileView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear {
+            viewModel.updateInfomation(user: userGoal.user!)
+        }
     }
 }
-
 
 extension ProfileView {
     var Header: some View {
@@ -79,30 +81,35 @@ extension ProfileView {
             ForEach(ProfileEnum.allCases, id: \.self) { profile in
                 switch profile {
                 case .calories:
-                    ItemRowProfile(title: profile.title, number: "\(userGoal.user?.calorie ??  0)")
+                    ItemRowProfile(title: profile.title, number: "\(viewModel.calorie)", profile: profile)
                 case .height:
-                    ItemRowProfile(title: profile.title, number: "\(((userGoal.user?.height ?? 0) * 100 ))")
+                    ItemRowProfile(title: profile.title, number: "\((Int(viewModel.height * 100)))", profile: profile)
                 case .weight:
-                    ItemRowProfile(title: profile.title, number: "\(userGoal.user?.weight ?? 0)")
+                    ItemRowProfile(title: profile.title, number: "\(Int(viewModel.weight))", profile: profile)
                 case .age:
-                    ItemRowProfile(title: profile.title, number: "\(userGoal.user?.age ?? 0)")
+                    ItemRowProfile(title: profile.title, number: "\(Int(viewModel.age))", profile: profile)
                 case .gender:
-                    ItemRowProfile(title: profile.title, number: "\(String(describing: userGoal.user?.sex ?? ""))")
+                    ItemRowProfile(title: profile.title, number: "\(viewModel.sex)".capitalized, profile: profile)
                 case .activeness:
-                    ItemRowProfile(title: profile.title, number: "\(String(describing: userGoal.user?.activeness.capitalized ?? ""))")
+                    ItemRowProfile(title: profile.title, number: "\(viewModel.activeness.name)", profile: profile)
                 }
             }
         }
     }
 }
 
-
 struct ItemRowProfile: View {
+    @ObservedObject var userGoal = UserGoals.instance
+    @ObservedObject var viewModel = GoalViewModel.instance
     let title: String
     let number: String
+    var profile: ProfileEnum = .calories
     @State var isPresented: Bool = false
     var body: some View {
         Button(action: {
+            if let activeness = ActivenessEnum(rawValue: userGoal.user?.activeness ?? "") {
+                viewModel.activeness = activeness
+            }
             self.isPresented = true
         }, label: {
             HStack {
@@ -122,9 +129,40 @@ struct ItemRowProfile: View {
             .padding(.top,  Vconst.DESIGN_HEIGHT_RATIO * 10)
         })
         .sheet(isPresented: $isPresented) {
-            GoalView()
-                .presentationDetents([.medium])
-                                      }
+            switch profile {
+            case .calories:
+                ChangeCalories(value: userGoal.user?.calorie ?? 0) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                .presentationDetents([.fraction(0.4)])
+            case .height:
+                ChangeHeightView(value: userGoal.user?.height ?? 0) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                .presentationDetents([.fraction(0.3)])
+            case .weight:
+                ChangeWeightView(value: Int(userGoal.user?.weight ?? 0)) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                .presentationDetents([.fraction(0.3)])
+            case .age:
+                ChangeAgeView(value: userGoal.user?.age ?? 0) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                .presentationDetents([.fraction(0.3)])
+            case .gender:
+                ChangeHeightView(value: userGoal.user?.height ?? 0) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                .presentationDetents([.fraction(0.3)])
+            case .activeness:
+                ActiveView(isHideButton: true) { user in
+                    viewModel.updateInfomation(user: user)
+                }
+                
+            }
+        }
+       
     }
 }
 

@@ -33,8 +33,9 @@
 		244C59C42BF0A4E100EECAE5 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C59C32BF0A4E100EECAE5 /* SettingView.swift */; };
 		244C59C62BF0A5D300EECAE5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C59C52BF0A5D300EECAE5 /* ProfileView.swift */; };
 		244C59C92BF0ACBF00EECAE5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C59C82BF0ACBF00EECAE5 /* ProfileViewModel.swift */; };
-		246DB2322BF8915A00130592 /* ChangeGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2312BF8915A00130592 /* ChangeGoalView.swift */; };
 		246DB2342BF8ECD400130592 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2332BF8ECD400130592 /* BackButton.swift */; };
+		246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2352BF9B11F00130592 /* ChangeHeightView.swift */; };
+		246DB2382BF9B7AC00130592 /* ChangeWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */; };
 		249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */; };
 		249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0872BD3B2570061017E /* RegisterViewModel.swift */; };
 		249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08A2BD3B7730061017E /* FormValidator.swift */; };
@@ -54,6 +55,18 @@
 		249FE0C52BD508CF0061017E /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0C42BD508CF0061017E /* CalculatorBrain.swift */; };
 		249FE0C72BD509240061017E /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0C62BD509240061017E /* BMI.swift */; };
 		249FE0CD2BD50B1B0061017E /* CalculatorResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0CC2BD50B1B0061017E /* CalculatorResultView.swift */; };
+		24C1CC3D2BFE07B6003C7885 /* ChangeAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC3C2BFE07B6003C7885 /* ChangeAgeView.swift */; };
+		24C1CC3F2BFE24A0003C7885 /* ChangeCalories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC3E2BFE24A0003C7885 /* ChangeCalories.swift */; };
+		24C1CC412BFE31FC003C7885 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC402BFE31FC003C7885 /* RadioButton.swift */; };
+		24C1CC442BFE4227003C7885 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC432BFE4227003C7885 /* SettingViewModel.swift */; };
+		24C1CC482BFE6537003C7885 /* ChatBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC472BFE6537003C7885 /* ChatBoxView.swift */; };
+		24C1CC4E2BFED330003C7885 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC492BFED32F003C7885 /* SuggestionView.swift */; };
+		24C1CC4F2BFED330003C7885 /* SuggestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC4B2BFED32F003C7885 /* SuggestViewModel.swift */; };
+		24C1CC5B2BFFB28D003C7885 /* ChatGPTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC5A2BFFB28D003C7885 /* ChatGPTAPI.swift */; };
+		24C1CC5D2BFFB2B5003C7885 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC5C2BFFB2B5003C7885 /* ModelData.swift */; };
+		24C1CC5F2BFFB2E2003C7885 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC5E2BFFB2E2003C7885 /* MessageRow.swift */; };
+		24C1CC612BFFB301003C7885 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC602BFFB301003C7885 /* Chat.swift */; };
+		24C1CC632BFFB8D8003C7885 /* FoodSuggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1CC622BFFB8D8003C7885 /* FoodSuggest.swift */; };
 		24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D022BD3754700582458 /* CalorieCounterApp.swift */; };
 		24DF9D052BD3754700582458 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D042BD3754700582458 /* ContentView.swift */; };
 		24DF9D072BD3754800582458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DF9D062BD3754800582458 /* Assets.xcassets */; };
@@ -65,7 +78,7 @@
 		24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D2E2BD3800C00582458 /* NormalTextField.swift */; };
 		24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D312BD3AA1000582458 /* LoginViewModel.swift */; };
 		24DF9D3B2BD3AA7200582458 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D3A2BD3AA7200582458 /* RegisterView.swift */; };
-		890D4A028F34A44D3935DE8F /* Pods_CalorieCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */; };
+		5A6CAE0E8E9E95E674A432F7 /* Pods_CalorieCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5755D5D516D0FD08ECB1D65C /* Pods_CalorieCounter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,8 +108,9 @@
 		244C59C32BF0A4E100EECAE5 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		244C59C52BF0A5D300EECAE5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		244C59C82BF0ACBF00EECAE5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		246DB2312BF8915A00130592 /* ChangeGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeGoalView.swift; sourceTree = "<group>"; };
 		246DB2332BF8ECD400130592 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		246DB2352BF9B11F00130592 /* ChangeHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeightView.swift; sourceTree = "<group>"; };
+		246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWeightView.swift; sourceTree = "<group>"; };
 		249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		249FE0872BD3B2570061017E /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		249FE08A2BD3B7730061017E /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
@@ -116,6 +130,18 @@
 		249FE0C42BD508CF0061017E /* CalculatorBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		249FE0C62BD509240061017E /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
 		249FE0CC2BD50B1B0061017E /* CalculatorResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorResultView.swift; sourceTree = "<group>"; };
+		24C1CC3C2BFE07B6003C7885 /* ChangeAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAgeView.swift; sourceTree = "<group>"; };
+		24C1CC3E2BFE24A0003C7885 /* ChangeCalories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCalories.swift; sourceTree = "<group>"; };
+		24C1CC402BFE31FC003C7885 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		24C1CC432BFE4227003C7885 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		24C1CC472BFE6537003C7885 /* ChatBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBoxView.swift; sourceTree = "<group>"; };
+		24C1CC492BFED32F003C7885 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		24C1CC4B2BFED32F003C7885 /* SuggestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestViewModel.swift; sourceTree = "<group>"; };
+		24C1CC5A2BFFB28D003C7885 /* ChatGPTAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPI.swift; sourceTree = "<group>"; };
+		24C1CC5C2BFFB2B5003C7885 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		24C1CC5E2BFFB2E2003C7885 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
+		24C1CC602BFFB301003C7885 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		24C1CC622BFFB8D8003C7885 /* FoodSuggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSuggest.swift; sourceTree = "<group>"; };
 		24DF9CFF2BD3754700582458 /* CalorieCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DF9D022BD3754700582458 /* CalorieCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieCounterApp.swift; sourceTree = "<group>"; };
 		24DF9D042BD3754700582458 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -128,9 +154,9 @@
 		24DF9D2E2BD3800C00582458 /* NormalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextField.swift; sourceTree = "<group>"; };
 		24DF9D312BD3AA1000582458 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		24DF9D3A2BD3AA7200582458 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.release.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.release.xcconfig"; sourceTree = "<group>"; };
-		7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.debug.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.debug.xcconfig"; sourceTree = "<group>"; };
+		5755D5D516D0FD08ECB1D65C /* Pods_CalorieCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD1DC5F028DBAAF84BEE93BF /* Pods-CalorieCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.release.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.release.xcconfig"; sourceTree = "<group>"; };
+		EFA540331DA02D23902D6DDA /* Pods-CalorieCounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.debug.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,27 +164,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				890D4A028F34A44D3935DE8F /* Pods_CalorieCounter.framework in Frameworks */,
+				5A6CAE0E8E9E95E674A432F7 /* Pods_CalorieCounter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12E11584BA8275CD0FF8A652 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3C86CD93184037E3F1E3E2DD /* Pods_CalorieCounter.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		243800D72BDEB27A00223577 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				243800D82BDEB29500223577 /* UserData.swift */,
 				243800F92BE236B400223577 /* FoodApiService.swift */,
 				243800FB2BE2373900223577 /* FoodsData.swift */,
+				24C1CC622BFFB8D8003C7885 /* FoodSuggest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,6 +268,7 @@
 		244C59C22BF0A4D400EECAE5 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				24C1CC422BFE4212003C7885 /* ViewModel */,
 				244C59C32BF0A4E100EECAE5 /* SettingView.swift */,
 			);
 			path = Setting;
@@ -265,7 +285,10 @@
 		246DB2302BF8913C00130592 /* ChangeGoals */ = {
 			isa = PBXGroup;
 			children = (
-				246DB2312BF8915A00130592 /* ChangeGoalView.swift */,
+				246DB2352BF9B11F00130592 /* ChangeHeightView.swift */,
+				246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */,
+				24C1CC3C2BFE07B6003C7885 /* ChangeAgeView.swift */,
+				24C1CC3E2BFE24A0003C7885 /* ChangeCalories.swift */,
 			);
 			path = ChangeGoals;
 			sourceTree = "<group>";
@@ -378,6 +401,68 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		24C1CC422BFE4212003C7885 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC432BFE4227003C7885 /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		24C1CC452BFE6511003C7885 /* ChatBox */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC4D2BFED32F003C7885 /* Suggestion */,
+				24C1CC462BFE6527003C7885 /* View */,
+			);
+			path = ChatBox;
+			sourceTree = "<group>";
+		};
+		24C1CC462BFE6527003C7885 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC472BFE6537003C7885 /* ChatBoxView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24C1CC4A2BFED32F003C7885 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC492BFED32F003C7885 /* SuggestionView.swift */,
+				24C1CC5E2BFFB2E2003C7885 /* MessageRow.swift */,
+				24C1CC602BFFB301003C7885 /* Chat.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		24C1CC4C2BFED32F003C7885 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC4B2BFED32F003C7885 /* SuggestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		24C1CC4D2BFED32F003C7885 /* Suggestion */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC592BFFB27C003C7885 /* Model */,
+				24C1CC4A2BFED32F003C7885 /* View */,
+				24C1CC4C2BFED32F003C7885 /* ViewModel */,
+			);
+			path = Suggestion;
+			sourceTree = "<group>";
+		};
+		24C1CC592BFFB27C003C7885 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24C1CC5A2BFFB28D003C7885 /* ChatGPTAPI.swift */,
+				24C1CC5C2BFFB2B5003C7885 /* ModelData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		24DF9CF62BD3754700582458 = {
 			isa = PBXGroup;
 			children = (
@@ -385,7 +470,7 @@
 				24DF9D012BD3754700582458 /* CalorieCounter */,
 				24DF9D002BD3754700582458 /* Products */,
 				CDC2DCEAAC2234265DA93DE4 /* Pods */,
-				12E11584BA8275CD0FF8A652 /* Frameworks */,
+				6AD18A59C7172A563A89BB3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -431,8 +516,9 @@
 		24DF9D112BD3757900582458 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				244C59C22BF0A4D400EECAE5 /* Setting */,
 				244C59BE2BF08DC800EECAE5 /* TabBar */,
+				24C1CC452BFE6511003C7885 /* ChatBox */,
+				244C59C22BF0A4D400EECAE5 /* Setting */,
 				243800F02BDF4F6A00223577 /* HeathStore */,
 				243800DA2BDEB84600223577 /* DashBoard */,
 				24DF9D2D2BD37FB700582458 /* Component */,
@@ -584,6 +670,7 @@
 				243801032BE24BC900223577 /* GradientModifier.swift */,
 				244C59BC2BEFA54600EECAE5 /* ActivityIndicatorView.swift */,
 				246DB2332BF8ECD400130592 /* BackButton.swift */,
+				24C1CC402BFE31FC003C7885 /* RadioButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -612,11 +699,19 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6AD18A59C7172A563A89BB3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5755D5D516D0FD08ECB1D65C /* Pods_CalorieCounter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CDC2DCEAAC2234265DA93DE4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */,
-				763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */,
+				EFA540331DA02D23902D6DDA /* Pods-CalorieCounter.debug.xcconfig */,
+				DD1DC5F028DBAAF84BEE93BF /* Pods-CalorieCounter.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -628,11 +723,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24DF9D0D2BD3754800582458 /* Build configuration list for PBXNativeTarget "CalorieCounter" */;
 			buildPhases = (
-				443FD242D175613996D5F0E7 /* [CP] Check Pods Manifest.lock */,
+				65F7EB6D3AED12C196468BA1 /* [CP] Check Pods Manifest.lock */,
 				24DF9CFB2BD3754700582458 /* Sources */,
 				24DF9CFC2BD3754700582458 /* Frameworks */,
 				24DF9CFD2BD3754700582458 /* Resources */,
-				707F8F0260EEA51ED176E138 /* [CP] Embed Pods Frameworks */,
+				BB44B1B0C0E24D0DAC4E38B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -690,7 +785,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		443FD242D175613996D5F0E7 /* [CP] Check Pods Manifest.lock */ = {
+		65F7EB6D3AED12C196468BA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -712,7 +807,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		707F8F0260EEA51ED176E138 /* [CP] Embed Pods Frameworks */ = {
+		BB44B1B0C0E24D0DAC4E38B6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -747,6 +842,7 @@
 				249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */,
 				244C59C42BF0A4E100EECAE5 /* SettingView.swift in Sources */,
 				249FE08D2BD3BF8C0061017E /* NormalButton.swift in Sources */,
+				24C1CC3D2BFE07B6003C7885 /* ChangeAgeView.swift in Sources */,
 				243800F22BDF4F7C00223577 /* HealthStore.swift in Sources */,
 				243801002BE23D4400223577 /* AddMealViewModel.swift in Sources */,
 				244C59C92BF0ACBF00EECAE5 /* ProfileViewModel.swift in Sources */,
@@ -754,16 +850,21 @@
 				244C59BD2BEFA54600EECAE5 /* ActivityIndicatorView.swift in Sources */,
 				243800E42BDEB9C300223577 /* UserGoals.swift in Sources */,
 				24DF9D2C2BD37F2900582458 /* LoginView.swift in Sources */,
+				24C1CC3F2BFE24A0003C7885 /* ChangeCalories.swift in Sources */,
 				24DF9D222BD37CE100582458 /* RootView.swift in Sources */,
 				243800EB2BDEBBEC00223577 /* Nutritient_Card.swift in Sources */,
+				24C1CC4F2BFED330003C7885 /* SuggestViewModel.swift in Sources */,
 				244C59C12BF08DE300EECAE5 /* TabBarView.swift in Sources */,
 				24DF9D272BD37D7000582458 /* Color+.swift in Sources */,
 				243800E62BDEBA1200223577 /* Food.swift in Sources */,
 				249FE0C52BD508CF0061017E /* CalculatorBrain.swift in Sources */,
 				246DB2342BF8ECD400130592 /* BackButton.swift in Sources */,
+				24C1CC412BFE31FC003C7885 /* RadioButton.swift in Sources */,
 				249FE0B42BD4E3140061017E /* GoalView.swift in Sources */,
+				246DB2382BF9B7AC00130592 /* ChangeWeightView.swift in Sources */,
 				243800E12BDEB98000223577 /* DailySummaryData.swift in Sources */,
 				249FE0BB2BD4EF770061017E /* GoalModel.swift in Sources */,
+				24C1CC4E2BFED330003C7885 /* SuggestionView.swift in Sources */,
 				249FE0A82BD4CCAF0061017E /* FocusField.swift in Sources */,
 				243800FE2BE23CDC00223577 /* AddMealView.swift in Sources */,
 				249FE0CD2BD50B1B0061017E /* CalculatorResultView.swift in Sources */,
@@ -772,25 +873,32 @@
 				249FE0BF2BD4F3090061017E /* ActiveView.swift in Sources */,
 				24DF9D052BD3754700582458 /* ContentView.swift in Sources */,
 				243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */,
+				24C1CC5D2BFFB2B5003C7885 /* ModelData.swift in Sources */,
 				249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */,
 				249FE08F2BD3C33D0061017E /* ViewConst.swift in Sources */,
 				24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */,
 				24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */,
 				243800DC2BDEB86800223577 /* DashBoardView.swift in Sources */,
 				249FE0B82BD4E6730061017E /* GoalViewModel.swift in Sources */,
+				24C1CC5B2BFFB28D003C7885 /* ChatGPTAPI.swift in Sources */,
+				24C1CC632BFFB8D8003C7885 /* FoodSuggest.swift in Sources */,
 				244C59C62BF0A5D300EECAE5 /* ProfileView.swift in Sources */,
 				243800FA2BE236B400223577 /* FoodApiService.swift in Sources */,
-				246DB2322BF8915A00130592 /* ChangeGoalView.swift in Sources */,
 				243800D92BDEB29500223577 /* UserData.swift in Sources */,
 				24DF9D2F2BD3800C00582458 /* NormalTextField.swift in Sources */,
 				243801062BE2549700223577 /* FoodRow.swift in Sources */,
 				249FE0932BD406650061017E /* Constanst.swift in Sources */,
+				24C1CC5F2BFFB2E2003C7885 /* MessageRow.swift in Sources */,
+				24C1CC482BFE6537003C7885 /* ChatBoxView.swift in Sources */,
 				249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */,
+				246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */,
 				249FE0AB2BD4DCAB0061017E /* RootViewModel.swift in Sources */,
+				24C1CC442BFE4227003C7885 /* SettingViewModel.swift in Sources */,
 				243800F52BE2355400223577 /* FoodView.swift in Sources */,
 				243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */,
 				24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */,
 				249FE0B02BD4DFD30061017E /* HomeView.swift in Sources */,
+				24C1CC612BFFB301003C7885 /* Chat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,7 +1026,7 @@
 		};
 		24DF9D0E2BD3754800582458 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BB4F394C638689C6323AFAB /* Pods-CalorieCounter.debug.xcconfig */;
+			baseConfigurationReference = EFA540331DA02D23902D6DDA /* Pods-CalorieCounter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -950,7 +1058,7 @@
 		};
 		24DF9D0F2BD3754800582458 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 763151B29C239FCC8ECCA656 /* Pods-CalorieCounter.release.xcconfig */;
+			baseConfigurationReference = DD1DC5F028DBAAF84BEE93BF /* Pods-CalorieCounter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

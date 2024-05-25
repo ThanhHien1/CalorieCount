@@ -16,7 +16,6 @@ protocol ErrorDelegate {
 }
 
 class FoodViewModel: ObservableObject {
-    @Published var searchText = ""
     var check = 0
     var check2 = false
     var updateDelegate: UpdateDelegate?
@@ -176,6 +175,7 @@ class FoodViewModel: ObservableObject {
             else{
                 foodsUrl = nextPageUrl
             }
+            
             // weak self - prevent retain cycles
             print("Fetching food data.. : ", foodsUrl ?? "ERROR: URL Not Found! (FoodViewModel.swift)")
             apiService.getFoodsData(pagination: pagination, foodsUrl: foodsUrl!) { [weak self] (result) in
@@ -183,8 +183,7 @@ class FoodViewModel: ObservableObject {
                 print(result)
                 switch result{
                 case .success(let listOf):
-                    print("$$$$$$")
-                    var currentCount = self?.targetFoods1.count
+                    let currentCount = self?.targetFoods1.count
                     var theListWithoutImagelessFoods: [FoodData] = []
                     for food in listOf.hints{
                         if food.food.image != nil{
@@ -197,6 +196,7 @@ class FoodViewModel: ObservableObject {
                     for (i, food) in theListWithoutImagelessFoods.enumerated(){
                         url2 = food.food.image!
                         self!.fetchFoodImage(url: url2,food: food, index: currentCount! + i){ [weak self] in
+                            completion()
                         }
                     }
                     if !(self!.check2) && theListWithoutImagelessFoods.count < 10{
@@ -215,7 +215,6 @@ class FoodViewModel: ObservableObject {
                             }
                         }
                     }
-                    completion()
                 case .failure(let error):
                     self?.errorDelegate?.didError(sender: self!)
                     // Something is wrong with the JSON file or the model
@@ -235,7 +234,8 @@ class FoodViewModel: ObservableObject {
                 case .success(let listOf):
                     //FoodStruct değerlerin atanması
                     self?.targetFoods1.append(FoodStruct(label: foodData.label,calorie: foodData.nutrients?.ENERC_KCAL,image: listOf, carbs: foodData.nutrients?.CHOCDF, fat: foodData.nutrients?.FAT, protein: foodData.nutrients?.PROCNT,wholeGram: measures[0].weight,measureLabel: measures[0].label))
-                    self?.updateDelegate!.didUpdate(sender: self!)
+                    completion()
+//                    self?.updateDelegate!.didUpdate(sender: self!)
                     //self?.targetFoods1.append(contentsOf: FoodStruct(label: food.label,
                     //                                              calorie: food.nutrients?.ENERC_KCAL,image: listOf))
                 case .failure(let error):
@@ -254,7 +254,7 @@ class FoodViewModel: ObservableObject {
                 //FoodStruct
                 self?.frequentFoods.append(FoodStruct(label: food.label,calorie: food.nutrients?.ENERC_KCAL,image: listOf, carbs: food.nutrients?.CHOCDF, fat: food.nutrients?.FAT, protein: food.nutrients?.PROCNT,wholeGram: measure.weight,measureLabel: measure.label
                                                             ))
-                self?.updateDelegate?.didUpdate(sender: self!)
+//                self?.updateDelegate?.didUpdate(sender: self!)
                 completion()
                 //self?.targetFoods1.append(contentsOf: FoodStruct(label: food.label,
                 //                                              calorie: food.nutrients?.ENERC_KCAL,image: listOf))

@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
     @ObservedObject var viewModel = RootViewModel()
     @ObservedObject var userGoals = UserGoals.instance
+    @ObservedObject var foodViewModel = FoodViewModel.instance
     @State var isLoadingSpash: Bool = true
     
     var body: some View {
@@ -32,6 +33,11 @@ struct RootView: View {
             }
             userGoals.fetchUserData() {_ in
             }
+            userGoals.fetchFoodToday() { _,_  in
+            }
+//            foodViewModel.getAllFood() {
+//                print("####foodViewModel.foods \(foodViewModel.foods)")
+//            }
         }
     }
 }

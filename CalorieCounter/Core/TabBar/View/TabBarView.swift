@@ -22,13 +22,14 @@ struct TabBarView: View {
                         Image(systemName: "message.fill")
                         Text("Chat box")
                     }.tag(1)
-                SettingView()
+                AboutMeView()
                     .tabItem {
                         Image(systemName: "person")
-                        Text("Setting")
+                        Text("Me")
                     }.tag(2)
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

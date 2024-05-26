@@ -20,7 +20,7 @@ struct BackButton: View {
                     .foregroundColor(color)
             }
             
-            .frame(width: Vconst.DESIGN_WIDTH_RATIO * 20, height: Vconst.DESIGN_HEIGHT_RATIO * 18)
+            .frame(width: Vconst.DESIGN_WIDTH_RATIO * 20, height: Vconst.DESIGN_HEIGHT_RATIO * 20)
         }
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 
 class AddMealViewModel: ObservableObject {
-    @Published var frequentFoods: [FoodStruct]?
-    @Published var foodSearchSuggestions: [FoodStruct]?
+    @Published var frequentFoods: [Foods]?
+    @Published var foodSearchSuggestions: [Foods]?
 
     
 }

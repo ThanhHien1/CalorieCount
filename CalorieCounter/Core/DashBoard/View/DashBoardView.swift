@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct DashBoardView: View {
-//    @ObservedObject var dailySummaryData = DailySummaryData.instance
+    //    @ObservedObject var dailySummaryData = DailySummaryData.instance
     @ObservedObject var foodViewModel = FoodViewModel.instance
     @State  var mealTypes: MealType = .breakfast
     @State var isActive: Bool = false
@@ -20,28 +20,35 @@ struct DashBoardView: View {
     var body: some View {
         NavigationStack{
             LoadingView(isShowing: .constant(isShow)) {
-                VStack {
-                    Header
-                    CaloriesEatenAndBurnedView()
-                    Nutritient_Card()
-                    //                StepsProgressView()
-                    //                Spacer()
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("Meals today")
-                            .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 25)
-                            .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 10)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: Vconst.DESIGN_WIDTH_RATIO * 20) {
-                                
-                                ForEach(MealType.allCases, id: \.self ) { mealType in
-                                    carouselItem(mealType: mealType)
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Header
+                        CaloriesEatenAndBurnedView()
+                        Nutritient_Card()
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("Meals today")
+                                .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 25)
+                                .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 10)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: Vconst.DESIGN_WIDTH_RATIO * 20) {
+                                    
+                                    ForEach(MealType.allCases, id: \.self ) { mealType in
+                                        carouselItem(mealType: mealType)
+                                    }
                                 }
+                                .background(NavigationLink("", destination: AddMealView(mealType: mealTypes), isActive: $isActive).hidden())
+                                //                            .padding(.bottom, 60)
+                                .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
                             }
-                            .background(NavigationLink("", destination: AddMealView(mealType: mealTypes), isActive: $isActive).hidden())
-//                            .padding(.bottom, 60)
-                            .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
+                            
+                            
                         }
-                        
+                        Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
+                        VStack {
+                            ItemFood
+                        }
+                        .padding(.bottom, Vconst.DESIGN_HEIGHT_RATIO * 50)
                     }
                     .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 20)
                 }
@@ -49,8 +56,8 @@ struct DashBoardView: View {
             .background(
                 LinearGradient(colors: [Color.white.opacity(0.7), Color.orange.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing), ignoresSafeAreaEdges: [.top,.leading,.trailing])
             .navigationBarBackButtonHidden()
-//            .navigationTitle("Today")
-//            .navigationBarBackButtonHidden()
+            //            .navigationTitle("Today")
+            //            .navigationBarBackButtonHidden()
         }
     }
 }
@@ -73,23 +80,70 @@ extension DashBoardView {
                         .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 20)
                 })
             })
+            
         }
         .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 20)
     }
     
     private func carouselItem(mealType: MealType) -> some View {
-            Button(action: {
-                foodViewModel.frequentFoods = []
-                self.mealTypes = mealType
-                isShow = true
-                foodViewModel.fetchDefaultFoodData(mealType: self.mealTypes.value) {
-                    isActive = true
-                    isShow = false
-                }
-            }) {
-                MealCarouselItemView(mealType: mealType, userGoals: userGoals)
+        Button(action: {
+//            $foodViewModel.frequentFoods = []
+            self.mealTypes = mealType
+            isShow = true
+            foodViewModel.getAllFood(mealType: self.mealTypes.value) {
+                isActive = true
+                isShow = false
             }
+        }) {
+            MealCarouselItemView(mealType: mealType, userGoals: userGoals)
+        }
     }
+    
+    var ItemFood: some View {
+        let breakFirst = userGoals.foodToday.filter { $0.type == "Breakfast" }
+        let lunch = userGoals.foodToday.filter { $0.type == "Lunch" }
+        let dinner = userGoals.foodToday.filter { $0.type == "Dinner" }
+        let snack = userGoals.foodToday.filter { $0.type == "Snacks" }
+        
+        print("####lunch \(lunch)")
+        print("####breakFirst \(breakFirst)")
+
+        return Group {
+            if !breakFirst.isEmpty {
+                VStack {
+                    Text("Breakfast")
+                    ForEach(breakFirst, id: \.self) { foodToday in
+                        ItemRowFood(foodToday: foodToday)
+                    }
+                }
+            }
+            if !lunch.isEmpty {
+                VStack {
+                    Text("Lunch")
+                    ForEach(lunch, id: \.self) { foodToday in
+                        ItemRowFood(foodToday: foodToday)
+                    }
+                }
+            }
+            if !dinner.isEmpty {
+                VStack {
+                    Text("Dinner")
+                    ForEach(dinner, id: \.self) { foodToday in
+                        ItemRowFood(foodToday: foodToday)
+                    }
+                }
+            }
+            if !snack.isEmpty {
+                VStack {
+                    Text("Snack")
+                    ForEach(snack, id: \.self) { foodToday in
+                        ItemRowFood(foodToday: foodToday)
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 
@@ -189,15 +243,15 @@ struct MealCarouselItemView: View {
 }
 
 
-extension MealCarouselItemView: ErrorDelegate {
-    func didError(sender: FoodViewModel) {
-        DispatchQueue.main.async {
-//            self.foodSearchSuggestions = []
-//            self.searchEnable = false
-//            self.tableView.reloadData()
-        }
-    }
-}
+//extension MealCarouselItemView: ErrorDelegate {
+//    func didError(sender: FoodViewModel) {
+//        DispatchQueue.main.async {
+////            self.foodSearchSuggestions = []
+////            self.searchEnable = false
+////            self.tableView.reloadData()
+//        }
+//    }
+//}
 
 
 

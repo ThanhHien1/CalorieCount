@@ -127,9 +127,10 @@ calculatorBrain.calculateBMI(viewModel.height,viewModel.weight)
 //        return NavigationLink() {
         return NormalButton(action: {
                 isActive = true
-                viewModel.calorie = Int(calculatorBrain.getCalorie()) ?? 0
+            viewModel.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
                 viewModel.bmi = calculatorBrain.bmi?.value ?? 0.0
                 viewModel.dateUpdate = Utilities.formatDateTime(date: Date())
+            print("########Utilities.formatDateTime(date: Date()) \(Utilities.formatDateTime(date: Date()))")
             }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
             )
             .navigationDestination(isPresented: $isActive, destination: {

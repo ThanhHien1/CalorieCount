@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddMealView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = AddMealViewModel()
     @ObservedObject var goalViewModel = GoalViewModel.instance
     @ObservedObject var userGoals = UserGoals.instance
@@ -15,50 +16,57 @@ struct AddMealView: View {
     @ObservedObject var dailySummaryData = DailySummaryData.instance
     @State var searchText = ""
     var mealType: MealType
-    
     var body: some View {
-        VStack {
-            Text("\(mealType.title)")
-                .font(.system(size: 17))
-                .foregroundColor(.white)
-            
-            // Search Bar with onCommit
-//            TextField("Search for food", text: $searchText, onCommit: {
-//                performSearch()
-//            })
-//            .textFieldStyle(RoundedBorderTextFieldStyle())
-//            .padding(.horizontal, 30)
-//            .padding(.top, 10)
-//            
-            ScrollView {
-                Spacer().frame(height: 5)
-                LazyVStack {
-                    ForEach(searchText.isEmpty ? viewModel.frequentFoods ?? [] :viewModel.foodSearchSuggestions ?? [], id: \.self) { food in
-                        FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
+        if #available(iOS 17.0, *) {
+            VStack(spacing: 0) {
+                ScrollView {
+                    LazyVStack {
+                        ForEach(searchText.isEmpty ? viewModel.frequentFoods ?? [] :viewModel.foodSearchSuggestions ?? [], id: \.self) { food in
+                            FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
+                        }
+                    }
+                    .padding(.top, 5)
+                }
+                .padding(.top, 10)
+                Spacer()
+            }
+            .navigationBarBackButtonHidden()
+            .searchable(text: $searchText) {}
+            .onChange(of: searchText) {
+                print("######")
+                performSearch()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(color: .black) {
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .searchable(text: $searchText) {
-                    
-                }
-                .onSubmit(of: .search) {
-                    performSearch()
+                ToolbarItem(placement: .principal) {
+                    Text("\(mealType.title)")
+                        .font(.system(size: 17))
+                        .foregroundColor(.black)
                 }
             }
-        }
-        .onAppear {
-            viewModel.frequentFoods = foodViewModel.frequentFoods
+            .onAppear {
+                viewModel.frequentFoods = foodViewModel.foods
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
+}
+
+extension AddMealView {
     
-    // Perform search when Enter key is pressed
     func performSearch() {
-        let searchQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let searchQuery  = searchText
         if !searchQuery.isEmpty {
-            foodViewModel.clearData()
-            let configuredQuery = searchQuery.replacingOccurrences(of: " ", with: "%20")
-            foodViewModel.fetchSearchedFoodData(searchQuery: configuredQuery, pagination: false) {
-                viewModel.foodSearchSuggestions = foodViewModel.getFoods()
-                print(" viewModel.foodSearchSuggestions \( viewModel.foodSearchSuggestions?.count)")
+//            viewModel.frequentFoods =  foodViewModel.foods
+//        } else {
+            foodViewModel.searchFood(searchQuery: searchQuery) { searchFood in
+                viewModel.foodSearchSuggestions =  searchFood
+                print("########## searchFood \(viewModel.foodSearchSuggestions)")
             }
         }
     }
@@ -67,27 +75,24 @@ struct AddMealView: View {
 struct FoodItemRowView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var goalViewModel = GoalViewModel.instance
-    var food: FoodStruct
+    var food: Foods
     var dailySummaryData: DailySummaryData
     var userGoals: UserGoals
     var mealType: MealType
     
     var body: some View {
         HStack(spacing: 10) {
-            if let uiImage = UIImage(data: food.image) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .cornerRadius(8)
-            }
-            
             VStack(alignment: .leading, spacing: 4) {
-                Text(food.label ?? "")
+                Text(food.name)
                     .font(.headline)
-                Text("\(Int(food.calorie ?? 0)) Calories")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                HStack {
+                    Text(food.amount)
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color.gray)
+                    Text("-  \(Int(food.calorie)) Kcal")
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color.gray)
+                }
             }
             
             Spacer()
@@ -99,18 +104,24 @@ struct FoodItemRowView: View {
                 case .lunch:
                     userGoals.totalLunchCal! -= Int(food.calorie ?? 0)
                 case .dinner:
-                    userGoals.totalDinnerCal! -= Int(food.calorie ?? 0)
+                    userGoals.totalDinnerCal! -= Int(food.calorie)
                 case .snacks:
-                    userGoals.totalSnacksCal! -= Int(food.calorie ?? 0)
+                    userGoals.totalSnacksCal! -= Int(food.calorie)
                 }
                 
-                userGoals.user?.caloriesConsumed += Int(food.calorie ?? 0)
-                userGoals.user?.currentFat += Int(food.fat ?? 0)
-                userGoals.user?.currentPro += Int(food.protein ?? 0)
-                userGoals.user?.currentCarbs += Int(food.carbs ?? 0)
-                
-                goalViewModel.updateUserData(user: userGoals.user!) {
-                    self.presentationMode.wrappedValue.dismiss()
+                userGoals.user?.caloriesConsumed += Int(food.calorie)
+                userGoals.user?.currentFat += Int(food.fat)
+                userGoals.user?.currentPro += Int(food.protein)
+                userGoals.user?.currentCarbs += Int(food.carbohydrate)
+                let FoodToday = FoodToday(foods: [food], type: mealType.title)
+                goalViewModel.saveFoodTodayArray(newFoodArray: [FoodToday]) {
+                    print("######")
+                    userGoals.fetchFoodToday() { foodToday  in
+                        goalViewModel.updateUserData(user: userGoals.user!) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                            print("######count\(foodToday?.count)")
+                    }
                 }
             }) {
                 Image(systemName: "plus.circle.fill")
@@ -118,11 +129,11 @@ struct FoodItemRowView: View {
                     .font(.system(size: 24))
             }
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 10)
         .padding(.horizontal, 16)
         .background(Color.white)
         .cornerRadius(8)
-        .shadow(radius: 4)
+        .shadow(radius: 2)
         .padding(.horizontal, 8)
         .padding(.horizontal, 16)
     }

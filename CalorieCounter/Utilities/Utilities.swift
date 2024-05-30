@@ -15,5 +15,15 @@ class Utilities {
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
     }
-
+    
+    static func formatDate(date: Date) -> String {
+        let dateFormatter: DateFormatter
+        dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "vi_VN")
+        dateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
+    
+    
 }

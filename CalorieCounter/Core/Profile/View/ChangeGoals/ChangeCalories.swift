@@ -85,7 +85,7 @@ extension ChangeCalories {
     var UnitLabel: some View {
         Button(action: {
             updateCaloritesUser {
-                viewModel.calorie = Int(calculatorBrain.calorie ?? 0)
+                viewModel.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
                 value = Int(calculatorBrain.calorie ?? 0)
             }
         }, label: {

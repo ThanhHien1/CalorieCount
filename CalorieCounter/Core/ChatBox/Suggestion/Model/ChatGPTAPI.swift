@@ -27,6 +27,5 @@ class ChatGPTAPI {
     func send(_ message: String) {
         let s = "window.sendMsg('\(message)');"
         print("script:", s)
-//        ChatGPTWebViewStore.shared.webView.evaluateJavaScript(s)
     }
 }

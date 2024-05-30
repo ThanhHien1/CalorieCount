@@ -48,7 +48,8 @@ struct Measure: Decodable {
     }
 }
 
-struct Food: Decodable {
+struct Food: Decodable, Identifiable {
+    let id = UUID()
     let foodId: String?
     let label: String?
     let knownAs: String?

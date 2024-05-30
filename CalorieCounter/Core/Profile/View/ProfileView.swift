@@ -26,7 +26,9 @@ struct ProfileView: View {
         }
         .navigationBarBackButtonHidden()
         .onAppear {
-            viewModel.updateInfomation(user: userGoal.user!)
+            if let user = userGoal.user {
+                viewModel.updateInfomation(user: user )
+            }
         }
     }
 }

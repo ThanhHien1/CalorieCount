@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 import FirebaseAuth
-import SwiftUI
 import FirebaseFirestoreInternal
 
 enum MealType: Int, CaseIterable {
@@ -49,7 +48,7 @@ enum MealType: Int, CaseIterable {
 class UserGoals: ObservableObject  {
     
     let db = Firestore.firestore()
-    var user: UserData? = nil
+    @Published var user: UserData? = nil
     @Published var weightGoal : Double?
     @Published var stepsGoal : Double?
     @Published var dailyCaloriesGoal: Int?
@@ -60,6 +59,8 @@ class UserGoals: ObservableObject  {
     @Published var totalLunchCal: Int?
     @Published var totalDinnerCal: Int?
     @Published var totalSnacksCal: Int?
+    @Published var foodToday: [FoodToday] = []
+    private var listener: ListenerRegistration?
     static let instance = UserGoals()
     
     init(_ weightGoal: Double? = nil, _ stepsGoal: Double? = nil) {
@@ -117,11 +118,12 @@ class UserGoals: ObservableObject  {
                     let adviced = userData["adviced"] as? Bool ?? true
                     let goalWeight = userData["goalWeight"]  as? Int ?? 0
                     let dietaryType  = userData["dietaryType"] as? String ?? ""
+                    
                     self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, caloriesConsumed: caloriesConsumed, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
                     print("#########fetch\(self.user)")
                     self.dailyCaloriesGoal = self.user?.calorie ?? 0
-                    print("&&&& \(self.user?.bmh)")
-                    print("dailyCaloriesGoal \(self.dailyCaloriesGoal)")
+                    print("&&&& \(String(describing: self.user?.bmh))")
+                    print("dailyCaloriesGoal \(String(describing: self.dailyCaloriesGoal))")
                     self.calculateTotalCalNeeds()
                     completion(.success(self.user!))
                 } catch let parsingError {
@@ -130,6 +132,57 @@ class UserGoals: ObservableObject  {
             }
         }
     }
+    
+    func fetchFoodToday(completion: @escaping ([FoodToday]?) -> Void) {
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            completion(nil)
+            return
+        }
+        
+        let documentRef = db.collection("foodToday").document(currentUserEmail)
+        
+        documentRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error fetching document: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                print("Document does not exist")
+                completion(nil)
+                return
+            }
+            
+            guard let data = document.data(), let foodDataArray = data["foods"] as? [Any] else {
+                print("No food data found in document")
+                completion(nil)
+                return
+            }
+            
+            let dispatchGroup = DispatchGroup()
+            var foodArray: [FoodToday] = []
+            
+            for foodData in foodDataArray {
+                dispatchGroup.enter()
+                DispatchQueue.global(qos: .userInitiated).async {
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
+                       let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
+                        foodArray.append(food)
+                    } else {
+                        print("Error serializing or decoding food data: \(foodData)")
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                self.foodToday = foodArray
+                completion(foodArray)
+            }
+        }
+    }
+
     
     private func calculateTotalCalNeeds() {
         let carbsCalorie = Float(dailyCaloriesGoal ?? 0) * Float(0.5)
@@ -155,7 +208,7 @@ class UserGoals: ObservableObject  {
         if adjustment != 0 {
             totalBreakfastCal! += adjustment
         }
-
+        
     }
     
     

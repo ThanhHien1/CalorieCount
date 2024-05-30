@@ -16,7 +16,7 @@ class DailySummaryData: ObservableObject {
     @Published var totalFats = 0
     @Published var totalProteins = 0
     @Published var totalCarbs = 0
-    @Published var remainingCalories = 0
+    @Published var remainingCalories: Int = 0
     @Published var progressCalories: Double = 0.0
     var currentUserGoals =  UserGoals.instance
     static let instance = DailySummaryData()
@@ -45,12 +45,12 @@ class DailySummaryData: ObservableObject {
         totalFats = (currentUserGoals.user?.currentFat ?? 0)
     }
 
-    func updateNutrition(_ food: FoodStruct) {
-        totalCalories += Int(food.calorie ?? 0)
-        totalFats += Int(food.fat ?? 0)
+    func updateNutrition(_ food: Foods) {
+        totalCalories += Int(food.calorie)
+        totalFats += Int(food.fat)
         print("totalFats \(totalFats)")
-        totalProteins += Int(food.protein ?? 0)
-        totalCarbs += Int(food.carbs ?? 0)
+        totalProteins += Int(food.protein)
+        totalCarbs += Int(food.carbohydrate)
     }
 
     

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct Chat: View {
-    @StateObject var modelData = ModelData()
+    @StateObject var viewModel = SuggestViewModel()
     @State var messageInput: String = ""
-//    @State var showModal: Bool = false
     @Namespace var bottomID
+    
     var body: some View {
         VStack {
             Text("Chat Box")
@@ -19,29 +19,44 @@ struct Chat: View {
                 .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
                 .font(.title2)
             ZStack {
-//                ChatGPTPage().blur(radius: 1).opacity(0.1)
                 ScrollViewReader { proxy in
                     ScrollView {
                         LazyVStack {
-                            ForEach(modelData.messages) { message in
-                                MessageRow(message: message)
+                            ForEach(viewModel.messages) { message in
+                                MessageRow(message: message, viewModel: viewModel)
                             }
                             Spacer().id(bottomID)
                         }
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
-                    .onChange(of: modelData.messages.last?.text) { _ in
+                    .onChange(of: viewModel.messages.last?.text) { _ in
                         proxy.scrollTo(bottomID)
                     }
                 }
+            }
+            HStack{
+                Button {
+                    viewModel.sendMessage(text: "Gợi ý thực đơn hôm nay!", type: .myMessage)
+                } label: {
+                    Text("Gợi ý thực đơn hôm nay!")
+                        .padding(10)
+                        .font(.system(size: 12.0))
+                        .background(Color(.systemGray4))
+                        .foregroundColor(Color(.black))
+                        .opacity(0.6)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .padding(.horizontal, 16.0)
+                        .padding(.vertical, 8.0)
+                }
+                Spacer()
             }
             HStack {
                 TextField("Type a message...", text: $messageInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal, 10)
                 Button(action: {
-                    modelData.send_stream(messageInput)
+                    viewModel.sendMessage(text: messageInput, type: .myMessage)
                     messageInput = ""
                 }) {
                     Image(systemName: "paperplane.fill")
@@ -54,46 +69,20 @@ struct Chat: View {
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 20)
-//            if modelData.isTyping {
-//                HStack {
-//                    Spacer()
-//                    Text("Chatbot is typing...")
-//                        .foregroundColor(.gray)
-//                        .padding(.trailing, 10)
-//                }
-//            }
+            .navigationTitle("Chatbot").navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                
+            }
         }
-//        .sheet(isPresented: $showModal, content: {
-////            ChatGPTAuth(isModalShow: $showModal)
-//        })
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-////                Button("Log in") {
-//////                    showModal = true
-////                }
-//            }
-//        }
-        .navigationTitle("Chatbot").navigationBarTitleDisplayMode(.inline)
-
-        .onAppear {
-//            $modelData.createRandomTestMessages
-//            _ = ChatGPTAPI.shared
-        }
-//        .task(id: showModal) {
-//            if showModal == false {
-//                ChatGPTWebViewStore.shared.webView.load(URLRequest(url: URL(string: "https://chat.openai.com/")!))
-//            }
-//        }
     }
 
-    // scroll to the bottom of the scroll view
     func scrollToBottom() {
         withAnimation {
-            if modelData.messages.count > 0 {
-                let lastIndex = modelData.messages.count - 1
-                let lastMessage = modelData.messages[lastIndex]
+            if viewModel.messages.count > 0 {
+                let lastIndex = viewModel.messages.count - 1
+                let lastMessage = viewModel.messages[lastIndex]
                 let lastMessageId = lastMessage.id
-                let lastMessageIndex = modelData.messages.firstIndex(where: { $0.id == lastMessageId })
+                let lastMessageIndex = viewModel.messages.firstIndex(where: { $0.id == lastMessageId })
                 if let lastMessageIndex = lastMessageIndex {
                     let lastMessageOffset = CGFloat(lastMessageIndex) * 100
                     let maxOffset = UIScreen.main.bounds.height * 2

@@ -20,7 +20,7 @@ struct SettingView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
                 Header
-                Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 20)
+                Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
                 SettingFeature
                 Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 470)
             }
@@ -37,6 +37,9 @@ extension SettingView {
             VStack() {
                 Spacer().frame(height:  Vconst.DESIGN_HEIGHT_RATIO * 25)
                 HStack {
+                    BackButton() {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                     Spacer()
                     Text("Setting")
                         .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 25 ))
@@ -55,11 +58,11 @@ extension SettingView {
             ForEach(SettingEnum.allCases, id: \.self) { item in
                 switch item {
                 case  .update:
-                    ItemRowSetting(title: item.title, setting: item) {
+                    ItemRowSetting(title: item.title, setting: item, image: "next") {
                         showProfileView = true
                     }
                 case .logout:
-                    ItemRowSetting(title: item.title, setting: item) {
+                    ItemRowSetting(title: item.title, setting: item, image : "logout") {
 //                        viewModel.logout()
                         
                     }
@@ -67,7 +70,7 @@ extension SettingView {
 
             }
         }
-        .sheet(isPresented: $showProfileView) {
+        .navigationDestination(isPresented: $showProfileView) {
             ProfileView()
         }
     }
@@ -77,6 +80,7 @@ struct ItemRowSetting: View {
     @ObservedObject var viewModel = GoalViewModel.instance
     let title: String
     var setting: SettingEnum = .update
+    var image: String
     var onAction: (() -> Void)?
     var body: some View {
         Button(action: {
@@ -88,10 +92,10 @@ struct ItemRowSetting: View {
                     .foregroundColor(.black)
                     .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 18)
                 Spacer()
-                Image("next")
+                Image("\(image)")
                     .resizable()
-                    .frame(width: Vconst.DESIGN_WIDTH_RATIO * 10)
-                    .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 18)
+                    .frame(width: Vconst.DESIGN_WIDTH_RATIO * 20, height: Vconst.DESIGN_HEIGHT_RATIO * 20)
+                    .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 10)
             }
             .foregroundColor(.black)
             .padding(.vertical, Vconst.DESIGN_HEIGHT_RATIO * 18)

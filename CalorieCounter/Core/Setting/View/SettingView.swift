@@ -41,7 +41,7 @@ extension SettingView {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                     Spacer()
-                    Text("Setting")
+                    Text("Cài đặt")
                         .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 25 ))
                         .bold()
                         .foregroundColor(.white)

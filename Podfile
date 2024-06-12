@@ -7,8 +7,8 @@ target 'CalorieCounter' do
  
   pod 'OpenAISwift'
   pod 'FirebaseAuth'
-
- pod 'Firebase/Firestore'
+  pod "KRProgressHUD"
+  pod 'Firebase/Firestore'
 
   # Pods for CalorieCounter
 

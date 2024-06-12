@@ -36,4 +36,12 @@ class DateManager {
         let currentDate = calendar.startOfDay(for: Date())
         return lastDate != currentDate
     }
+    
+    func getCurrentDayDDMMYYYY() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter.string(from: date)
+    }
+
 }

@@ -125,7 +125,7 @@ extension AboutMeView {
                 }
                 Spacer()
                 VStack(spacing: 0) {
-                    Text("\(userGoal.user?.currentDay ?? "")")
+                    Text("\(userGoal.user?.date ?? "")")
                         .bold()
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                         .foregroundStyle(Color.gray)

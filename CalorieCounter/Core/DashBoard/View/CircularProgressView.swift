@@ -25,7 +25,7 @@ struct CircularProgressView : View {
                 VStack {
                     Text(remainingCalories.formatted())
                         .font(.system(size: 24))
-                    Text("kCal left")
+                    Text("Cần nạp")
                         .font(.subheadline)
                 }
 //                .foregroundStyle(.orange)

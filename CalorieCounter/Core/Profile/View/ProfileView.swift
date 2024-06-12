@@ -44,7 +44,7 @@ extension ProfileView {
                     BackButton() {
                         self.presentationMode.wrappedValue.dismiss()
                     }
-                    Text("BMR Update ")
+                    Text("Cập nhật BMR")
                         .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 25 ))
                         .bold()
                         .foregroundColor(.white)
@@ -60,7 +60,7 @@ extension ProfileView {
                             }
                         }
                     }, label: {
-                        Text("Change target")
+                        Text("Thay đổi mục tiêu")
                             .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 14 ))
                             .foregroundColor(.white)
                             .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 15)
@@ -91,9 +91,9 @@ extension ProfileView {
                 case .age:
                     ItemRowProfile(title: profile.title, number: "\(Int(viewModel.age))", profile: profile)
                 case .gender:
-                    ItemRowProfile(title: profile.title, number: "\(viewModel.sex)".capitalized, profile: profile)
+                    ItemRowProfile(title: profile.title, number: "\(viewModel.sex.title)".capitalized, profile: profile)
                 case .activeness:
-                    ItemRowProfile(title: profile.title, number: "\(viewModel.activeness.name)", profile: profile)
+                    ItemRowProfile(title: profile.title, number: "\(viewModel.activeness.title)", profile: profile)
                 }
             }
         }
@@ -112,7 +112,9 @@ struct ItemRowProfile: View {
             if let activeness = ActivenessEnum(rawValue: userGoal.user?.activeness ?? "") {
                 viewModel.activeness = activeness
             }
-            self.isPresented = true
+            if profile != .gender {
+                self.isPresented = true
+            }
         }, label: {
             HStack {
                 Text(title)
@@ -153,10 +155,13 @@ struct ItemRowProfile: View {
                 }
                 .presentationDetents([.fraction(0.3)])
             case .gender:
-                ChangeHeightView(value: userGoal.user?.height ?? 0) { user in
-                    viewModel.updateInfomation(user: user)
-                }
-                .presentationDetents([.fraction(0.3)])
+                
+                Text("")
+//               break
+//                ChangeHeightView(value: userGoal.user?.height ?? 0) { user in
+//                    viewModel.updateInfomation(user: user)
+//                }
+//                .presentationDetents([.fraction(0.3)])
             case .activeness:
                 ActiveView(isHideButton: true) { user in
                     viewModel.updateInfomation(user: user)

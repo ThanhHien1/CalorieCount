@@ -32,7 +32,7 @@ struct ChangeAgeView: View {
 extension ChangeAgeView {
     
     var Header: some View {
-        Text("Age")
+        Text("Tuổi")
             .font(.title)
     }
     
@@ -101,7 +101,7 @@ extension ChangeAgeView {
         userGoal.user?.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
         print(calculatorBrain.calorie ?? 0)
         dailySummaryData.updateRemainingCalories()
-        userGoal.user?.currentDay = "\(Date())"
+        userGoal.user?.date = "\(Date())"
         print("calorie: \(calculatorBrain.calorie ?? 0)")
         viewModel.updateUserData(user: userGoal.user!) {
             completed()

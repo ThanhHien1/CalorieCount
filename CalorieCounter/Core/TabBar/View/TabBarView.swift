@@ -15,18 +15,23 @@ struct TabBarView: View {
                 DashBoardView()
                     .tabItem {
                         Image(systemName: "house.fill")
-                        Text("Diary")
+                        Text("Trang chủ")
                     }.tag(0)
-                Chat()
+                Chat(tabbarSelected: $selected)
                     .tabItem {
                         Image(systemName: "message.fill")
                         Text("Chat box")
                     }.tag(1)
-                AboutMeView()
+                PlanTabView()
                     .tabItem {
-                        Image(systemName: "person")
-                        Text("Me")
+                        Image(systemName: "calendar")
+                        Text("Kế hoạch")
                     }.tag(2)
+                LineChartDemoView()
+                    .tabItem {
+                        Image(systemName: "chart.bar.xaxis.ascending")
+                        Text("Lịch sử")
+                    }.tag(3)
             }
         }
         .navigationBarBackButtonHidden()

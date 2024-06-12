@@ -25,6 +25,10 @@ class FormValidator {
         }
         return true
     }
+    
+    static func confirmPassword(confirmPassword: String, password: String) -> Bool {
+        return confirmPassword == password
+    }
 }
 
 
@@ -33,13 +37,10 @@ struct CustomTextField: View {
     @Binding var text:String
     var textContentType:UITextContentType?
     var keyboardType: UIKeyboardType = .default
-    
     var focusedField: FocusState<FocusField?>.Binding
     var focusFieldType: FocusField
-    
     @Binding var strokeColor:Color
-    
-    @State private var isSecure: Bool = true
+    @State var isSecure: Bool
     var isPassword: Bool = false
     
     var body: some View {
@@ -71,7 +72,8 @@ struct CustomTextField: View {
                     Image(systemName: !isSecure ? "eye.slash" : "eye" )
                         .foregroundColor(.gray)
                 })
-            } else {
+            } 
+            else {
                 TextField(title, text: $text)
                     .multilineTextAlignment(.leading)
                     .truncationMode(/*@START_MENU_TOKEN@*/.tail/*@END_MENU_TOKEN@*/)

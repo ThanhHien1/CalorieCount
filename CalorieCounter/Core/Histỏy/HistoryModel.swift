@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreInternal
 import FirebaseAuth
 
-class HistoryModel {
+class HistoryModel: ObservableObject {
     
     func saveFood() {
         //        if DateManager.shared.isNewDay()  {
@@ -17,7 +17,7 @@ class HistoryModel {
             print("$$$$$$$$$")
             self.fetchFoodToday(completion: { foods in
                 guard let foods = foods else { return }
-                let history = History(listFood: foods, date: Utilities.formatDate(date: DateManager.shared.getLastCheckedDate() ?? .now), totalCalorie: caloriesConsumed)
+                let history = History(listFood: foods, date: DateManager.shared.getLastCheckedDate() ?? .now, totalCalorie: caloriesConsumed)
                 self.saveOrUpdateHistory(history: history)
                 self.updateCaloriesUserData()
                 self.deleteAllFoodToday()
@@ -84,7 +84,8 @@ class HistoryModel {
         }
     }
     
-    private func fetchUpdatedHistory(for email: String, completion: @escaping ([History]?) -> Void) {
+    func fetchHistory(completion: @escaping ([History]?) -> Void) {
+        guard let email = Auth.auth().currentUser?.email else { return }
         let db = Firestore.firestore()
         let documentRef = db.collection("History").document(email)
         
@@ -100,13 +101,25 @@ class HistoryModel {
                     guard let jsonData = try? JSONSerialization.data(withJSONObject: $0) else { return nil }
                     return try? JSONDecoder().decode(History.self, from: jsonData)
                 }
-                completion(historyArray)
+                let calendar = Calendar.current
+//                let today = calendar.startOfDay(for: Date())
+//                let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today)!
+                
+                let filteredHistoryArray = historyArray.filter { history in
+                    let historyDate = history.date
+//                    >= sevenDaysAgo && historyDate < today
+//                    return historyDate
+                    return true
+                }
+                print("############ \(filteredHistoryArray)")
+                completion(filteredHistoryArray)
             } else {
                 print("Error fetching updated history: \(error?.localizedDescription ?? "Unknown error")")
                 completion(nil)
             }
         }
     }
+
     
     func updateCaloriesUserData() {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
@@ -114,7 +127,7 @@ class HistoryModel {
             return
         }
         
-        let userDocumentRef = Firestore.firestore().collection("UserInformations").document(currentUserEmail)
+        let userDocumentRef = Firestore.firestore().collection("User").document(currentUserEmail)
         var dataToUpdate: [String: Any] = [
             "currentCarbs" : 0,
             "currentPro": 0,
@@ -160,7 +173,7 @@ class HistoryModel {
             return
         }
         
-        Firestore.firestore().collection("UserInformations").document(currentUserEmail).getDocument { (document, error) in
+        Firestore.firestore().collection("User").document(currentUserEmail).getDocument { (document, error) in
             if let error = error {
                 return
             }

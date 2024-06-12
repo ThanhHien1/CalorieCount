@@ -36,7 +36,7 @@ extension ChangeCalories {
     
     
     var Header: some View {
-        Text("Caolories")
+        Text("Calories")
             .font(.title)
     }
     
@@ -86,10 +86,10 @@ extension ChangeCalories {
         Button(action: {
             updateCaloritesUser {
                 viewModel.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
-                value = Int(calculatorBrain.calorie ?? 0)
+                value = Int(calculatorBrain.calorie?.rounded() ?? 0)
             }
         }, label: {
-            Text("Recalculate BMR")
+            Text("Tính lại BMR")
         })
     }
     
@@ -113,7 +113,7 @@ extension ChangeCalories {
         userGoal.user?.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
         print(calculatorBrain.calorie ?? 0)
         dailySummaryData.updateRemainingCalories()
-        userGoal.user?.currentDay = "\(Date())"
+        userGoal.user?.date = "\(Date())"
         print("calorie: \(calculatorBrain.calorie ?? 0)")
         viewModel.updateUserData(user: userGoal.user!) {
             completed()

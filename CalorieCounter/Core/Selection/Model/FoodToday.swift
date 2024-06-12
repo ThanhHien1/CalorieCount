@@ -15,12 +15,13 @@ import Foundation
 //}
 
 struct FoodToday: Hashable, Encodable, Decodable  {
+    var id: String
     var foods: [Foods]
     var type: String
 }
 
 struct History: Hashable, Encodable, Decodable  {
     var listFood: [FoodToday]
-    var date: String
+    var date: Date
     var totalCalorie: Int
 }

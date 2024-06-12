@@ -10,41 +10,6 @@ import SwiftData
 import FirebaseAuth
 import FirebaseFirestoreInternal
 
-enum MealType: Int, CaseIterable {
-    case breakfast = 0
-    case lunch = 1
-    case dinner = 2
-    case snacks = 3
-    
-    var value: Int {
-        switch self {
-        case .breakfast:
-            0
-        case .lunch:
-            1
-        case .dinner:
-            2
-        case .snacks:
-            3
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .breakfast:
-            "Breakfast"
-        case .lunch:
-            "Lunch"
-        case .dinner:
-            "Dinner"
-        case .snacks:
-            "Snacks"
-        }
-    }
-    
-    
-}
-
 class UserGoals: ObservableObject  {
     
     let db = Firestore.firestore()
@@ -55,13 +20,14 @@ class UserGoals: ObservableObject  {
     @Published var dailyFatsGoal: Int?
     @Published var dailyProteinGoal: Int?
     @Published var dailyCarbsGoal: Int?
-    @Published var totalBreakfastCal: Int?
-    @Published var totalLunchCal: Int?
-    @Published var totalDinnerCal: Int?
-    @Published var totalSnacksCal: Int?
+    @Published var totalBreakfastCal: Int = 0
+    @Published var totalLunchCal: Int = 0
+    @Published var totalDinnerCal: Int = 0
+    @Published var totalSnacksCal: Int = 0
     @Published var foodToday: [FoodToday] = []
     private var listener: ListenerRegistration?
     static let instance = UserGoals()
+    let goalViewModel = GoalViewModel.instance
     
     init(_ weightGoal: Double? = nil, _ stepsGoal: Double? = nil) {
         self.weightGoal = weightGoal
@@ -73,7 +39,7 @@ class UserGoals: ObservableObject  {
     func fetchUserData(completion: @escaping (Result<UserData, Error>) -> Void) {
         print("2")
         if let currentUserEmail = Auth.auth().currentUser?.email {
-            db.collection("UserInformations").document(currentUserEmail).getDocument { (document, error) in
+            db.collection("User").document(currentUserEmail).getDocument { (document, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -107,19 +73,8 @@ class UserGoals: ObservableObject  {
                     let currentCarbs = userData["currentCarbs"]  as? Int ?? 0
                     let currentPro = userData["currentPro"] as? Int ?? 0
                     let currentFat = userData["currentFat"]  as? Int ?? 0
-                    let currentBreakfastCal = userData["currentBreakfastCal"]  as? Int ?? 0
-                    let currentLunchCal = userData["currentLunchCal"]  as? Int ?? 0
-                    let currentDinnerCal = userData["currentDinnerCal"] as? Int ?? 0
-                    let currentSnacksCal = userData["currentSnacksCal"] as? Int ?? 0
-                    let currentBurnedCal = userData["currentBurnedCal"] as? Int ?? 0
-                    let weeklyGoal = userData["weeklyGoal"] as? Int ?? 0
-                    let calorieGoal = userData["calorieGoal"] as? Int ?? 0
                     let caloriesConsumed = userData["caloriesConsumed"] as? Int ?? 0
-                    let adviced = userData["adviced"] as? Bool ?? true
-                    let goalWeight = userData["goalWeight"]  as? Int ?? 0
-                    let dietaryType  = userData["dietaryType"] as? String ?? ""
-                    
-                    self.user = UserData(userEmail: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, currentDay: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, currentBreakfastCal: currentBreakfastCal, currentLunchCal: currentLunchCal, currentDinnerCal: currentDinnerCal, currentSnacksCal: currentSnacksCal, currentBurnedCal: currentBurnedCal, weeklyGoal: weeklyGoal, calorieGoal: calorieGoal, caloriesConsumed: caloriesConsumed, adviced: adviced, goalWeight: goalWeight, dietaryType: dietaryType)
+                    self.user = UserData(email: userEmail, calorie: calorie, sex: sex, weight: weight, height:height, age: age, activeness: activeness, bmh: bmh, bmi: bmi, changeCalorieAmount: changeCalorieAmount, goalType: goalType, date: currentDay, currentCarbs: currentCarbs, currentPro: currentPro, currentFat: currentFat, caloriesConsumed: caloriesConsumed)
                     print("#########fetch\(self.user)")
                     self.dailyCaloriesGoal = self.user?.calorie ?? 0
                     print("&&&& \(String(describing: self.user?.bmh))")
@@ -139,7 +94,7 @@ class UserGoals: ObservableObject  {
             return
         }
         
-        let documentRef = db.collection("foodToday").document(currentUserEmail)
+        let documentRef = Firestore.firestore().collection("foodToday").document(currentUserEmail)
         
         documentRef.getDocument { (document, error) in
             if let error = error {
@@ -160,28 +115,67 @@ class UserGoals: ObservableObject  {
                 return
             }
             
-            let dispatchGroup = DispatchGroup()
             var foodArray: [FoodToday] = []
             
             for foodData in foodDataArray {
-                dispatchGroup.enter()
-                DispatchQueue.global(qos: .userInitiated).async {
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
-                       let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
-                        foodArray.append(food)
-                    } else {
-                        print("Error serializing or decoding food data: \(foodData)")
-                    }
-                    dispatchGroup.leave()
+                if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
+                   let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
+                    foodArray.append(food)
+                } else {
+                    print("Error serializing or decoding food data: \(foodData)")
                 }
             }
-            
-            dispatchGroup.notify(queue: .main) {
-                self.foodToday = foodArray
-                completion(foodArray)
-            }
+            self.foodToday = foodArray
+            completion(foodArray)
         }
     }
+    
+    func deleteFood(foodToDelete: FoodToday, completion: @escaping (Bool) -> Void) {
+           guard let currentUserEmail = Auth.auth().currentUser?.email else {
+               print("No current user logged in")
+               completion(false)
+               return
+           }
+           
+           let documentRef = Firestore.firestore().collection("foodToday").document(currentUserEmail)
+           
+           documentRef.getDocument { (document, error) in
+               if let document = document, document.exists {
+                   if var currentData = document.data(), var existingFoods = currentData["foods"] as? [[String: Any]] {
+                       if let index = existingFoods.firstIndex(where: { $0["id"] as? String == foodToDelete.id })  {
+                           existingFoods.remove(at: index)
+                           documentRef.setData(["foods": existingFoods]) { err in
+                               if let err = err {
+                                   print("Error updating document: \(err)")
+                                   completion(false)
+                               } else {
+                                   print("Document successfully updated!")
+                                   self.foodToday.removeAll { $0.id == foodToDelete.id }
+                                   self.user?.caloriesConsumed -= Int(foodToDelete.foods[0].calorie)
+                                   self.user?.currentFat -= Int(foodToDelete.foods[0].fat)
+                                   self.user?.currentPro -= Int(foodToDelete.foods[0].protein)
+                                   self.user?.currentCarbs -= Int(foodToDelete.foods[0].carbohydrate)
+                                   if let user = self.user {
+                                       self.goalViewModel.updateUserData(user: user, completion: {
+                                           completion(true)
+                                       })
+                                   }
+                               }
+                           }
+                       } else {
+                           print("Food item not found")
+                           completion(false)
+                       }
+                   } else {
+                       print("Document data was empty or format was unexpected")
+                       completion(false)
+                   }
+               } else {
+                   print("Document does not exist")
+                   completion(false)
+               }
+           }
+       }
 
     
     private func calculateTotalCalNeeds() {
@@ -203,10 +197,10 @@ class UserGoals: ObservableObject  {
         // total calorie * 5/100
         totalSnacksCal = Int(Float(dailyCaloriesGoal ?? Int(0)) * Float(0.05))
         
-        let totalAdjustedCalories = (totalBreakfastCal ?? 0) + (totalLunchCal ?? 0) + (totalDinnerCal ?? 0) + (totalSnacksCal ?? 0)
+        let totalAdjustedCalories = (totalBreakfastCal) + (totalLunchCal) + (totalDinnerCal) + (totalSnacksCal)
         let adjustment  = (dailyCaloriesGoal ?? 0) - totalAdjustedCalories
         if adjustment != 0 {
-            totalBreakfastCal! += adjustment
+            totalBreakfastCal += adjustment
         }
         
     }

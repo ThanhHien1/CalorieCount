@@ -26,13 +26,13 @@ struct Nutritient_Card: View {
                                       color: Color.mint,
                                       valueInGrams: viewModel.totalCarbs,
                                       totalInGrams: userGoals.dailyCarbsGoal ?? 0)
-                MacroProgressCardView(title: "Protein",
+                MacroProgressCardView(title: "Chất đạm",
                                       value: viewModel.totalProteins,
                                       total:  userGoals.dailyProteinGoal ?? 0,
                                       color: Color.indigo,
                                       valueInGrams: viewModel.totalProteins,
                                       totalInGrams: userGoals.dailyProteinGoal ?? 10)
-                MacroProgressCardView(title: "Fat",
+                MacroProgressCardView(title: "Chất béo",
                                       value: viewModel.totalFats,
                                       total:  userGoals.dailyFatsGoal ?? 0,
                                       color: Color.orange,

@@ -37,10 +37,12 @@ extension GoalView {
     var HeaderView: some View {
         VStack {
             HStack {
-                BackButton(color: .black) {
-                    self.presentationMode.wrappedValue.dismiss()
+                if isHideButton {
+                    BackButton(color: .black) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
-                Text("What's your goal?")
+                Text("Mục tiêu của bạn là gì?")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
                     .bold()
                     .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 60)
@@ -48,7 +50,7 @@ extension GoalView {
             }
             .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
             .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 30)
-            Text("We'll personalize recommendations based on your goals.")
+            Text("Chúng tôi sẽ đề xuất calo dựa trên mục tiêu của bạn.")
                 .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                 .multilineTextAlignment(.center)
                 .padding(.top, 10)
@@ -95,7 +97,7 @@ extension GoalView {
         userGoal.user?.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
         print(calculatorBrain.calorie ?? 0)
         dailySummaryData.updateRemainingCalories()
-        userGoal.user?.currentDay = "\(Date())"
+        userGoal.user?.date = "\(Date())"
         print("calorie: \(calculatorBrain.calorie ?? 0)")
 
         viewModel.updateUserData(user: userGoal.user!) {
@@ -107,7 +109,7 @@ extension GoalView {
         NavigationLink(destination: ActiveView(), isActive: $isActive) {
             NormalButton(action: {
                 isActive = true
-            }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
+            }, title: "Tiếp tục" , tinColor: .white, color: Color.cl_F24F1D()
             )
         }
     }

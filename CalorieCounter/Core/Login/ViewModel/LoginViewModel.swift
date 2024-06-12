@@ -17,12 +17,12 @@ class LoginViewModel: ObservableObject {
     
     func loginAccount() {
         guard FormValidator.isValid(email: email, password: password) else {
-            errorMessage = "Please enter complete information"
+            errorMessage = "Vui lòng nhập đầy đủ thông tin"
             return
         }
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                self.errorMessage = error.localizedDescription
+                self.errorMessage = "Email hoặc password không đúng"
             } else {
                 UserDefaults.saveEmailAngPassword(email: self.email, password: self.password)
                 self.loginSuccessful = true

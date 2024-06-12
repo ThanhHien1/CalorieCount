@@ -20,15 +20,15 @@ enum ProfileEnum: CaseIterable {
         case .calories:
             "KCal/day"
         case .height:
-            "Height"
+            "Chiều cao"
         case .weight:
-            "Weight"
+            "Cân nặng"
         case .age:
-            "Age"
+            "Tuổi"
         case .gender:
-            "Gender"
+            "Giới tính"
         case .activeness:
-            "Exercise intensity"
+            "Mức độ vận động"
         }
     }
     

@@ -29,8 +29,9 @@ class DailySummaryData: ObservableObject {
     }
     
     func updateRemainingCalories() {
-        var dailyCaloriesGoal = (currentUserGoals.user?.calorie ?? 0)
+        let dailyCaloriesGoal = (currentUserGoals.user?.calorie ?? 0)
             print("dailyCaloriesGoal1111 \(dailyCaloriesGoal)")
+            updateConSumedCalories()
             self.remainingCalories =  dailyCaloriesGoal - totalCalories
         
         if let dailyCaloriesGoal = currentUserGoals.user?.calorie {

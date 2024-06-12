@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalculatorView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var isActive: Bool = false
     var calculatorBrain = CalculatorBrain()
     
@@ -25,17 +26,26 @@ struct CalculatorView: View {
             ButtonContinue
             Spacer()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
 extension CalculatorView {
     var HeaderView: some View {
         VStack {
-            Text("What's your BMI?")
-                .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
-                .bold()
-                .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
-            Text("We need your sex, current age, height and weight to accurately calculate your BMI and calorie needs.")
+            HStack {
+                BackButton(color: .black) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                Spacer()
+                Text("Chỉ số trao đổi chất (BMI)")
+                    .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
+                    .bold()
+                Spacer()
+            }
+            .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 30)
+            .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
+            Text("Chúng tôi cần giới tính, độ tuổi hiện tại, chiều cao và cân nặng của bạn để tính toán chính xác chỉ số BMI và nhu cầu calo của bạn.")
                 .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                 .multilineTextAlignment(.center)
                 .padding(.top, 10)
@@ -54,7 +64,7 @@ extension CalculatorView {
     var AgeView: some View {
         VStack {
             HStack {
-                Text("📆 Age")
+                Text("📆 Tuổi")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
@@ -75,7 +85,7 @@ extension CalculatorView {
     var HeightView: some View {
         VStack {
             HStack {
-                Text("📏Height")
+                Text("📏Chiều cao")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
@@ -92,7 +102,7 @@ extension CalculatorView {
     var Weightiew: some View {
         VStack {
             HStack {
-                Text("⚖️ Weight")
+                Text("⚖️ Cân nặng")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
@@ -131,7 +141,7 @@ calculatorBrain.calculateBMI(viewModel.height,viewModel.weight)
                 viewModel.bmi = calculatorBrain.bmi?.value ?? 0.0
                 viewModel.dateUpdate = Utilities.formatDateTime(date: Date())
             print("########Utilities.formatDateTime(date: Date()) \(Utilities.formatDateTime(date: Date()))")
-            }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
+            }, title: "Tiếp tục" , tinColor: .white, color: Color.cl_F24F1D()
             )
             .navigationDestination(isPresented: $isActive, destination: {
                 CalculatorResultView(bmiValue: calculatorBrain.getBMIValue(), advice: calculatorBrain.getAdvice(), color: calculatorBrain.getColor(), calorie: calculatorBrain.getCalorie())

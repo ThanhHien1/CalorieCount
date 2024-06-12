@@ -11,14 +11,15 @@ struct NormalTextField: View {
     var title: String
     @Binding var text:String
     @State private var strokeColor:Color = Color.cl_E1E2E7()
-    var isPassword: Bool = false
+    var isSecure: Bool = false
+    var isPasswword: Bool = false
     @FocusState var focusedField: FocusField?
     var focusFieldType: FocusField
     
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: Vconst.DESIGN_HEIGHT_RATIO * 2.0) {
-                CustomTextField(title: title, text: $text, textContentType: .emailAddress, keyboardType: .emailAddress, focusedField: $focusedField, focusFieldType: .password, strokeColor: $strokeColor)
+                CustomTextField(title: title, text: $text, textContentType: .emailAddress, keyboardType: .emailAddress, focusedField: $focusedField, focusFieldType: .password, strokeColor: $strokeColor, isSecure: isSecure, isPassword: isPasswword)
                     .onChange(of: focusedField) { newValue in
                         if newValue == .password {
                             strokeColor = Color.cl_F24F1D()

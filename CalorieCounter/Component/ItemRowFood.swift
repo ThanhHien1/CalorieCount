@@ -11,6 +11,7 @@ struct ItemRowFood: View {
     @ObservedObject var foodViewModel = FoodViewModel.instance
 //    var idFood: String
     @State var foods: Foods
+    var onDelete: (() -> Void)?
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -30,7 +31,7 @@ struct ItemRowFood: View {
             }
             Spacer()
             Button(action: {
-                
+                onDelete?()
             }, label: {
                 Image("delete")
             })

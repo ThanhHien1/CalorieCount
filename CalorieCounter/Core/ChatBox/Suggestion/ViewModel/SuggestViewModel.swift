@@ -7,6 +7,7 @@
 
 import Foundation
 import OpenAISwift
+import KRProgressHUD
 
 enum MessageType{
     case myMessage
@@ -19,14 +20,14 @@ struct Message: Identifiable {
     let id = UUID()
     var text: String
     let type: MessageType
-    var foods: [Food] = []
+    var foods: [Foods] = []
 
     init(text: String, type: MessageType) {
         self.text = text
         self.type = type
     }
     
-    init(text: String, type: MessageType, foods: [Food]) {
+    init(text: String, type: MessageType, foods: [Foods]) {
         self.text = text
         self.type = type
         self.foods = foods
@@ -40,9 +41,11 @@ struct Message: Identifiable {
 
 class SuggestViewModel : ObservableObject{
     @Published var messages: [Message] = []
+    @Published var addToPlanError: String? = nil
     let firebaseApi = FirebaseAPI.shared
     let openAI = OpenAISwift(authToken: "")
-    var foods: [Food] = []
+    var foods: [Foods] = []
+    var typePlanSuggest: MealType = .breakfast
     
     init(){
         firebaseApi.getAllFood(onCompleted: { foods, error in
@@ -86,8 +89,9 @@ class SuggestViewModel : ObservableObject{
         if foods.isEmpty {
             return
         }
-        let listNameFood = foods.map({$0.label ?? "*"}).filter {!notSame.contains($0)}
+        let listNameFood = foods.map({$0.name}).filter {!notSame.contains($0)}
         let messageText = "Hãy gợi ý cho tôi món ăn cho \(type), có trong danh sách \(listNameFood). Và trả chúng về dưới dạng danh sách theo format [a,b,c,d]"
+        print(messageText)
         openAI.sendChat(with: [ChatMessage(role: .user, content: messageText)], presencePenalty: nil) { [self] result in
             switch result {
             case .success(let success):
@@ -102,7 +106,7 @@ class SuggestViewModel : ObservableObject{
         }
     }
     
-    func decodeFoodFromChatGpt(text: String) -> [Food]{
+    func decodeFoodFromChatGpt(text: String) -> [Foods]{
         print(text)
         if text.isEmpty{
             return []
@@ -111,12 +115,22 @@ class SuggestViewModel : ObservableObject{
             do {
                 let array = try JSONDecoder().decode([String].self, from: jsonData).map({$0.lowercased()})
                 let random = Number.randomFiveElements(from: array, num: 5)
-                return foods.filter({ random.contains($0.label?.lowercased() ?? "*" )})
+                return foods.filter({ !$0.name.isEmpty && random.contains($0.name.lowercased() )})
             } catch {
                 return []
             }
         } else {
             return []
+        }
+    }
+    
+    func addFoodToPlan(_ foods: [Foods]){
+        KRProgressHUD.show()
+        firebaseApi.addFoodToPlan(typePlanSuggest, foods){ error in
+            self.addToPlanError = error?.localizedDescription
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                KRProgressHUD.dismiss()
+            })
         }
     }
 }

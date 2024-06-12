@@ -43,31 +43,31 @@ extension LoginView {
     }
     
     var TextFieldEmail: some View {
-        NormalTextField(title: "Enter your email", text: $viewModel.email, focusFieldType: .email)
+        NormalTextField(title: "Nhập email", text: $viewModel.email, isPasswword: false, focusFieldType: .email)
     }
     
     var TextFieldPassword: some View {
-        NormalTextField(title: "Enter your password", text: $viewModel.password, isPassword: true, focusFieldType: .password)
+        NormalTextField(title: "Nhập mật khẩu", text: $viewModel.password, isSecure: true, isPasswword: true, focusFieldType: .password)
     }
     
     var ButtonLogin: some View {
         NavigationLink(destination: GoalView(), isActive: $viewModel.loginSuccessful) {
             NormalButton(action: {
                 viewModel.loginAccount()
-            }, title: "Login" , tinColor: .white, color: Color.cl_F24F1D()
+            }, title: "Đăng nhập" , tinColor: .white, color: Color.cl_F24F1D()
             )
         }
     }
     
     var ClicktoRegister: some View {
         HStack {
-            Text("Don't have account?")
+            Text("Bạn chưa có tài khoản")
                 .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
                 .foregroundStyle(.gray)
             NavigationLink{
               RegisterView()
             } label: {
-                Text("Click here to sign up")
+                Text("Đăng kí")
                     .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
                     .foregroundStyle(Color.blue)
                     .underline()

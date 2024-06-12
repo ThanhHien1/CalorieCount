@@ -18,7 +18,8 @@ struct DashBoardView: View {
     @State var lunch: [FoodToday] = []
     @State var dinner: [FoodToday] = []
     @State var snack: [FoodToday] = []
-    var userGoals = UserGoals.instance
+    let userGoals = UserGoals.instance
+    let dailySummaryData = DailySummaryData.instance
     
     var body: some View {
         NavigationStack {
@@ -30,20 +31,22 @@ struct DashBoardView: View {
                         Nutritient_Card()
                         Spacer()
                         VStack(alignment: .leading, spacing: 0) {
-                            Text("Meals today")
+                            Text("Món ăn hôm nay")
                                 .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 25)
                                 .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 10)
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: Vconst.DESIGN_WIDTH_RATIO * 20) {
                                     ForEach(MealType.allCases, id: \.self) { mealType in
                                         carouselItem(mealType: mealType)
+                                            .padding(.bottom, Vconst.DESIGN_WIDTH_RATIO * 20)
                                     }
                                 }
                                 .background(NavigationLink("", destination: AddMealView(mealType: mealTypes), isActive: $isActive).hidden())
+                                
                                 .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
                             }
                         }
-                        Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
+                        Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 40)
                         VStack {
                             ItemFood
                         }
@@ -59,14 +62,16 @@ struct DashBoardView: View {
                 updateMealArrays()
                 print("userGoals.foodToday \(userGoals.foodToday.count)")
             }
+            .navigationBarHidden(true)
         }
     }
     
     private func updateMealArrays() {
-        breakFirst = userGoals.foodToday.filter { $0.type == "Breakfast" }
-        lunch = userGoals.foodToday.filter { $0.type == "Lunch" }
-        dinner = userGoals.foodToday.filter { $0.type == "Dinner" }
-        snack = userGoals.foodToday.filter { $0.type == "Snacks" }
+        breakFirst = userGoals.foodToday.filter { $0.type == "Bữa sáng" }
+        lunch = userGoals.foodToday.filter { $0.type == "Bữa trưa" }
+        dinner = userGoals.foodToday.filter { $0.type == "Bữa tối" }
+        snack = userGoals.foodToday.filter { $0.type == "Bữa phụ" }
+        self.dailySummaryData.updateRemainingCalories()
     }
     
     var Header: some View {
@@ -108,7 +113,11 @@ struct DashBoardView: View {
                 VStack {
                     Text("Breakfast")
                     ForEach(breakFirst, id: \.self) { foodToday in
-                        ItemRowFood(foods: foodToday.foods[0])
+                        ItemRowFood(foods: foodToday.foods[0]) {
+                            userGoals.deleteFood(foodToDelete: foodToday) {_ in 
+                                updateMealArrays()
+                            }
+                        }
                     }
                 }
             }
@@ -116,7 +125,11 @@ struct DashBoardView: View {
                 VStack {
                     Text("Lunch")
                     ForEach(lunch, id: \.self) { foodToday in
-                        ItemRowFood(foods: foodToday.foods[0])
+                        ItemRowFood(foods: foodToday.foods[0]) {
+                            userGoals.deleteFood(foodToDelete: foodToday) {_ in
+                                updateMealArrays()
+                            }
+                        }
                     }
                 }
             }
@@ -124,7 +137,11 @@ struct DashBoardView: View {
                 VStack {
                     Text("Dinner")
                     ForEach(dinner, id: \.self) { foodToday in
-                        ItemRowFood(foods: foodToday.foods[0])
+                        ItemRowFood(foods: foodToday.foods[0]) {
+                            userGoals.deleteFood(foodToDelete: foodToday) {_ in
+                                updateMealArrays()
+                            }
+                        }
                     }
                 }
             }
@@ -132,7 +149,11 @@ struct DashBoardView: View {
                 VStack {
                     Text("Snack")
                     ForEach(snack, id: \.self) { foodToday in
-                        ItemRowFood(foods: foodToday.foods[0])
+                        ItemRowFood(foods: foodToday.foods[0]) {
+                            userGoals.deleteFood(foodToDelete: foodToday) {_ in
+                                updateMealArrays()
+                            }
+                        }
                     }
                 }
             }

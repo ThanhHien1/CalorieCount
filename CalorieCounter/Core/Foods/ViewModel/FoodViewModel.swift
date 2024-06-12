@@ -42,7 +42,6 @@ class FoodViewModel: ObservableObject {
         }
     
     func getAllFood(mealType: Int, completion: @escaping () -> Void) {
-        if let currentUser = Auth.auth().currentUser?.email {
             let caloriesCollectionRef = db.collection("Calories")
             listener = caloriesCollectionRef.addSnapshotListener { querySnapshot, error in
                 if let error = error {
@@ -67,9 +66,10 @@ class FoodViewModel: ObservableObject {
                     let protein = data["protein"] as? Float ?? 0.0
                     return Foods(id: id, amount: amount, calorie: calorie, carbohydrate: carbohydrate, fat: fat, fiber: fiber, name: name, protein: protein)
                 }
+                
                 self.foods = calories
+                print("self.foods \(self.foods.count)")
                 completion()
-            }
         }
     }
     

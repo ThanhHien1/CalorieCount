@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalculatorResultView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = GoalViewModel.instance
 //    @ObservedObject var dailySummaryData = DailySummaryData.instance
     @ObservedObject var userGoals = UserGoals.instance
@@ -27,7 +28,7 @@ struct CalculatorResultView: View {
                 Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
                 CalorieView
                 HStack {
-                    Text("Statistics of indicators (BMI)")
+                    Text("Thống kê các chỉ số (BMI)")
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                         .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
                         .padding(.leading, Vconst.DESIGN_HEIGHT_RATIO * 25)
@@ -39,16 +40,25 @@ struct CalculatorResultView: View {
                 Spacer()
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
 extension CalculatorResultView {
     var HeaderView: some View {
         VStack {
-            Text("Statistics of indicators")
-                .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
-                .bold()
-                .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
+            HStack {
+                BackButton(color: .black) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                Spacer()
+                Text("Thống kê các chỉ số")
+                    .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
+                    .bold()
+                Spacer()
+            }
+            .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 30)
+            .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
         }
     }
     
@@ -72,7 +82,7 @@ extension CalculatorResultView {
                     .bold()
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                     .foregroundStyle(Color.blue)
-                Text("Calories needed")
+                Text("Calories cần nạp")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 8))
                 .foregroundStyle(.gray)            }
             .overlay(
@@ -109,7 +119,7 @@ extension CalculatorResultView {
                         .bold()
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                         .foregroundStyle(Color.gray)
-                    Text("Weight update date")
+                    Text("Ngày cập nhật cân nặng")
                         .bold()
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 12))
                         .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
@@ -124,7 +134,7 @@ extension CalculatorResultView {
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                         .foregroundStyle(Color.black)
                         .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
-                    Text("Height")
+                    Text("Chiều cao")
                         .bold()
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 12))
                         .foregroundStyle(Color.gray)
@@ -137,7 +147,7 @@ extension CalculatorResultView {
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
                         .foregroundStyle(Color.black)
                         .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
-                    Text("Weight")
+                    Text("Cân nâng")
                         .bold()
                         .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 12))
                         .foregroundStyle(Color.gray)

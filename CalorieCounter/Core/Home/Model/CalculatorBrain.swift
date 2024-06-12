@@ -32,7 +32,7 @@ class CalculatorBrain {
         print("## \(age)")
         print("## \(bmh)")
         print("## \(changeCalorieAmount)")
-        if sex == "Male" || sex == "male" {
+        if sex == "Nam" || sex == "nam" {
             let weightComponent = 13.7 * weight
             let heightComponent = 5 * height * 100
             let ageComponent = 6.8 * Float(age)

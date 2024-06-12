@@ -14,9 +14,9 @@ enum SettingEnum: CaseIterable {
     var title: String {
         switch self {
         case .update:
-            "BMR update "
+            "Cập nhật BMR "
         case .logout:
-            "Log out"
+            "Đăng xuất"
         }
     }
 }

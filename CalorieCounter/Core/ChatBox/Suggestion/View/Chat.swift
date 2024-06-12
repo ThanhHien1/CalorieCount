@@ -11,6 +11,7 @@ struct Chat: View {
     @StateObject var viewModel = SuggestViewModel()
     @State var messageInput: String = ""
     @Namespace var bottomID
+    @Binding var tabbarSelected: Int
     
     var body: some View {
         VStack {
@@ -23,14 +24,14 @@ struct Chat: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(viewModel.messages) { message in
-                                MessageRow(message: message, viewModel: viewModel)
+                                MessageRow(viewModel: viewModel, message: message)
                             }
                             Spacer().id(bottomID)
                         }
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
-                    .onChange(of: viewModel.messages.last?.text) { _ in
+                    .onChange(of: viewModel.messages.last?.id) { _ in
                         proxy.scrollTo(bottomID)
                     }
                 }
@@ -73,7 +74,11 @@ struct Chat: View {
             .onAppear {
                 
             }
-        }
+        }.onReceive(viewModel.$addToPlanError, perform: { error in
+            if error == nil {
+                tabbarSelected = 2
+            }
+        })
     }
 
     func scrollToBottom() {
@@ -98,6 +103,6 @@ struct Chat: View {
 
 struct Chat_Previews: PreviewProvider {
     static var previews: some View {
-        Chat()
+        Chat(tabbarSelected: .constant(1))
     }
 }

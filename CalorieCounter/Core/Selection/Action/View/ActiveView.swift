@@ -26,6 +26,7 @@ struct ActiveView: View {
             if !isHideButton {
                 ButtonContinue
             }
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
             Spacer()
         }
         .navigationBarBackButtonHidden()
@@ -39,19 +40,21 @@ extension ActiveView {
                 BackButton(color: .black) {
                     self.presentationMode.wrappedValue.dismiss()
                 }
-            Text("How active are you?")
+            Spacer()
+            Text("Bạn vận động như thế nào?")
                 .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 18))
                 .bold()
-                .padding(.leading, Vconst.DESIGN_HEIGHT_RATIO * 60)
                 Spacer()
             }
             .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 30)
             .padding(.leading, Vconst.DESIGN_WIDTH_RATIO * 30)
-            Text("Knowing your daily activity level helps us calculate your calorie needs more accurately.")
+            Text("Biết mức độ hoạt động hàng ngày của bạn giúp chúng tôi tính toán nhu cầu calo của bạn chính xác hơn.")
                 .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
+                .lineLimit(3)
                 .multilineTextAlignment(.center)
                 .padding(.top, 10)
                 .padding(.horizontal, Vconst.DESIGN_HEIGHT_RATIO * 20)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
     
@@ -75,8 +78,11 @@ extension ActiveView {
             VStack {
                 Text("\(activeItem.title)")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 15))
+//                    .padding(5)
                 Text("\(activeItem.subTitle)")
                     .font(.system(size: Vconst.DESIGN_HEIGHT_RATIO * 12))
+                    .fixedSize(horizontal: false, vertical: true)
+                
             }
             .foregroundStyle(.black)
             .multilineTextAlignment(.center)
@@ -93,7 +99,7 @@ extension ActiveView {
         NavigationLink(destination: CalculatorView(), isActive: $isActive) {
             NormalButton(action: {
                 isActive = true
-            }, title: "Continue" , tinColor: .white, color: Color.cl_F24F1D()
+            }, title: "Tiếp tục" , tinColor: .white, color: Color.cl_F24F1D()
             )
         }
     }
@@ -107,7 +113,7 @@ extension ActiveView {
         userGoal.user?.calorie = Int(calculatorBrain.calorie?.rounded() ?? 0)
         print(calculatorBrain.calorie ?? 0)
         dailySummaryData.updateRemainingCalories()
-        userGoal.user?.currentDay = "\(Date())"
+        userGoal.user?.date = "\(Date())"
         print("calorie: \(calculatorBrain.calorie ?? 0)")
         viewModel.updateUserData(user: userGoal.user!) {
             completed()

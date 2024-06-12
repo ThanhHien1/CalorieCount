@@ -14,15 +14,15 @@ struct CaloriesEatenAndBurnedView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Calorie Progress")
-                .font(.subheadline)
+//            Text("Calorie Progress")
+//                .font(.subheadline)
             HStack {
                 VStack {
                     
                     Text(viewModel.totalCalories.formatted())
                         .font(.system(size: 24))
                     HStack {
-                        Text("Eaten")
+                        Text("Đã nạp")
                             .font(.caption)
                         Image(systemName: "heart.fill")
                         
@@ -39,18 +39,18 @@ struct CaloriesEatenAndBurnedView: View {
                         Text(caloriesBurned.formatted())
                             .font(.system(size: 24))
                         HStack {
-                            Text("Burned")
+                            Text("    ")
                                 .font(.caption)
-                            Image(systemName: "flame")
+                            Image(systemName: "")
                         }
                         
                     } else {
-                        Text("0")
+                        Text("    ")
                             .font(.system(size: 24))
                         HStack {
-                            Text("Burned")
+                            Text("    ")
                                 .font(.caption)
-                            Image(systemName: "flame")
+                            Image(systemName: "")
                         }
                     }
                 }

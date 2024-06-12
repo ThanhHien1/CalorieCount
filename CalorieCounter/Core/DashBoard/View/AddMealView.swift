@@ -17,7 +17,6 @@ struct AddMealView: View {
     @State var searchText = ""
     var mealType: MealType
     var body: some View {
-        if #available(iOS 17.0, *) {
             VStack(spacing: 0) {
                 ScrollView {
                     LazyVStack {
@@ -27,15 +26,17 @@ struct AddMealView: View {
                     }
                     .padding(.top, 5)
                 }
-                .padding(.top, 10)
                 Spacer()
+            }
+            .onAppear {
+                print("%%%% \(foodViewModel.foods.count)")
+                viewModel.frequentFoods = foodViewModel.foods
             }
             .navigationBarBackButtonHidden()
             .searchable(text: $searchText) {}
-            .onChange(of: searchText) {
-                print("######")
+            .onChange(of: searchText, perform: { value in
                 performSearch()
-            }
+            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     BackButton(color: .black) {
@@ -48,12 +49,6 @@ struct AddMealView: View {
                         .foregroundColor(.black)
                 }
             }
-            .onAppear {
-                viewModel.frequentFoods = foodViewModel.foods
-            }
-        } else {
-            // Fallback on earlier versions
-        }
     }
 }
 
@@ -62,8 +57,6 @@ extension AddMealView {
     func performSearch() {
         let searchQuery  = searchText
         if !searchQuery.isEmpty {
-//            viewModel.frequentFoods =  foodViewModel.foods
-//        } else {
             foodViewModel.searchFood(searchQuery: searchQuery) { searchFood in
                 viewModel.foodSearchSuggestions =  searchFood
                 print("########## searchFood \(viewModel.foodSearchSuggestions)")
@@ -100,27 +93,25 @@ struct FoodItemRowView: View {
                 dailySummaryData.updateNutrition(food)
                 switch mealType {
                 case .breakfast:
-                    userGoals.totalBreakfastCal! -= Int(food.calorie ?? 0)
+                    userGoals.totalBreakfastCal -= Int(food.calorie)
                 case .lunch:
-                    userGoals.totalLunchCal! -= Int(food.calorie ?? 0)
+                    userGoals.totalLunchCal -= Int(food.calorie)
                 case .dinner:
-                    userGoals.totalDinnerCal! -= Int(food.calorie)
+                    userGoals.totalDinnerCal -= Int(food.calorie)
                 case .snacks:
-                    userGoals.totalSnacksCal! -= Int(food.calorie)
+                    userGoals.totalSnacksCal -= Int(food.calorie)
                 }
                 
                 userGoals.user?.caloriesConsumed += Int(food.calorie)
                 userGoals.user?.currentFat += Int(food.fat)
                 userGoals.user?.currentPro += Int(food.protein)
                 userGoals.user?.currentCarbs += Int(food.carbohydrate)
-                let FoodToday = FoodToday(foods: [food], type: mealType.title)
-                goalViewModel.saveFoodTodayArray(newFoodArray: [FoodToday]) {
-                    print("######")
+                let foodToday = FoodToday(id: UUID().uuidString, foods: [food], type: mealType.title)
+                goalViewModel.saveFoodToday(newFood: foodToday) {
                     userGoals.fetchFoodToday() { foodToday  in
                         goalViewModel.updateUserData(user: userGoals.user!) {
                             self.presentationMode.wrappedValue.dismiss()
                         }
-                            print("######count\(foodToday?.count)")
                     }
                 }
             }) {

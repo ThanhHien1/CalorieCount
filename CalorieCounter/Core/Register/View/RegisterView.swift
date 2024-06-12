@@ -14,15 +14,16 @@ struct RegisterView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 100)
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 60)
             Image("ic_logo")
                 .resizable()
                 .scaledToFit()
                 .frame(width:Vconst.DESIGN_WIDTH_RATIO * 80)
             ErrorText
-            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 30)
+            Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 20)
             TextFieldEmail
             TextFieldPassword
+            TextFieldConFirmPassword
             Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 50)
             ButtonRegister
             Spacer().frame(height: Vconst.DESIGN_HEIGHT_RATIO * 100)
@@ -41,34 +42,39 @@ extension RegisterView {
             .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 20)
             .foregroundColor(.red)
             .padding(.horizontal, Vconst.DESIGN_WIDTH_RATIO * 30)
+            .multilineTextAlignment(.center)
     }
     
     var TextFieldEmail: some View {
-        NormalTextField(title: "Enter your email", text: $viewModel.email, focusFieldType: .email)
+        NormalTextField(title: "Nhập email", text: $viewModel.email, isPasswword: false, focusFieldType: .email)
     }
     
     var TextFieldPassword: some View {
-        NormalTextField(title: "Enter your password", text: $viewModel.password, isPassword: true, focusFieldType: .password)
+        NormalTextField(title: "Nhập mật khẩu", text: $viewModel.password, isSecure: true, isPasswword: true, focusFieldType: .password)
+    }
+    
+    var TextFieldConFirmPassword: some View {
+        NormalTextField(title: "Xác nhận mật khẩu", text: $viewModel.confirmPassword, isSecure: true, isPasswword: true, focusFieldType: .password)
     }
     
     var ButtonRegister: some View {
         NavigationLink(destination: GoalView(), isActive: $viewModel.registrationSuccessful) {
             NormalButton(action: {
                 viewModel.registerAccount()
-            }, title: "Register" , tinColor: .white, color: Color.cl_F24F1D()
+            }, title: "Đăng kí" , tinColor: .white, color: Color.cl_F24F1D()
             )
         }
     }
     
     var ClicktoLogin: some View {
         HStack {
-            Text("Don't have account?")
+            Text("Bạn đã có tài khoản?")
                 .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
                 .foregroundStyle(.gray)
             NavigationLink{
                 LoginView()
             } label: {
-                Text("Click here to login")
+                Text("Đăng nhập")
                     .font(.system(size: Vconst.DESIGN_WIDTH_RATIO * 15))
                     .foregroundStyle(Color.blue)
                     .underline()

@@ -20,7 +20,6 @@ class DateManager {
         let currentDate = Date()
         UserDefaults.standard.set(currentDate, forKey: lastCheckedDateKey)
     }
-
     
     func getLastCheckedDate() -> Date? {
         return UserDefaults.standard.object(forKey: lastCheckedDateKey) as? Date

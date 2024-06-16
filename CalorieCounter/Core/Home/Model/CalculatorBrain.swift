@@ -26,12 +26,6 @@ class CalculatorBrain {
     
     func calculateCalorie(_ sex: String, _ weight: Float, _ height: Float, _ age: Int, _ bmh: Float, _ changeCalorieAmount: Int) {
         var bmr: Float = 0.0
-        print("## \(sex)")
-        print("## \(weight)")
-        print("## \(height)")
-        print("## \(age)")
-        print("## \(bmh)")
-        print("## \(changeCalorieAmount)")
         if sex == "Nam" || sex == "nam" {
             let weightComponent = 13.7 * weight
             let heightComponent = 5 * height * 100

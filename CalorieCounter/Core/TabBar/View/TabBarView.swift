@@ -20,14 +20,14 @@ struct TabBarView: View {
                 Chat(tabbarSelected: $selected)
                     .tabItem {
                         Image(systemName: "message.fill")
-                        Text("Chat box")
+                        Text("Chat bot")
                     }.tag(1)
                 PlanTabView()
                     .tabItem {
                         Image(systemName: "calendar")
                         Text("Kế hoạch")
                     }.tag(2)
-                LineChartDemoView()
+                HistoryChartView()
                     .tabItem {
                         Image(systemName: "chart.bar.xaxis.ascending")
                         Text("Lịch sử")

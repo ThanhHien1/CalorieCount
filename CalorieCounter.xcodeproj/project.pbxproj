@@ -13,6 +13,7 @@
 		240D6CB32C144CEC00F31A39 /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB22C144CEC00F31A39 /* PlanViewModel.swift */; };
 		240D6CB52C144DB100F31A39 /* PlanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */; };
 		240D6CB82C1453A300F31A39 /* EnumConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB72C1453A300F31A39 /* EnumConstant.swift */; };
+		24136ED32C1D5FF700703DE6 /* Animation - 1718429768630.json in Resources */ = {isa = PBXBuildFile; fileRef = 24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */; };
 		243800D62BDE784600223577 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D52BDE784600223577 /* Utilities.swift */; };
 		243800D92BDEB29500223577 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D82BDEB29500223577 /* UserData.swift */; };
 		243800DC2BDEB86800223577 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800DB2BDEB86800223577 /* DashBoardView.swift */; };
@@ -40,7 +41,7 @@
 		244E71E82C02241900381C6B /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71E72C02241900381C6B /* AboutMeView.swift */; };
 		244E71EA2C02392400381C6B /* FoodToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71E92C02392400381C6B /* FoodToday.swift */; };
 		244E71EC2C02567A00381C6B /* ItemRowFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71EB2C02567A00381C6B /* ItemRowFood.swift */; };
-		245DCC0C2C0AE5EA00541CA1 /* LineChartDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245DCC0B2C0AE5EA00541CA1 /* LineChartDemoView.swift */; };
+		245DCC0C2C0AE5EA00541CA1 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */; };
 		246DB2342BF8ECD400130592 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2332BF8ECD400130592 /* BackButton.swift */; };
 		246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2352BF9B11F00130592 /* ChangeHeightView.swift */; };
 		246DB2382BF9B7AC00130592 /* ChangeWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */; };
@@ -103,6 +104,7 @@
 		240D6CB22C144CEC00F31A39 /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanHistoryView.swift; sourceTree = "<group>"; };
 		240D6CB72C1453A300F31A39 /* EnumConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumConstant.swift; sourceTree = "<group>"; };
+		24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1718429768630.json"; path = "../../../Downloads/Animation - 1718429768630.json"; sourceTree = "<group>"; };
 		243800D52BDE784600223577 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		243800D82BDEB29500223577 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		243800DB2BDEB86800223577 /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 		244E71E72C02241900381C6B /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		244E71E92C02392400381C6B /* FoodToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodToday.swift; sourceTree = "<group>"; };
 		244E71EB2C02567A00381C6B /* ItemRowFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowFood.swift; sourceTree = "<group>"; };
-		245DCC0B2C0AE5EA00541CA1 /* LineChartDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartDemoView.swift; sourceTree = "<group>"; };
+		245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		246DB2332BF8ECD400130592 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		246DB2352BF9B11F00130592 /* ChangeHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeightView.swift; sourceTree = "<group>"; };
 		246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWeightView.swift; sourceTree = "<group>"; };
@@ -370,7 +372,6 @@
 		249FE0892BD3B7520061017E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				240D6CB62C14538900F31A39 /* Constant */,
 				249FE08A2BD3B7730061017E /* FormValidator.swift */,
 				249FE0902BD4050A0061017E /* AppConfiguration.swift */,
 				249FE0922BD406650061017E /* Constanst.swift */,
@@ -553,7 +554,7 @@
 		24C498882C088A6F00D7512F /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				245DCC0B2C0AE5EA00541CA1 /* LineChartDemoView.swift */,
+				245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */,
 				24C4988C2C088AD800D7512F /* HistoryView.swift */,
 			);
 			path = Chart;
@@ -581,6 +582,8 @@
 		24DF9D012BD3754700582458 /* CalorieCounter */ = {
 			isa = PBXGroup;
 			children = (
+				24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */,
+				240D6CB62C14538900F31A39 /* Constant */,
 				243800D72BDEB27A00223577 /* Model */,
 				249FE0892BD3B7520061017E /* Utilities */,
 				24DF9D232BD37D2F00582458 /* Extension */,
@@ -622,7 +625,6 @@
 				243800F02BDF4F6A00223577 /* HeathStore */,
 				24DF9D1A2BD378CA00582458 /* Profile */,
 				243800DA2BDEB84600223577 /* DashBoard */,
-				24DF9D192BD378B600582458 /* Recipes */,
 				24DF9D182BD3787E00582458 /* Foods */,
 				24DF9D172BD3786300582458 /* Selection */,
 				24DF9D152BD3766B00582458 /* Home */,
@@ -691,13 +693,6 @@
 				243800F32BE2353500223577 /* View */,
 			);
 			path = Foods;
-			sourceTree = "<group>";
-		};
-		24DF9D192BD378B600582458 /* Recipes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Recipes;
 			sourceTree = "<group>";
 		};
 		24DF9D1A2BD378CA00582458 /* Profile */ = {
@@ -885,6 +880,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DF9D0A2BD3754800582458 /* Preview Assets.xcassets in Resources */,
+				24136ED32C1D5FF700703DE6 /* Animation - 1718429768630.json in Resources */,
 				24DF9D072BD3754800582458 /* Assets.xcassets in Resources */,
 				249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */,
 			);
@@ -989,7 +985,7 @@
 				24DF9D052BD3754700582458 /* ContentView.swift in Sources */,
 				243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */,
 				249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */,
-				245DCC0C2C0AE5EA00541CA1 /* LineChartDemoView.swift in Sources */,
+				245DCC0C2C0AE5EA00541CA1 /* HistoryChartView.swift in Sources */,
 				249FE08F2BD3C33D0061017E /* ViewConst.swift in Sources */,
 				24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */,
 				240D6CB32C144CEC00F31A39 /* PlanViewModel.swift in Sources */,

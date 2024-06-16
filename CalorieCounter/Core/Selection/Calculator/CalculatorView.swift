@@ -133,7 +133,7 @@ extension CalculatorView {
     
     var ButtonContinue: some View {
 calculatorBrain.calculateBMI(viewModel.height,viewModel.weight)
-        calculatorBrain.calculateCalorie(viewModel.sex.rawValue, viewModel.weight, viewModel.height , Int(viewModel.age), viewModel.activeness.bmh, viewModel.goalType.changeCalorieAmount)
+        calculatorBrain.calculateCalorie(viewModel.sex.title , viewModel.weight, viewModel.height , Int(viewModel.age), viewModel.activeness.bmh, viewModel.goalType.changeCalorieAmount)
 //        return NavigationLink() {
         return NormalButton(action: {
                 isActive = true

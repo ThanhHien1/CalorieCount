@@ -15,7 +15,7 @@ struct Chat: View {
     
     var body: some View {
         VStack {
-            Text("Chat Box")
+            Text("Chat Bot")
                 .fontWeight(.medium)
                 .padding(.top, Vconst.DESIGN_HEIGHT_RATIO * 10)
                 .font(.title2)

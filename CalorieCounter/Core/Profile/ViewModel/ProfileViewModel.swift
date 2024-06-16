@@ -18,7 +18,7 @@ enum ProfileEnum: CaseIterable {
     var title: String {
         switch self {
         case .calories:
-            "KCal/day"
+            "KCal/Ngày"
         case .height:
             "Chiều cao"
         case .weight:

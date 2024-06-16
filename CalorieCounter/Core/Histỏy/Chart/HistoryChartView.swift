@@ -7,8 +7,10 @@
 
 import SwiftUI
 import SwiftUICharts
+//import Lottie
 
-struct LineChartDemoView: View {
+
+struct HistoryChartView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isActive: Bool = false
     @StateObject private var viewModel = HistoryModel()
@@ -21,11 +23,17 @@ struct LineChartDemoView: View {
             VStack {
                 Header
                     .frame(height: Vconst.DESIGN_HEIGHT_RATIO * 80)
-               
             if chartData.isEmpty {
+//                let animationView = AnimationView()
+//                animationView.animation = Animation.named("your-animation-file-name")
+//                animationView.loopMode = .loop
+//                animationView.contentMode = .scaleAspectFit
+//                animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//                view.addSubview(animationView)
+//                animationView.play()
                 Text("Lịch sử trống...")
             } else {
-                let data = LineChartDemoView.weekOfData(chartData: chartData)
+                let data = HistoryChartView.weekOfData(chartData: chartData)
                 LineChart(chartData: data)
                      .pointMarkers(chartData: data).foregroundColor(.blue)
                     .touchOverlay(chartData: data, specifier: "%.0f")
@@ -54,11 +62,7 @@ struct LineChartDemoView: View {
                     let dateStr = dateFormatter.string(from: history.date)
                     data.append((dateStr, history.totalCalorie))
                 }
-                
-                // Sắp xếp dữ liệu theo ngày
                 data.sort { $0.0 < $1.0 }
-                
-                // Cập nhật chartData trên luồng chính
                 DispatchQueue.main.async {
                     self.chartData = data
                 }
@@ -114,7 +118,7 @@ struct LineChartDemoView: View {
         }
     }
 
-extension LineChartDemoView {
+extension HistoryChartView {
     var Header: some View {
         ZStack {
             Color.cl_F24F1D()
@@ -148,5 +152,5 @@ extension LineChartDemoView {
 }
 
 #Preview {
-    LineChartDemoView()
+    HistoryChartView()
 }

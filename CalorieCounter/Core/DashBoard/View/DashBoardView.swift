@@ -111,7 +111,7 @@ struct DashBoardView: View {
         Group {
             if !breakFirst.isEmpty {
                 VStack {
-                    Text("Breakfast")
+                    Text("Buổi sáng")
                     ForEach(breakFirst, id: \.self) { foodToday in
                         ItemRowFood(foods: foodToday.foods[0]) {
                             userGoals.deleteFood(foodToDelete: foodToday) {_ in 
@@ -123,7 +123,7 @@ struct DashBoardView: View {
             }
             if !lunch.isEmpty {
                 VStack {
-                    Text("Lunch")
+                    Text("Buổi trưa")
                     ForEach(lunch, id: \.self) { foodToday in
                         ItemRowFood(foods: foodToday.foods[0]) {
                             userGoals.deleteFood(foodToDelete: foodToday) {_ in
@@ -135,7 +135,7 @@ struct DashBoardView: View {
             }
             if !dinner.isEmpty {
                 VStack {
-                    Text("Dinner")
+                    Text("Buổi tối")
                     ForEach(dinner, id: \.self) { foodToday in
                         ItemRowFood(foods: foodToday.foods[0]) {
                             userGoals.deleteFood(foodToDelete: foodToday) {_ in
@@ -147,7 +147,7 @@ struct DashBoardView: View {
             }
             if !snack.isEmpty {
                 VStack {
-                    Text("Snack")
+                    Text("Ăn vặt")
                     ForEach(snack, id: \.self) { foodToday in
                         ItemRowFood(foods: foodToday.foods[0]) {
                             userGoals.deleteFood(foodToDelete: foodToday) {_ in

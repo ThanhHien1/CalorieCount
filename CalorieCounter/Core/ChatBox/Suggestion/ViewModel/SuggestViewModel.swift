@@ -41,11 +41,12 @@ struct Message: Identifiable {
 
 class SuggestViewModel : ObservableObject{
     @Published var messages: [Message] = []
-    @Published var addToPlanError: String? = nil
+    @Published var addToPlanError: String? = ""
     let firebaseApi = FirebaseAPI.shared
     let openAI = OpenAISwift(authToken: "")
     var foods: [Foods] = []
     var typePlanSuggest: MealType = .breakfast
+    var user: UserGoals = UserGoals.instance
     
     init(){
         firebaseApi.getAllFood(onCompleted: { foods, error in

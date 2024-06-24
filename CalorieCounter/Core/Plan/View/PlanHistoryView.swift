@@ -19,8 +19,7 @@ struct PlanHistoryView: View {
                 LazyVStack(alignment: .leading) {
                     ForEach(viewmodel.allPlan, id: \.self){ plan in
                         Text(plan.date).font(.headline)
-                            .padding(.bottom, 8)
-                            .padding(.leading, 2)
+                            .padding(.leading, 15)
                         ItemFoodPlan(title: MealType.breakfast.title, foods: plan.breakfast)
                         
                         ItemFoodPlan(title: MealType.lunch.title, foods: plan.lunch)

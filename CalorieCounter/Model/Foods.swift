@@ -12,7 +12,7 @@ struct Foods: Hashable, Encodable, Decodable {
     var id: String
     var amount : String
     var calorie : Float
-    var carbohydrate : Float
+    var carbohydrate: Float
     var fat : Float
     var fiber : Float
     var name : String

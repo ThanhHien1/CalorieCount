@@ -14,6 +14,7 @@
 		240D6CB52C144DB100F31A39 /* PlanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */; };
 		240D6CB82C1453A300F31A39 /* EnumConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB72C1453A300F31A39 /* EnumConstant.swift */; };
 		24136ED32C1D5FF700703DE6 /* Animation - 1718429768630.json in Resources */ = {isa = PBXBuildFile; fileRef = 24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */; };
+		24136EE02C269F3700703DE6 /* DetailFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24136EDF2C269F3700703DE6 /* DetailFood.swift */; };
 		243800D62BDE784600223577 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D52BDE784600223577 /* Utilities.swift */; };
 		243800D92BDEB29500223577 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D82BDEB29500223577 /* UserData.swift */; };
 		243800DC2BDEB86800223577 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800DB2BDEB86800223577 /* DashBoardView.swift */; };
@@ -105,6 +106,7 @@
 		240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanHistoryView.swift; sourceTree = "<group>"; };
 		240D6CB72C1453A300F31A39 /* EnumConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumConstant.swift; sourceTree = "<group>"; };
 		24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1718429768630.json"; path = "../../../Downloads/Animation - 1718429768630.json"; sourceTree = "<group>"; };
+		24136EDF2C269F3700703DE6 /* DetailFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFood.swift; sourceTree = "<group>"; };
 		243800D52BDE784600223577 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		243800D82BDEB29500223577 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		243800DB2BDEB86800223577 /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				243800EC2BDEBC3300223577 /* MacroProgressCardView.swift */,
 				243800EE2BDEBC6800223577 /* StepsProgressView.swift */,
 				243801052BE2549700223577 /* FoodRow.swift */,
+				24136EDF2C269F3700703DE6 /* DetailFood.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 				249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */,
 				244E71EC2C02567A00381C6B /* ItemRowFood.swift in Sources */,
 				246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */,
+				24136EE02C269F3700703DE6 /* DetailFood.swift in Sources */,
 				249FE0AB2BD4DCAB0061017E /* RootViewModel.swift in Sources */,
 				24C1CC442BFE4227003C7885 /* SettingViewModel.swift in Sources */,
 				243800F52BE2355400223577 /* FoodView.swift in Sources */,

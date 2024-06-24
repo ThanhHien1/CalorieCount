@@ -53,7 +53,7 @@ struct Chat: View {
                 Spacer()
             }
             HStack {
-                TextField("Type a message...", text: $messageInput)
+                TextField("Nhập câu hỏi...", text: $messageInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal, 10)
                 Button(action: {

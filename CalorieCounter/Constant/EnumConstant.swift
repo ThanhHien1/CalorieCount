@@ -84,9 +84,9 @@ enum GoalEnum: CaseIterable {
         var title: String {
             switch self {
             case .sedentary:
-                return "🛋️ Rất ít"
+                return "🛋️ Không có hoặc ít"
             case .lightlyActive:
-                return "🧑‍💻 Ít"
+                return "🧑‍💻 Vận động nhẹ"
             case .moderatelyActive:
                 return "🧑‍🏫 Trung bình"
             case .veryActive:
@@ -101,13 +101,13 @@ enum GoalEnum: CaseIterable {
             case .sedentary:
                 return "Hoạt động chủ yếu trong văn phòng, ít vận động."
             case .lightlyActive:
-                return "Hoạt động nhẹ nhàng, đi bộ một ít."
+                return "Vận động từ 1-3 ngày / tuần"
             case .moderatelyActive:
-                return "Hoạt động đi bộ vừa phải."
+                return "Vận động từ 3-5 ngày / tuần."
             case .veryActive:
-                return "Hoạt động vận động cao, đòi hỏi sức khỏe và thể lực."
+                return "Vận động từ 6-7 ngày/tuần."
             case .extraActive:
-                return "Hoạt động cực kỳ cao, yêu cầu sức khỏe và thể lực tối đa."
+                return "Hoạt động nặng, thể dục 2 lần/ngày"
                 
             }
         }

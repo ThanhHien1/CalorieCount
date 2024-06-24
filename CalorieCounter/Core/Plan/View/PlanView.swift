@@ -64,6 +64,9 @@ struct PlanView: View {
         .onDisappear(perform: {
             viewmodel.clearSnapshotListener()
         })
+        .navigationDestination(isPresented: $isActive) {
+            TabBarView()
+        }
     }
 }
 

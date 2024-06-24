@@ -62,8 +62,8 @@ struct DashBoardView: View {
                 updateMealArrays()
                 print("userGoals.foodToday \(userGoals.foodToday.count)")
             }
-            .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
     }
     
     private func updateMealArrays() {
@@ -91,7 +91,6 @@ struct DashBoardView: View {
                 })
             })
         }
-        .padding(.top, Vconst.DESIGN_WIDTH_RATIO * 20)
     }
     
     private func carouselItem(mealType: MealType) -> some View {

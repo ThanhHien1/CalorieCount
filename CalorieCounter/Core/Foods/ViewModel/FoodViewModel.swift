@@ -58,17 +58,17 @@ class FoodViewModel: ObservableObject {
                     let data = document.data()
                     let id = document.documentID
                     let amount = data["amount"] as? String ?? ""
-                    let calorie = data["calorie"] as? Float ?? 0.0
-                    let carbohydrate = data["carbohydrate"] as? Float ?? 0.0
-                    let fat = data["fat"] as? Float ?? 0.0
-                    let fiber = data["fiber"] as? Float ?? 0.0
+                    let calorie = (data["calorie"] as? NSNumber)?.floatValue ?? 0.0
+                    let carbohydrate = (data["carbohydrate"] as? NSNumber)?.floatValue ?? 0.0
+                    let fat = (data["fat"] as? NSNumber)?.floatValue ?? 0.0
+                    let fiber = (data["fiber"] as? NSNumber)?.floatValue ?? 0.0
                     let name = data["name"] as? String ?? ""
-                    let protein = data["protein"] as? Float ?? 0.0
+                    let protein = (data["protein"] as? NSNumber)?.floatValue ?? 0.0
                     return Foods(id: id, amount: amount, calorie: calorie, carbohydrate: carbohydrate, fat: fat, fiber: fiber, name: name, protein: protein)
                 }
                 
                 self.foods = calories
-                print("self.foods \(self.foods.count)")
+                print("self.foods \(self.foods)")
                 completion()
         }
     }

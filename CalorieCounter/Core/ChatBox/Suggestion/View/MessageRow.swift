@@ -139,6 +139,30 @@ struct AddToPlanItem: View {
     }
 }
 
+
+struct OtherPlan: View {
+    @Binding var enable: Bool
+    var onAddToPan: (() -> Void)? = nil
+    
+    var body: some View {
+        Button(action: {
+            onAddToPan?()
+        }, label: {
+            HStack{
+                Text("Lựa chọn khác")
+                Spacer()
+                Image(systemName: "chevron.right")
+            }.padding()
+                .frame(height: 40)
+                .foregroundColor(.white)
+                .background(Color(enable ? .systemBlue : .gray))
+                .cornerRadius(10)
+                .opacity(0.9)
+            
+        }).disabled(!enable)
+    }
+}
+
 struct MessageRow_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

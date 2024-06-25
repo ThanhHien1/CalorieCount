@@ -84,93 +84,133 @@ class UserGoals: ObservableObject  {
         }
     }
     
-    func fetchFoodToday(completion: @escaping ([FoodToday]?) -> Void) {
+    func fetchFoodToday(completion: @escaping ([FoodToday]) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
-            completion(nil)
+            completion([])
             return
         }
         
-        let documentRef = Firestore.firestore().collection("foodToday").document(currentUserEmail)
-        
-        documentRef.getDocument { (document, error) in
-            if let error = error {
-                print("Error fetching document: \(error)")
-                completion(nil)
-                return
-            }
-            
-            guard let document = document, document.exists else {
-                print("Document does not exist")
-                completion(nil)
-                return
-            }
-            
-            guard let data = document.data(), let foodDataArray = data["foods"] as? [Any] else {
-                print("No food data found in document")
-                completion(nil)
-                return
-            }
-            
-            var foodArray: [FoodToday] = []
-            
-            for foodData in foodDataArray {
-                if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
-                   let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
-                    foodArray.append(food)
-                } else {
-                    print("Error serializing or decoding food data: \(foodData)")
+        Firestore.firestore().collection("foodToday").document(currentUserEmail).collection("data").getDocuments { snap, error in
+            var allFoodToday: [FoodToday] = []
+            snap?.documents.forEach({ querySnap in
+                do {
+                    let foodToday = try querySnap.data(as: FoodToday.self)
+                    allFoodToday.append(foodToday)
+                }catch {
+                    
                 }
-            }
-            self.foodToday = foodArray
-            completion(foodArray)
+            })
+            self.foodToday = allFoodToday
+            completion(allFoodToday)
+            HistoryModel().saveFood(foodToday: allFoodToday)
         }
+        
+        
+        
+//        documentRef.getDocument { (document, error) in
+//            if let error = error {
+//                print("Error fetching document: \(error)")
+//                completion(nil)
+//                return
+//            }
+//            
+//            guard let document = document, document.exists else {
+//                print("Document does not exist")
+//                completion(nil)
+//                return
+//            }
+//            
+//            guard let data = document.data(), let foodDataArray = data["foods"] as? [Any] else {
+//                print("No food data found in document")
+//                completion(nil)
+//                return
+//            }
+//            
+//            var foodArray: [FoodToday] = []
+//            
+//            for foodData in foodDataArray {
+//                if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
+//                   let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
+//                    foodArray.append(food)
+//                } else {
+//                    print("Error serializing or decoding food data: \(foodData)")
+//                }
+//            }
+//            
+//            self.foodToday = foodArray
+//            completion(foodArray)
+//        }
     }
     
     func deleteFood(foodToDelete: FoodToday, completion: @escaping (Bool) -> Void) {
-           guard let currentUserEmail = Auth.auth().currentUser?.email else {
-               print("No current user logged in")
-               completion(false)
-               return
-           }
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            print("No current user logged in")
+            completion(false)
+            return
+        }
+        
+        FirebaseAPI.shared.db.collection("foodToday").document(currentUserEmail).collection("data")
+            .whereField("id", isEqualTo: foodToDelete.id)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                    }
+                }
+                print("Document successfully updated!")
+                if !foodToDelete.foods.isEmpty {
+                    self.foodToday.removeAll { $0.id == foodToDelete.id }
+                    self.user?.caloriesConsumed -= Int(foodToDelete.foods[0].calorie)
+                    self.user?.currentFat -= Int(foodToDelete.foods[0].fat)
+                    self.user?.currentPro -= Int(foodToDelete.foods[0].protein)
+                    self.user?.currentCarbs -= Int(foodToDelete.foods[0].carbohydrate)
+                }
+                if let user = self.user {
+                    self.goalViewModel.updateUserData(user: user, completion: {
+                        completion(true)
+                    })
+                }
+                completion(true)
+            }
            
-           let documentRef = Firestore.firestore().collection("foodToday").document(currentUserEmail)
-           
-           documentRef.getDocument { (document, error) in
-               if let document = document, document.exists {
-                   if var currentData = document.data(), var existingFoods = currentData["foods"] as? [[String: Any]] {
-                       if let index = existingFoods.firstIndex(where: { $0["id"] as? String == foodToDelete.id })  {
-                           existingFoods.remove(at: index)
-                           documentRef.setData(["foods": existingFoods]) { err in
-                               if let err = err {
-                                   print("Error updating document: \(err)")
-                                   completion(false)
-                               } else {
-                                   print("Document successfully updated!")
-                                   self.foodToday.removeAll { $0.id == foodToDelete.id }
-                                   self.user?.caloriesConsumed -= Int(foodToDelete.foods[0].calorie)
-                                   self.user?.currentFat -= Int(foodToDelete.foods[0].fat)
-                                   self.user?.currentPro -= Int(foodToDelete.foods[0].protein)
-                                   self.user?.currentCarbs -= Int(foodToDelete.foods[0].carbohydrate)
-                                   if let user = self.user {
-                                       self.goalViewModel.updateUserData(user: user, completion: {
-                                           completion(true)
-                                       })
-                                   }
-                               }
-                           }
-                       } else {
-                           print("Food item not found")
-                           completion(false)
-                       }
-                   } else {
-                       print("Document data was empty or format was unexpected")
-                       completion(false)
-                   }
-               } else {
-                   print("Document does not exist")
-                   completion(false)
-               }
-           }
+//           documentRef.getDocument { (document, error) in
+//               if let document = document, document.exists {
+//                   if var currentData = document.data(), var existingFoods = currentData["foods"] as? [[String: Any]] {
+//                       if let index = existingFoods.firstIndex(where: { $0["id"] as? String == foodToDelete.id })  {
+//                           existingFoods.remove(at: index)
+//                           documentRef.setData(["foods": existingFoods]) { err in
+//                               if let err = err {
+//                                   print("Error updating document: \(err)")
+//                                   completion(false)
+//                               } else {
+//                                   print("Document successfully updated!")
+//                                   self.foodToday.removeAll { $0.id == foodToDelete.id }
+//                                   self.user?.caloriesConsumed -= Int(foodToDelete.foods[0].calorie)
+//                                   self.user?.currentFat -= Int(foodToDelete.foods[0].fat)
+//                                   self.user?.currentPro -= Int(foodToDelete.foods[0].protein)
+//                                   self.user?.currentCarbs -= Int(foodToDelete.foods[0].carbohydrate)
+//                                   if let user = self.user {
+//                                       self.goalViewModel.updateUserData(user: user, completion: {
+//                                           completion(true)
+//                                       })
+//                                   }
+//                               }
+//                           }
+//                       } else {
+//                           print("Food item not found")
+//                           completion(false)
+//                       }
+//                   } else {
+//                       print("Document data was empty or format was unexpected")
+//                       completion(false)
+//                   }
+//               } else {
+//                   print("Document does not exist")
+//                   completion(false)
+//               }
+//           }
        }
 
     

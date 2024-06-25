@@ -11,23 +11,14 @@ import FirebaseAuth
 
 class HistoryModel: ObservableObject {
     
-    func saveFood() {
-        //        if DateManager.shared.isNewDay()  {
+    func saveFood(foodToday: [FoodToday]) {
         fetchCaloriesConsumed(completion: { caloriesConsumed in
-            print("$$$$$$$$$")
-            self.fetchFoodToday(completion: { foods in
-                guard let foods = foods else { return }
-                let history = History(listFood: foods, date: DateManager.shared.getLastCheckedDate() ?? .now, totalCalorie: caloriesConsumed)
-                self.saveOrUpdateHistory(history: history)
-                self.updateCaloriesUserData()
-                self.deleteAllFoodToday()
-            })
-            
+            let history = History(listFood: foodToday, date: DateManager.shared.getCurrentDayDDMMYYYY(), totalCalorie: caloriesConsumed)
+            self.saveOrUpdateHistory(history: history)
+            self.updateCaloriesUserData()
+            self.deleteAllFoodToday()
         })
-        
         DateManager.shared.saveCurrentDate()
-        //        }
-        //        }
     }
     
     func saveOrUpdateHistory(history: History) {
@@ -46,78 +37,90 @@ class HistoryModel: ObservableObject {
             }
             
             let documentRef = db.collection("History").document(currentUserEmail)
+                .collection("data").document(DateManager.shared.getCurrentDayDDMMYYYY())
+            try documentRef.setData(from: history, merge: true)
             
-            documentRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    if let currentData = document.data(), var existingHistory = currentData["history"] as? [[String: Any]] {
-                        existingHistory.append(jsonObject)
-                        documentRef.updateData(["history": existingHistory]) { error in
-                            if let error = error {
-                                print("Error updating document: \(error)")
-                            } else {
-                                print("Document successfully updated!")
-                            }
-                        }
-                    } else {
-                        print("Document data was empty or format was unexpected")
-                        documentRef.setData(["history": [jsonObject]]) { error in
-                            if let error = error {
-                                print("Error writing document: \(error)")
-                            } else {
-                                print("Document successfully written!")
-                            }
-                        }
-                    }
-                } else {
-                    print("Document does not exist. Creating a new document.")
-                    documentRef.setData(["history": [jsonObject]]) { error in
-                        if let error = error {
-                            print("Error writing document: \(error)")
-                        } else {
-                            print("Document successfully written!")
-                        }
-                    }
-                }
-            }
+//            documentRef.getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    if let currentData = document.data(), var existingHistory = currentData["history"] as? [[String: Any]] {
+//                        existingHistory.append(jsonObject)
+//                        documentRef.updateData(["history": existingHistory]) { error in
+//                            if let error = error {
+//                                print("Error updating document: \(error)")
+//                            } else {
+//                                print("Document successfully updated!")
+//                            }
+//                        }
+//                    } else {
+//                        print("Document data was empty or format was unexpected")
+//                        documentRef.setData(["history": [jsonObject]]) { error in
+//                            if let error = error {
+//                                print("Error writing document: \(error)")
+//                            } else {
+//                                print("Document successfully written!")
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    print("Document does not exist. Creating a new document.")
+//                    documentRef.setData(["history": [jsonObject]]) { error in
+//                        if let error = error {
+//                            print("Error writing document: \(error)")
+//                        } else {
+//                            print("Document successfully written!")
+//                        }
+//                    }
+//                }
+//            }
         } catch {
             print("Error encoding history: \(error)")
         }
     }
     
-    func fetchHistory(completion: @escaping ([History]?) -> Void) {
+    func fetchHistory(completion: @escaping ([History]) -> Void) {
         guard let email = Auth.auth().currentUser?.email else { return }
         let db = Firestore.firestore()
-        let documentRef = db.collection("History").document(email)
-        
-        documentRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                guard let data = document.data(),
-                      let historyDataArray = data["history"] as? [[String: Any]] else {
-                    completion(nil)
-                    return
+        db.collection("History").document(email).collection("data").getDocuments { snap, error in
+            var allHistory: [History] = []
+            snap?.documents.forEach({ querySnap in
+                do {
+                    let history = try querySnap.data(as: History.self)
+                    allHistory.append(history)
+                }catch {
+                    
                 }
-                
-                let historyArray: [History] = historyDataArray.compactMap {
-                    guard let jsonData = try? JSONSerialization.data(withJSONObject: $0) else { return nil }
-                    return try? JSONDecoder().decode(History.self, from: jsonData)
-                }
-                let calendar = Calendar.current
-//                let today = calendar.startOfDay(for: Date())
-//                let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today)!
-                
-                let filteredHistoryArray = historyArray.filter { history in
-                    let historyDate = history.date
-//                    >= sevenDaysAgo && historyDate < today
-//                    return historyDate
-                    return true
-                }
-                print("############ \(filteredHistoryArray)")
-                completion(filteredHistoryArray)
-            } else {
-                print("Error fetching updated history: \(error?.localizedDescription ?? "Unknown error")")
-                completion(nil)
-            }
+                completion(allHistory.sorted(by: {$0.date > $1.date}))
+            })
         }
+//        documentRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                guard let data = document.data(),
+//                      let historyDataArray = data["history"] as? [[String: Any]] else {
+//                    completion(nil)
+//                    return
+//                }
+//                
+//                let historyArray: [History] = historyDataArray.compactMap {
+//                    guard let jsonData = try? JSONSerialization.data(withJSONObject: $0) else { return nil }
+//                    return try? JSONDecoder().decode(History.self, from: jsonData)
+//                }
+//                let calendar = Calendar.current
+//                //                let today = calendar.startOfDay(for: Date())
+//                //                let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today)!
+//                
+//                let filteredHistoryArray = historyArray.filter { history in
+//                    let historyDate = history.date
+//                    //                    >= sevenDaysAgo && historyDate < today
+//                    //                    return historyDate
+//                    return true
+//                }
+//                print("############ \(filteredHistoryArray)")
+//                completion(filteredHistoryArray)
+//            } else {
+//                print("Error fetching updated history: \(error?.localizedDescription ?? "Unknown error")")
+//                completion(nil)
+//            }
+//        }
     }
 
     

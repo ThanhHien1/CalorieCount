@@ -22,6 +22,6 @@ struct FoodToday: Hashable, Encodable, Decodable  {
 
 struct History: Hashable, Encodable, Decodable  {
     var listFood: [FoodToday]
-    var date: Date
+    var date: String
     var totalCalorie: Int
 }

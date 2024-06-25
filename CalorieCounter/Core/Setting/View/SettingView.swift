@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SettingView: View {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = GoalViewModel.instance
     @ObservedObject var userGoal = UserGoals.instance
     @State var showProfileView: Bool = false
     @State var isActive: Bool = false
+    @State var logoutSuccessful = false
+    
     var body: some View {
         ZStack {
             Color.cl_FAFAFA()
@@ -62,9 +63,12 @@ extension SettingView {
                         showProfileView = true
                     }
                 case .logout:
-                    ItemRowSetting(title: item.title, setting: item, image : "logout") {
-//                        viewModel.logout()
-                        
+                    NavigationLink(destination: LoginView(), isActive: $logoutSuccessful) {
+                        ItemRowSetting(title: item.title, setting: item, image : "logout"){
+                            viewModel.logout()
+                            UserDefaults.deleteEmailPassword()
+                            logoutSuccessful = true
+                        }
                     }
                 }
 

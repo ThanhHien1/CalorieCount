@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
+import FirebaseAuth
 
 class RootViewModel: ObservableObject {
     
     func isLogin() -> Bool {
         guard let email = UserDefaults.getEmailAndPassword()?.email else { return false }
-        if !email.isEmpty {
+        if !email.isEmpty && Auth.auth().currentUser != nil {
             return true
         }
         return false

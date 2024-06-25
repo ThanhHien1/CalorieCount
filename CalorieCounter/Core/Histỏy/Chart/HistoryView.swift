@@ -28,14 +28,12 @@ struct HistoryView: View {
             }
             .onAppear {
                 viewModel.fetchHistory{ historyArray in
-                    guard let historyArray = historyArray else { return }
                     var data: [(String, Int)] = []
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "MM/dd"
                     
                     for history in historyArray {
-                        let dateStr = dateFormatter.string(from: history.date)
-                        data.append((dateStr, history.totalCalorie))
+                        data.append((history.date, history.totalCalorie))
                     }
                     
                     // Sắp xếp dữ liệu theo ngày

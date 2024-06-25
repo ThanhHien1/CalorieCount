@@ -14,6 +14,10 @@ extension UserDefaults {
         UserDefaults.standard.set(combinedString, forKey: Constanst.registeredUserKey)
     }
     
+    static func deleteEmailPassword() {
+        UserDefaults.standard.removeObject(forKey: Constanst.registeredUserKey)
+    }
+    
     static func getEmailAndPassword() -> (email: String, password: String)? {
         if let combinedString = UserDefaults.standard.string(forKey: Constanst.registeredUserKey) {
             let components = combinedString.components(separatedBy: "|")

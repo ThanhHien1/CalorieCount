@@ -9,17 +9,17 @@ import Foundation
 import OpenAISwift
 import KRProgressHUD
 
-enum MessageType{
+enum MessageType: Encodable, Decodable {
     case myMessage
     case reply
     case mealType
     case suggest
 }
 
-struct Message: Identifiable {
-    let id = UUID()
+struct Message: Identifiable, Encodable, Decodable {
+    var id = UUID()
     var text: String
-    let type: MessageType
+    var type: MessageType
     var foods: [Foods] = []
 
     init(text: String, type: MessageType) {
@@ -34,9 +34,10 @@ struct Message: Identifiable {
     }
 
     init() {
-        self.text = "thinking..."
+        self.text = Message.THINKING
         self.type = .reply
     }
+    static let THINKING = "Đang xử lý dữ liệu..."
 }
 
 class SuggestViewModel : ObservableObject{
@@ -45,30 +46,44 @@ class SuggestViewModel : ObservableObject{
     let firebaseApi = FirebaseAPI.shared
     let openAI = OpenAISwift(authToken: "")
     var foods: [Foods] = []
-    var typePlanSuggest: MealType = .breakfast
+    var typePlanSuggest: MealType?
     var user: UserGoals = UserGoals.instance
+    var timer: Timer?
+    
     
     init(){
         firebaseApi.getAllFood(onCompleted: { foods, error in
             self.foods = foods
         })
+        firebaseApi.getAllMessages(onCompleted: { messages, error in
+            self.messages = messages
+        })
     }
     
     func sendMessage(text: String, type: MessageType){
-        messages.append(Message(text: text, type: .myMessage))
+        appendMessage(Message(text: text, type: .myMessage))
         switch(type){
         case .myMessage:
             if text.lowercased().contains("gợi ý thực đơn"){
-                messages.append(Message(text: "", type: .mealType))
+                appendMessage(Message(text: "", type: .mealType))
             }else {
-                messages.append(Message())
+                appendMessage(Message())
                 questiontoChatGpt(text: text)
             }
         case .mealType:
-            messages.append(Message())
+            appendMessage(Message())
             getListFoodSuggest(type: text, notSame: [])
         default:
             print("sendMessage")
+        }
+    }
+    
+    func appendMessage(_ message: Message){
+        messages.append(message)
+        if message.text != Message.THINKING {
+            firebaseApi.saveMessage(message: message, onCompleted: { result, error in
+                print("save message: \(result)")
+            })
         }
     }
     
@@ -78,7 +93,7 @@ class SuggestViewModel : ObservableObject{
             case .success(let success):
                 DispatchQueue.main.sync {
                     messages.removeLast()
-                    messages.append(Message(text: success.choices?.first?.message.content ?? "", type: .reply))
+                    appendMessage(Message(text: success.choices?.first?.message.content ?? "", type: .reply))
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -99,10 +114,20 @@ class SuggestViewModel : ObservableObject{
                 let arrayFood = decodeFoodFromChatGpt(text: success.choices?.first?.message.content ?? "")
                 DispatchQueue.main.sync {
                     messages.removeLast()
-                    messages.append(Message(text: "", type: .suggest, foods: arrayFood))
+                    appendMessage(Message(text: "", type: .suggest, foods: arrayFood))
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
+            }
+        }
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(suggestTimeout), userInfo: nil, repeats: false)
+    }
+    
+    @objc func suggestTimeout(){
+        for i in messages.indices {
+            if messages[i].text == Message.THINKING {
+                messages[i] = Message(text: "Hãy thử lại sau ít phút", type: .reply)
             }
         }
     }
@@ -126,8 +151,9 @@ class SuggestViewModel : ObservableObject{
     }
     
     func addFoodToPlan(_ foods: [Foods]){
+        guard let type = typePlanSuggest else {return}
         KRProgressHUD.show()
-        firebaseApi.addFoodToPlan(typePlanSuggest, foods){ error in
+        firebaseApi.addFoodToPlan(type, foods){ error in
             self.addToPlanError = error?.localizedDescription
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 KRProgressHUD.dismiss()

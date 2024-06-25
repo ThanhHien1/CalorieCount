@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KRProgressHUD
 
 struct AddMealView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -94,6 +95,7 @@ struct FoodItemRowView: View {
                 
                 Spacer()
                 Button(action: {
+                    KRProgressHUD.show()
                     dailySummaryData.updateNutrition(food)
                     switch mealType {
                     case .breakfast:
@@ -114,6 +116,7 @@ struct FoodItemRowView: View {
                     goalViewModel.saveFoodToday(newFood: foodToday) {
                         userGoals.fetchFoodToday() { foodToday  in
                             goalViewModel.updateUserData(user: userGoals.user!) {
+                                KRProgressHUD.dismiss()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
                         }

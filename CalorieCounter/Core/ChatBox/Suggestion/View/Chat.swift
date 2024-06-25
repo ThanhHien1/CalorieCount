@@ -33,6 +33,8 @@ struct Chat: View {
                     .padding(.bottom, 10)
                     .onChange(of: viewModel.messages.last?.id) { _ in
                         proxy.scrollTo(bottomID)
+                    }.onAppear{
+                        proxy.scrollTo(bottomID)
                     }
                 }
             }

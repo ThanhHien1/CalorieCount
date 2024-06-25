@@ -10,7 +10,7 @@ import SwiftUI
 import KRProgressHUD
 
 struct PlanTabView: View {
-    @State private var selectedTab: Tab = .history
+    @State private var selectedTab: Tab = .plan
     @StateObject var viewModel = PlanViewModel()
     
     enum Tab {
@@ -28,6 +28,7 @@ struct PlanTabView: View {
             }
             Spacer()
         }.onAppear(perform: {
+            selectedTab = .plan
             viewModel.getAllPlan()
         })
     }

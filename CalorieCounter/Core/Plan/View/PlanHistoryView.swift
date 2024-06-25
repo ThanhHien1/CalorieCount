@@ -47,10 +47,12 @@ struct ItemFoodPlan: View {
         if foods.isEmpty {
             Spacer().frame(height: 2)
         } else {
-            Text(title).font(.headline).padding()
-            ForEach(foods, id: \.self) { food in
-                PlanFoodItemRow(food: food, mealType: .breakfast, eatAction: eatAction)
-                    .padding(.horizontal, 8)
+            VStack(alignment: .leading){
+                Text(title).font(.headline).padding()
+                ForEach(foods, id: \.self) { food in
+                    PlanFoodItemRow(food: food, mealType: .breakfast, eatAction: eatAction)
+                        .padding(.horizontal, 8)
+                }
             }
         }
     }

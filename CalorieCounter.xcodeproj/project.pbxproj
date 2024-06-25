@@ -13,7 +13,6 @@
 		240D6CB32C144CEC00F31A39 /* PlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB22C144CEC00F31A39 /* PlanViewModel.swift */; };
 		240D6CB52C144DB100F31A39 /* PlanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */; };
 		240D6CB82C1453A300F31A39 /* EnumConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D6CB72C1453A300F31A39 /* EnumConstant.swift */; };
-		24136ED32C1D5FF700703DE6 /* Animation - 1718429768630.json in Resources */ = {isa = PBXBuildFile; fileRef = 24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */; };
 		24136EE02C269F3700703DE6 /* DetailFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24136EDF2C269F3700703DE6 /* DetailFood.swift */; };
 		243800D62BDE784600223577 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D52BDE784600223577 /* Utilities.swift */; };
 		243800D92BDEB29500223577 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243800D82BDEB29500223577 /* UserData.swift */; };
@@ -105,7 +104,6 @@
 		240D6CB22C144CEC00F31A39 /* PlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewModel.swift; sourceTree = "<group>"; };
 		240D6CB42C144DB100F31A39 /* PlanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanHistoryView.swift; sourceTree = "<group>"; };
 		240D6CB72C1453A300F31A39 /* EnumConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumConstant.swift; sourceTree = "<group>"; };
-		24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1718429768630.json"; path = "../../../Downloads/Animation - 1718429768630.json"; sourceTree = "<group>"; };
 		24136EDF2C269F3700703DE6 /* DetailFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFood.swift; sourceTree = "<group>"; };
 		243800D52BDE784600223577 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		243800D82BDEB29500223577 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -395,20 +393,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		249FE0AE2BD4DFBA0061017E /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		249FE0B12BD4DFD80061017E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		249FE0B22BD4E2EC0061017E /* Goal */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,7 +569,6 @@
 		24DF9D012BD3754700582458 /* CalorieCounter */ = {
 			isa = PBXGroup;
 			children = (
-				24136ED22C1D5FF700703DE6 /* Animation - 1718429768630.json */,
 				240D6CB62C14538900F31A39 /* Constant */,
 				243800D72BDEB27A00223577 /* Model */,
 				249FE0892BD3B7520061017E /* Utilities */,
@@ -660,8 +643,6 @@
 			isa = PBXGroup;
 			children = (
 				249FE0C32BD508C50061017E /* Model */,
-				249FE0B12BD4DFD80061017E /* ViewModel */,
-				249FE0AE2BD4DFBA0061017E /* View */,
 				249FE0AF2BD4DFD30061017E /* HomeView.swift */,
 			);
 			path = Home;
@@ -883,7 +864,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DF9D0A2BD3754800582458 /* Preview Assets.xcassets in Resources */,
-				24136ED32C1D5FF700703DE6 /* Animation - 1718429768630.json in Resources */,
 				24DF9D072BD3754800582458 /* Assets.xcassets in Resources */,
 				249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */,
 			);
@@ -1154,7 +1134,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
-				DEVELOPMENT_TEAM = ZF3NGCURC2;
+				DEVELOPMENT_TEAM = 4U774B46Y2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1169,7 +1149,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hien.Caloriee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hien.Calorieee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1186,7 +1166,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CalorieCounter/Preview Content\"";
-				DEVELOPMENT_TEAM = ZF3NGCURC2;
+				DEVELOPMENT_TEAM = 4U774B46Y2;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1201,7 +1181,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hien.Caloriee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hien.Calorieee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

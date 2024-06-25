@@ -81,4 +81,36 @@ class FirebaseAPI{
         guard let currentUserID = Auth.auth().currentUser?.uid else {return nil}
         return db.collection("Plans").document(currentUserID)
     }
+    
+    func saveMessage(message: Message, onCompleted: @escaping (Bool, Error?) -> Void){
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+        do{
+            try db.collection("Messages").document(currentUserID)
+                .collection("data")
+                .document("\(Date().timeIntervalSince1970)")
+                .setData(from: message) { error in
+                    onCompleted(error == nil, error)
+                }
+        }catch let error {
+            onCompleted(false, error)
+        }
+    }
+    
+    func getAllMessages(onCompleted: @escaping ([Message], Error?) -> Void){
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+        db.collection("Messages").document(currentUserID)
+            .collection("data")
+            .getDocuments { snap, error in
+                var allMessage: [Message] = []
+                snap?.documents.sorted(by: {$0.documentID < $1.documentID}).forEach({ querySnap in
+                    do {
+                        let plan = try querySnap.data(as: Message.self)
+                        allMessage.append(plan)
+                    }catch {
+                        
+                    }
+                })
+                onCompleted(allMessage, error)
+            }
+    }
 }

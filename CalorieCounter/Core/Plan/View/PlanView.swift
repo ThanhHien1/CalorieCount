@@ -8,6 +8,7 @@
 import Foundation
 
 import SwiftUI
+import KRProgressHUD
 
 struct PlanView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -19,7 +20,7 @@ struct PlanView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
-                LazyVStack(alignment: .leading) {
+                LazyVStack {
                     ItemFoodPlan(
                         title: MealType.breakfast.title,
                         foods: viewmodel.planToday.breakfast,
@@ -73,6 +74,7 @@ struct PlanView: View {
 extension PlanView {
     
     func saveFood(food: Foods, mealType: MealType) {
+        KRProgressHUD.show()
         userGoals.user?.caloriesConsumed += Int(food.calorie)
         userGoals.user?.currentFat += Int(food.fat)
         userGoals.user?.currentPro += Int(food.protein)
@@ -81,6 +83,7 @@ extension PlanView {
         goalViewModel.saveFoodToday(newFood: foodToday) {
             userGoals.fetchFoodToday() { foodToday  in
                 goalViewModel.updateUserData(user: userGoals.user!) {
+                    KRProgressHUD.dismiss()
                     isActive = true
                 }
             }
@@ -98,7 +101,10 @@ struct PlanFoodItemRow: View {
     var body: some View {
         HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(food.name).font(.headline)
+                Text(food.name)
+                    .font(.system(size: 16))
+                    .fontWeight(.medium)
+                    .foregroundStyle(Color.black)
                 HStack {
                     Text(food.amount)
                         .font(.system(size: 15))

@@ -10,7 +10,6 @@ import SwiftUI
 struct MessageRow: View {
     let viewModel: SuggestViewModel
     var message: Message
-    @State var addedToPlan: Bool = false
     @State var listFoodSelected: [Foods] = []
     @State var enableAddPlan: Bool = false
     
@@ -58,7 +57,7 @@ struct MessageRow: View {
                                     } else {
                                         listFoodSelected.append(food)
                                     }
-                                    enableAddPlan = !listFoodSelected.isEmpty && !addedToPlan
+                                    enableAddPlan = !listFoodSelected.isEmpty && viewModel.typePlanSuggest != nil
                                 }
                             ), checkBoxColor: .blue)
                         }
@@ -66,7 +65,7 @@ struct MessageRow: View {
                     AddToPlanItem(enable: $enableAddPlan){
                         if !listFoodSelected.isEmpty {
                             viewModel.addFoodToPlan(listFoodSelected)
-                            addedToPlan = true
+                            viewModel.typePlanSuggest = nil
                             enableAddPlan = false
                         }
                     }
@@ -83,7 +82,7 @@ struct MessageRow: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
-                if message.text == "thinking..." {
+                if message.text == Message.THINKING {
                     ProgressView(value: 0, total: 0).tint(.F_24_F_1_D)
                 }
                 Spacer()

@@ -113,7 +113,7 @@ struct FoodItemRowView: View {
                     userGoals.user?.currentPro += Int(food.protein)
                     userGoals.user?.currentCarbs += Int(food.carbohydrate)
                     let foodToday = FoodToday(id: UUID().uuidString, foods: [food], type: mealType.title)
-                    goalViewModel.saveFoodToday(newFood: foodToday) {
+                    goalViewModel.saveFoodToday(newFood: foodToday) {_ in 
                         userGoals.fetchFoodToday() { foodToday  in
                             goalViewModel.updateUserData(user: userGoals.user!) {
                                 KRProgressHUD.dismiss()

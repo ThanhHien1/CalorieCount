@@ -40,65 +40,31 @@ class GoalViewModel: ObservableObject {
         }
     }
     
-    func saveFoodToday(newFood: FoodToday, completion: @escaping () -> Void) {
-        let db = Firestore.firestore()
-        
+    func saveFoodToday(newFood: FoodToday, completion: @escaping (Bool) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
             print("No current user logged in")
+            completion(false)
             return
         }
         
-//        guard let jsonData = try? JSONEncoder().encode(newFood),
-//              let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] else {
-//            print("Error encoding or serializing food data")
-//            return
-//        }
+        let db = Firestore.firestore()
+        let documentRef = db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
         
-        let documentRef = db.collection("foodToday").document(currentUserEmail).collection("data")
         do {
-            try documentRef.addDocument(from: newFood) { error in
-                completion()
+            _ = try documentRef.addDocument(from: newFood) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                    completion(false)
+                } else {
+                    completion(true)
+                }
             }
-        }catch {
+        } catch {
+            print("Error serializing food data: \(error)")
+            completion(false)
         }
-        
-//        documentRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                if var currentData = document.data(), var existingFoods = currentData["foods"] as? [[String: Any]] {
-//                    existingFoods.append(jsonObject)
-//                    documentRef.setData(["foods": existingFoods]) { err in
-//                        if let err = err {
-//                            print("Error updating document: \(err)")
-//                        } else {
-//                            print("Document successfully updated!")
-//                            completion()
-//                        }
-//                    }
-//                } else {
-//                    print("Document data was empty or format was unexpected, creating new document with initial food data.")
-//                    documentRef.setData(["foods": [jsonObject]]) { err in
-//                        if let err = err {
-//                            print("Error writing document: \(err)")
-//                        } else {
-//                            print("Document successfully written!")
-//                            completion()
-//                        }
-//                    }
-//                }
-//            } else {
-//                print("Document does not exist. Creating a new document.")
-//                documentRef.setData(["foods": [jsonObject]]) { err in
-//                    if let err = err {
-//                        print("Error writing document: \(err)")
-//                    } else {
-//                        print("Document successfully written!")
-//                        completion()
-//                    }
-//                }
-//            }
-//        }
     }
-    
+
     
     func updateUserData(user: UserData, completion: @escaping () -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {

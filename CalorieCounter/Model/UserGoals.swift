@@ -84,63 +84,35 @@ class UserGoals: ObservableObject  {
         }
     }
     
-    func fetchFoodToday(completion: @escaping ([FoodToday]) -> Void) {
+    func fetchFoodToday(completion: @escaping ([FoodToday]?) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
-            completion([])
+            print("No current user logged in")
+            completion(nil)
             return
         }
         
-        Firestore.firestore().collection("foodToday").document(currentUserEmail).collection("data").getDocuments { snap, error in
-            var allFoodToday: [FoodToday] = []
-            snap?.documents.forEach({ querySnap in
-                do {
-                    let foodToday = try querySnap.data(as: FoodToday.self)
-                    allFoodToday.append(foodToday)
-                }catch {
-                    
+        let db = Firestore.firestore()
+        let documentRef = db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
+        
+        documentRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion(nil)
+            } else {
+                var foodArray: [FoodToday] = []
+                for document in querySnapshot!.documents {
+                    do {
+                        let food = try document.data(as: FoodToday.self)
+                        foodArray.append(food)
+                    } catch {
+                        print("Error decoding document into FoodToday: \(error)")
+                    }
                 }
-            })
-            self.foodToday = allFoodToday
-            completion(allFoodToday)
-            HistoryModel().saveFood(foodToday: allFoodToday)
-        }
-        
-        
-        
-//        documentRef.getDocument { (document, error) in
-//            if let error = error {
-//                print("Error fetching document: \(error)")
-//                completion(nil)
-//                return
-//            }
-//            
-//            guard let document = document, document.exists else {
-//                print("Document does not exist")
-//                completion(nil)
-//                return
-//            }
-//            
-//            guard let data = document.data(), let foodDataArray = data["foods"] as? [Any] else {
-//                print("No food data found in document")
-//                completion(nil)
-//                return
-//            }
-//            
-//            var foodArray: [FoodToday] = []
-//            
-//            for foodData in foodDataArray {
-//                if let jsonData = try? JSONSerialization.data(withJSONObject: foodData),
-//                   let food = try? JSONDecoder().decode(FoodToday.self, from: jsonData) {
-//                    foodArray.append(food)
-//                } else {
-//                    print("Error serializing or decoding food data: \(foodData)")
-//                }
-//            }
-//            
-//            self.foodToday = foodArray
-//            completion(foodArray)
-//        }
+                self.foodToday = foodArray
+                completion(foodArray)
+            }
     }
+}
     
     func deleteFood(foodToDelete: FoodToday, completion: @escaping (Bool) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
@@ -149,7 +121,7 @@ class UserGoals: ObservableObject  {
             return
         }
         
-        FirebaseAPI.shared.db.collection("foodToday").document(currentUserEmail).collection("data")
+        FirebaseAPI.shared.db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
             .whereField("id", isEqualTo: foodToDelete.id)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {

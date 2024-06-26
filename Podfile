@@ -8,7 +8,7 @@ target 'CalorieCounter' do
   pod 'OpenAISwift'
   pod 'FirebaseAuth'
   pod "KRProgressHUD"
-#  pod 'Firebase/Firestore'
+  pod 'Firebase/Firestore'
   pod 'lottie-ios'
 
 

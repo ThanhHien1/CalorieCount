@@ -191,25 +191,31 @@ class HistoryModel: ObservableObject {
         }
     }
     
-    func fetchFoodToday( completion: @escaping ([FoodToday]?) -> Void) {
-        if let currentUserEmail = Auth.auth().currentUser?.email {
-            Firestore.firestore().collection("foodToday").document(currentUserEmail).getDocument { (document, error) in
-                if let document = document, document.exists {
-                    guard let data = document.data(),
-                          let foodDataArray = data["foods"] as? [Any] else {
-                        completion(nil)
-                        return
+    func fetchFoodToday(completion: @escaping ([FoodToday]?) -> Void) {
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            print("No current user logged in")
+            completion(nil)
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let documentRef = db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
+        
+        documentRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                completion(nil)
+            } else {
+                var foodArray: [FoodToday] = []
+                for document in querySnapshot!.documents {
+                    do {
+                        let food = try document.data(as: FoodToday.self)
+                        foodArray.append(food)
+                    } catch {
+                        print("Error decoding document into FoodToday: \(error)")
                     }
-                    
-                    let foodArray: [FoodToday] = foodDataArray.compactMap {
-                        guard let jsonData = try? JSONSerialization.data(withJSONObject: $0) else { return nil }
-                        return try? JSONDecoder().decode(FoodToday.self, from: jsonData)
-                    }
-                    completion(foodArray)
-                } else {
-                    print("Document does not exist")
-                    completion(nil)
                 }
+                completion(foodArray)
             }
         }
     }

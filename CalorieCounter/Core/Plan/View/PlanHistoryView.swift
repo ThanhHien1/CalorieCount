@@ -19,7 +19,9 @@ struct PlanHistoryView: View {
                 LazyVStack(alignment: .leading) {
                     ForEach(viewmodel.allPlan, id: \.self){ plan in
                         Text(plan.date).font(.headline)
+                            .foregroundStyle(Color.cl_F24F1D())
                             .padding(.leading, 15)
+                            .padding(.top, 5)
                         ItemFoodPlan(title: MealType.breakfast.title, foods: plan.breakfast)
                         
                         ItemFoodPlan(title: MealType.lunch.title, foods: plan.lunch)
@@ -48,10 +50,11 @@ struct ItemFoodPlan: View {
             Spacer().frame(height: 2)
         } else {
             VStack(alignment: .leading){
-                Text(title).font(.headline).padding()
+                Text(title).font(.headline)
+                    .padding(.horizontal, 15)
+                    .padding(.top, 5)
                 ForEach(foods, id: \.self) { food in
                     PlanFoodItemRow(food: food, mealType: .breakfast, eatAction: eatAction)
-                        .padding(.horizontal, 8)
                 }
             }
         }

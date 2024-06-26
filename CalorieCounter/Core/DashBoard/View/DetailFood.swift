@@ -35,7 +35,7 @@ struct DetailFood: View {
                 HStack {
                     Text("Calorie: ")
                         .bold()
-                    Text( String(format: "%.2f", food.calorie))
+                    Text("\(Int(food.calorie))")
                     Spacer()
                 }
                 .font(.system(size: 18))
@@ -70,7 +70,7 @@ struct DetailFood: View {
             }
             .padding(.leading, Vconst.DESIGN_HEIGHT_RATIO * 50)
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

@@ -157,11 +157,6 @@ struct ItemRowProfile: View {
             case .gender:
                 
                 Text("")
-//               break
-//                ChangeHeightView(value: userGoal.user?.height ?? 0) { user in
-//                    viewModel.updateInfomation(user: user)
-//                }
-//                .presentationDetents([.fraction(0.3)])
             case .activeness:
                 ActiveView(isHideButton: true) { user in
                     viewModel.updateInfomation(user: user)

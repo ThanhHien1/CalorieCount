@@ -59,8 +59,12 @@ struct DashBoardView: View {
                 LinearGradient(colors: [Color.white.opacity(0.7), Color.orange.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing), ignoresSafeAreaEdges: [.top, .leading, .trailing])
             .navigationBarBackButtonHidden()
             .onAppear {
-                updateMealArrays()
                 print("userGoals.foodToday \(userGoals.foodToday.count)")
+                userGoals.fetchFoodToday() {_ in
+                    updateMealArrays()
+                }
+                userGoals.fetchUserData() {_ in
+                }
             }
         }
         .navigationBarHidden(true)
@@ -249,17 +253,6 @@ struct MealCarouselItemView: View {
     }
     
 }
-
-
-//extension MealCarouselItemView: ErrorDelegate {
-//    func didError(sender: FoodViewModel) {
-//        DispatchQueue.main.async {
-////            self.foodSearchSuggestions = []
-////            self.searchEnable = false
-////            self.tableView.reloadData()
-//        }
-//    }
-//}
 
 
 

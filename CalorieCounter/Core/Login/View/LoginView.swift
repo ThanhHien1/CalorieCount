@@ -51,7 +51,7 @@ extension LoginView {
     }
     
     var ButtonLogin: some View {
-        NavigationLink(destination: GoalView(), isActive: $viewModel.loginSuccessful) {
+        NavigationLink(destination: TabBarView(), isActive: $viewModel.loginSuccessful) {
             NormalButton(action: {
                 viewModel.loginAccount()
             }, title: "Đăng nhập" , tinColor: .white, color: Color.cl_F24F1D()

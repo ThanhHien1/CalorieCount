@@ -44,6 +44,10 @@
 		246DB2342BF8ECD400130592 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2332BF8ECD400130592 /* BackButton.swift */; };
 		246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2352BF9B11F00130592 /* ChangeHeightView.swift */; };
 		246DB2382BF9B7AC00130592 /* ChangeWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */; };
+		2493A7082C2BDA8000A1BA1D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493A7072C2BDA8000A1BA1D /* LottieView.swift */; };
+		2493A70C2C2C622E00A1BA1D /* Empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 2493A70B2C2C622D00A1BA1D /* Empty.json */; };
+		2493A70E2C2C658D00A1BA1D /* DetailHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493A70D2C2C658D00A1BA1D /* DetailHistory.swift */; };
+		2493A7102C2C6CF700A1BA1D /* DetailFoodHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493A70F2C2C6CF700A1BA1D /* DetailFoodHistory.swift */; };
 		249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */; };
 		249FE0882BD3B2570061017E /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE0872BD3B2570061017E /* RegisterViewModel.swift */; };
 		249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FE08A2BD3B7730061017E /* FormValidator.swift */; };
@@ -134,6 +138,10 @@
 		246DB2332BF8ECD400130592 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		246DB2352BF9B11F00130592 /* ChangeHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeightView.swift; sourceTree = "<group>"; };
 		246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWeightView.swift; sourceTree = "<group>"; };
+		2493A7072C2BDA8000A1BA1D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		2493A70B2C2C622D00A1BA1D /* Empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Empty.json; path = ../../Downloads/Empty.json; sourceTree = "<group>"; };
+		2493A70D2C2C658D00A1BA1D /* DetailHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistory.swift; sourceTree = "<group>"; };
+		2493A70F2C2C6CF700A1BA1D /* DetailFoodHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFoodHistory.swift; sourceTree = "<group>"; };
 		249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		249FE0872BD3B2570061017E /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		249FE08A2BD3B7730061017E /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
@@ -531,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				249FE0852BD3AF8C0061017E /* GoogleService-Info.plist */,
+				2493A70B2C2C622D00A1BA1D /* Empty.json */,
 				24DF9D012BD3754700582458 /* CalorieCounter */,
 				24DF9D002BD3754700582458 /* Products */,
 				CDC2DCEAAC2234265DA93DE4 /* Pods */,
@@ -731,6 +740,7 @@
 				246DB2332BF8ECD400130592 /* BackButton.swift */,
 				24C1CC402BFE31FC003C7885 /* RadioButton.swift */,
 				244E71EB2C02567A00381C6B /* ItemRowFood.swift */,
+				2493A7072C2BDA8000A1BA1D /* LottieView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -773,6 +783,8 @@
 			children = (
 				987200592C2BC9D200BF393A /* HistoryView.swift */,
 				987200612C2BCD1A00BF393A /* ChartView.swift */,
+				2493A70D2C2C658D00A1BA1D /* DetailHistory.swift */,
+				2493A70F2C2C6CF700A1BA1D /* DetailFoodHistory.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -867,6 +879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2493A70C2C2C622E00A1BA1D /* Empty.json in Resources */,
 				24DF9D0A2BD3754800582458 /* Preview Assets.xcassets in Resources */,
 				24DF9D072BD3754800582458 /* Assets.xcassets in Resources */,
 				249FE0862BD3AF8C0061017E /* GoogleService-Info.plist in Resources */,
@@ -922,6 +935,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2493A70E2C2C658D00A1BA1D /* DetailHistory.swift in Sources */,
 				249FE0952BD408F40061017E /* UserDefault.swift in Sources */,
 				24DF9D3B2BD3AA7200582458 /* RegisterView.swift in Sources */,
 				243801022BE2447E00223577 /* RoundedCorners.swift in Sources */,
@@ -956,6 +970,7 @@
 				243800E62BDEBA1200223577 /* Foods.swift in Sources */,
 				249FE0C52BD508CF0061017E /* CalculatorBrain.swift in Sources */,
 				246DB2342BF8ECD400130592 /* BackButton.swift in Sources */,
+				2493A7102C2C6CF700A1BA1D /* DetailFoodHistory.swift in Sources */,
 				24C1CC412BFE31FC003C7885 /* RadioButton.swift in Sources */,
 				98A3E88D2C16FE9E00552FFA /* PanModel.swift in Sources */,
 				249FE0B42BD4E3140061017E /* GoalView.swift in Sources */,
@@ -988,6 +1003,7 @@
 				243801062BE2549700223577 /* FoodRow.swift in Sources */,
 				240D6CB52C144DB100F31A39 /* PlanHistoryView.swift in Sources */,
 				249FE0932BD406650061017E /* Constanst.swift in Sources */,
+				2493A7082C2BDA8000A1BA1D /* LottieView.swift in Sources */,
 				24C1CC5F2BFFB2E2003C7885 /* MessageRow.swift in Sources */,
 				24C1CC482BFE6537003C7885 /* ChatBoxView.swift in Sources */,
 				9872005F2C2BC9D200BF393A /* HistoryViewModel.swift in Sources */,

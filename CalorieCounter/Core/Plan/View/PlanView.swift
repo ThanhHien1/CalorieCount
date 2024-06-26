@@ -104,14 +104,14 @@ struct PlanFoodItemRow: View {
                 Text(food.name)
                     .font(.system(size: 16))
                     .fontWeight(.medium)
-                    .foregroundStyle(Color.black)
+                    .foregroundColor(.primary)
                 HStack {
                     Text(food.amount)
                         .font(.system(size: 15))
-                        .foregroundStyle(Color.gray)
+                        .foregroundColor(.gray)
                     Text("-  \(Int(food.calorie)) Kcal")
                         .font(.system(size: 15))
-                        .foregroundStyle(Color.gray)
+                        .foregroundColor(.gray)
                 }
             }
             Spacer()
@@ -122,17 +122,20 @@ struct PlanFoodItemRow: View {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.blue)
                         .font(.system(size: 24))
+                        .scaleEffect(1.2)
+                        .shadow(color: Color.blue.opacity(0.3), radius: 10, x: 0, y: 5)
+                        .animation(.easeInOut(duration: 0.2), value: food)
                 }
             }
         }
-        .padding(.vertical, 10)
-        .padding(.horizontal, 16)
+        .padding()
         .background(Color.white)
-        .cornerRadius(8)
-        .shadow(radius: 2)
-
+        .cornerRadius(10)
+        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+        .padding(.horizontal, 15)
     }
 }
+
 
 #Preview {
     PlanView(viewmodel: .init())

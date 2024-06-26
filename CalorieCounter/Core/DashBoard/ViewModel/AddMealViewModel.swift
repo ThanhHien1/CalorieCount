@@ -12,6 +12,4 @@ import Combine
 class AddMealViewModel: ObservableObject {
     @Published var frequentFoods: [Foods]?
     @Published var foodSearchSuggestions: [Foods]?
-
-    
 }

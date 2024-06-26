@@ -19,8 +19,6 @@ struct RootView: View {
                 if isLoadingSpash {
                     SplashView()
                 } else if viewModel.isLogin() {
-//                   GoalView()
-//                    DashBoardView()
                     TabBarView()
                 } else {
                   RegisterView()
@@ -35,9 +33,6 @@ struct RootView: View {
             }
             userGoals.fetchFoodToday() { _  in
             }
-//            foodViewModel.getAllFood() {
-//                print("####foodViewModel.foods \(foodViewModel.foods)")
-//            }
         }
     }
 }

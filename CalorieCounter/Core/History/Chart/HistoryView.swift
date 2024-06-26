@@ -18,40 +18,39 @@ struct HistoryView: View {
         ZStack {
             VStack {
                 Header
-                if viewModel.mockBarChartDataSet.elements.isEmpty {
-                    Text("Chưa có lịch sử...")
+                if let food = viewModel.historyResult.first?.foods, food.isEmpty  {
+                    LottieView(lottieFile: "Empty")
+                        .frame(height: 400)
+                    Text("Chưa có lịch sử").font(.headline)
+                    Spacer()
                 } else {
-                    Spacer().frame(height: 10)
+                    Spacer()
                     Text("Sơ đồ calo 7 ngày gần nhất").font(.headline)
                     BarChart(dataSet: viewModel.mockBarChartDataSet, selectedElement: $selectedElement)
                         .frame(height: 250)
-                }
-                Spacer().frame(height: 20)
-                Text("Chi tiết món ăn").font(.headline)
-                Spacer().frame(height: 8)
-                ScrollView {
-                    LazyVStack {
-                        ForEach(viewModel.historyResult, id: \.self){ history in
-                            Button {
-                                // move to to new screen
-                            } label: {
-                                Text("\(history.date) (\(history.foods.count) món ăn, (\(Int(history.totalCalories))/\(Int(history.target)))")
+                    Spacer().frame(height: 20)
+                    Text("Chi tiết món ăn").font(.headline)
+                    Spacer().frame(height: 8)
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(viewModel.historyResult.sorted(by: { $0.date < $1.date }), id: \.self) { history in
+                                if !history.foods.isEmpty {
+                                    NavigationLink(destination: DetailFoodHistory(foodToday: history.foods)) {
+                                        DetailHistory(date: history.date, totalFood: history.foods.count, calories: "\(Int(history.totalCalories))/\(Int(history.target))")
+                                    }
+                                }
                             }
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 8)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(radius: 2)
                         }
                     }
                 }
+                Spacer()
+                
             }
             .onAppear {
                 if viewModel.historyResult.isEmpty {
-                    KRProgressHUD.show()
+                                        KRProgressHUD.show()
                     viewModel.getAllHistory { histories in
-                        print(histories.count)
-                        KRProgressHUD.dismiss()
+                                                KRProgressHUD.dismiss()
                         selectedElement = viewModel.mockBarChartDataSet.elements.first
                     }
                 }
@@ -64,7 +63,7 @@ extension HistoryView {
     var Header: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
-            VStack() {
+            VStack {
                 Spacer().frame(height:  Vconst.DESIGN_HEIGHT_RATIO * 10)
                 HStack {
                     Spacer()
@@ -87,11 +86,10 @@ extension HistoryView {
                     .padding(.trailing, Vconst.DESIGN_WIDTH_RATIO * 25)
                 }
                 Spacer()
-             }
+            }
         }.frame(height: 60)
     }
 }
-
 
 #Preview {
     HistoryView()

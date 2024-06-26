@@ -12,7 +12,7 @@ import FirebaseFirestore
 class GoalViewModel: ObservableObject {
     @Published var goalType: GoalEnum = .main
     @Published var activeness: ActivenessEnum = .lightlyActive
-    @Published var sex: GenderEnum = .male
+    @Published var sex: GenderEnum = .female
     @Published var age: Int = 25
     @Published var height: Float = 1.70
     @Published var weight: Float = 100
@@ -88,7 +88,7 @@ class GoalViewModel: ObservableObject {
         }
         saveTagertCalories(email: currentUserEmail)
     }
-
+    
     
     func updateUserData(user: UserData, completion: @escaping () -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
@@ -137,8 +137,11 @@ class GoalViewModel: ObservableObject {
         print("######## height \(height)")
         weight = user.weight
         age = user.age
-        if user.sex == sex.rawValue.capitalized {
-            sex = GenderEnum(rawValue: user.sex) ?? .male
+        if user.sex == "Nam" || user.sex == "nam" {
+            sex = .male
+        } else {
+            sex = .female
+            
         }
         if user.activeness  == activeness.title {
             activeness = ActivenessEnum(rawValue:  user.activeness) ?? .extraActive
@@ -149,6 +152,7 @@ class GoalViewModel: ObservableObject {
     func logout() {
         do {
             try Auth.auth().signOut() }
+             
         catch { print("already logged out")
         }
     }

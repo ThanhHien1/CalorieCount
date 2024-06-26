@@ -14,7 +14,7 @@ class HistoryViewModel: ObservableObject {
     @Published var historyResult: [HistoryModel] = []
     @Published var mockBarChartDataSet: BarChart.DataSet = BarChart.DataSet(elements: [])
     
-    func getAllHistory(completion: @escaping ([HistoryModel]) -> Void){
+    func getAllHistory(completion: @escaping ([HistoryModel]) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
             print("No current user logged in")
             completion([])
@@ -24,8 +24,11 @@ class HistoryViewModel: ObservableObject {
         let db = Firestore.firestore()
         let documentRef = db.collection("foodToday").document(currentUserEmail)
         let last7Day = DateManager.shared.getLast7DaysDates()
+        var totalFetchedDays = 0
+        
         for day in last7Day {
             documentRef.collection(day).getDocuments { [self] (querySnapshot, error) in
+                totalFetchedDays += 1
                 var foodArray: [FoodToday] = []
                 if let error = error {
                     print("Error getting documents: \(error)")
@@ -48,17 +51,19 @@ class HistoryViewModel: ObservableObject {
                     })
                 })
                 GoalViewModel.instance.getTagertCalories(day: history.date) { [self] target in
+//                    guard history.target != 0 else { return }
                     history.target = target
                     historyResult.insert(history, at: 0)
                     addBarToChart()
-                    completion(historyResult)
+                    if totalFetchedDays == last7Day.count {
+                        completion(historyResult)
+                    }
                 }
-                
             }
         }
     }
     
-    func addBarToChart(){
+    func addBarToChart() {
         let elements = historyResult.sorted(by: {$0.date < $1.date}).map({ history in
             let items = [BarChart.DataSet.DataElement.Bar(value: Double(history.totalCalories), color: Color.green, selectionColor: Color.green),BarChart.DataSet.DataElement.Bar(value: history.target, color: Color.red, selectionColor: Color.red)]
             return BarChart.DataSet.DataElement(date: nil, xLabel: history.date, bars: items)
@@ -66,4 +71,3 @@ class HistoryViewModel: ObservableObject {
         mockBarChartDataSet = BarChart.DataSet(elements: elements)
     }
 }
-

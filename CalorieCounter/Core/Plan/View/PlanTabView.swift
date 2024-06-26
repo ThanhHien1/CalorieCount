@@ -44,7 +44,7 @@ extension PlanTabView {
             }) {
                 Text("Lịch sử")
                     .foregroundColor(selectedTab == .history ? .blue : .gray)
-                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .frame(maxWidth: .infinity, maxHeight: 40)
                     .background(selectedTab == .history ? Color.gray.opacity(0.2) : Color.clear)
                     .cornerRadius(8)
             }
@@ -55,12 +55,12 @@ extension PlanTabView {
             }) {
                 Text("Hôm nay")
                     .foregroundColor(selectedTab == .plan ? .blue : .gray)
-                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .frame(maxWidth: .infinity, maxHeight: 40)
                     .background(selectedTab == .plan ? Color.gray.opacity(0.2) : Color.clear)
                     .cornerRadius(8)
             }
         }
-        .padding()
+        .frame(height: 60)
         .background(Color(UIColor.systemBackground))
     }
 }

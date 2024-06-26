@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KRProgressHUD
+import Lottie
 
 struct AddMealView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -25,14 +26,19 @@ struct AddMealView: View {
                             FoodItemRowView(food: food, dailySummaryData: dailySummaryData, userGoals: userGoals, mealType: mealType)
                         }
                     }
-//                    .padding(.top, 5)
                 }
                 Spacer()
             }
             .onAppear {
-                print("%%%% \(foodViewModel.foods.count)")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                    viewModel.frequentFoods = foodViewModel.foods
+                if let food = viewModel.frequentFoods, food.isEmpty {
+                    KRProgressHUD.show()
+                }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                        KRProgressHUD.dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+                            viewModel.frequentFoods = foodViewModel.foods
+                        }
+                    
                 }
             }
             .navigationBarBackButtonHidden()
@@ -128,12 +134,13 @@ struct FoodItemRowView: View {
                 }
             }
             .padding(.vertical, 10)
-            .padding(.horizontal, 16)
-            .background(Color.white)
-            .cornerRadius(8)
-            .shadow(radius: 2)
-            .padding(.horizontal, 8)
+                        .padding(.horizontal, 16)
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 5)
+                        .padding(.horizontal, 12)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

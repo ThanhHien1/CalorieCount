@@ -40,6 +40,28 @@ class GoalViewModel: ObservableObject {
         }
     }
     
+    func saveTagertCalories(email: String){
+        let db = Firestore.firestore()
+        let documentRef = db.collection("foodToday").document(email)
+            .collection(DateManager.shared.getCurrentDayDDMMYYYY() + "-target").document("total")
+        documentRef.setData(["total": UserGoals.instance.user?.calorie ?? 0.0], merge: true)
+    }
+    
+    func getTagertCalories(day: String, completion: @escaping (Double) -> Void){
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            print("No current user logged in")
+            completion(0.0)
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let documentRef = db.collection("foodToday").document(currentUserEmail)
+            .collection(day + "-target").document("total")
+        documentRef.getDocument { snap, err in
+            completion(snap?.data()?["total"] as? Double ?? 0.0)
+        }
+    }
+    
     func saveFoodToday(newFood: FoodToday, completion: @escaping (Bool) -> Void) {
         guard let currentUserEmail = Auth.auth().currentUser?.email else {
             print("No current user logged in")
@@ -48,7 +70,8 @@ class GoalViewModel: ObservableObject {
         }
         
         let db = Firestore.firestore()
-        let documentRef = db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
+        let documentRef = db.collection("foodToday").document(currentUserEmail)
+            .collection(DateManager.shared.getCurrentDayDDMMYYYY())
         
         do {
             _ = try documentRef.addDocument(from: newFood) { error in
@@ -63,6 +86,7 @@ class GoalViewModel: ObservableObject {
             print("Error serializing food data: \(error)")
             completion(false)
         }
+        saveTagertCalories(email: currentUserEmail)
     }
 
     

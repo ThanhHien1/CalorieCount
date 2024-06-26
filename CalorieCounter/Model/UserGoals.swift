@@ -121,7 +121,8 @@ class UserGoals: ObservableObject  {
             return
         }
         
-        FirebaseAPI.shared.db.collection("foodToday").document(currentUserEmail).collection(DateManager.shared.getCurrentDayDDMMYYYY())
+        FirebaseAPI.shared.db.collection("foodToday").document(currentUserEmail)
+            .collection(DateManager.shared.getCurrentDayDDMMYYYY())
             .whereField("id", isEqualTo: foodToDelete.id)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {

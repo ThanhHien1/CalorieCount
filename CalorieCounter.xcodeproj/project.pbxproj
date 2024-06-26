@@ -41,7 +41,6 @@
 		244E71E82C02241900381C6B /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71E72C02241900381C6B /* AboutMeView.swift */; };
 		244E71EA2C02392400381C6B /* FoodToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71E92C02392400381C6B /* FoodToday.swift */; };
 		244E71EC2C02567A00381C6B /* ItemRowFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E71EB2C02567A00381C6B /* ItemRowFood.swift */; };
-		245DCC0C2C0AE5EA00541CA1 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */; };
 		246DB2342BF8ECD400130592 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2332BF8ECD400130592 /* BackButton.swift */; };
 		246DB2362BF9B11F00130592 /* ChangeHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2352BF9B11F00130592 /* ChangeHeightView.swift */; };
 		246DB2382BF9B7AC00130592 /* ChangeWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */; };
@@ -77,9 +76,6 @@
 		24C498802C062FFA00D7512F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4987F2C062FFA00D7512F /* DateManager.swift */; };
 		24C498822C08656300D7512F /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C498812C08656200D7512F /* FirebaseAPI.swift */; };
 		24C498842C0865EB00D7512F /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C498832C0865EB00D7512F /* Number.swift */; };
-		24C498872C086A7700D7512F /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C498862C086A7700D7512F /* HistoryModel.swift */; };
-		24C4988D2C088AD800D7512F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4988C2C088AD800D7512F /* HistoryView.swift */; };
-		24C498922C088BC900D7512F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C498912C088BC900D7512F /* Charts.framework */; };
 		24DF9D032BD3754700582458 /* CalorieCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D022BD3754700582458 /* CalorieCounterApp.swift */; };
 		24DF9D052BD3754700582458 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D042BD3754700582458 /* ContentView.swift */; };
 		24DF9D072BD3754800582458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DF9D062BD3754800582458 /* Assets.xcassets */; };
@@ -92,7 +88,10 @@
 		24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D312BD3AA1000582458 /* LoginViewModel.swift */; };
 		24DF9D3B2BD3AA7200582458 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF9D3A2BD3AA7200582458 /* RegisterView.swift */; };
 		5A6CAE0E8E9E95E674A432F7 /* Pods_CalorieCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5755D5D516D0FD08ECB1D65C /* Pods_CalorieCounter.framework */; };
-		98A3E8892C16F4B700552FFA /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 98A3E8882C16F4B700552FFA /* SwiftUICharts */; };
+		9872005E2C2BC9D200BF393A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987200592C2BC9D200BF393A /* HistoryView.swift */; };
+		9872005F2C2BC9D200BF393A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9872005B2C2BC9D200BF393A /* HistoryViewModel.swift */; };
+		987200622C2BCD1A00BF393A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987200612C2BCD1A00BF393A /* ChartView.swift */; };
+		987200642C2BD23A00BF393A /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987200632C2BD23A00BF393A /* HistoryModel.swift */; };
 		98A3E88B2C16FCB200552FFA /* FoodMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A3E88A2C16FCB200552FFA /* FoodMapper.swift */; };
 		98A3E88D2C16FE9E00552FFA /* PanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A3E88C2C16FE9E00552FFA /* PanModel.swift */; };
 /* End PBXBuildFile section */
@@ -132,7 +131,6 @@
 		244E71E72C02241900381C6B /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		244E71E92C02392400381C6B /* FoodToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodToday.swift; sourceTree = "<group>"; };
 		244E71EB2C02567A00381C6B /* ItemRowFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowFood.swift; sourceTree = "<group>"; };
-		245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		246DB2332BF8ECD400130592 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		246DB2352BF9B11F00130592 /* ChangeHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeightView.swift; sourceTree = "<group>"; };
 		246DB2372BF9B7AC00130592 /* ChangeWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWeightView.swift; sourceTree = "<group>"; };
@@ -168,8 +166,6 @@
 		24C4987F2C062FFA00D7512F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		24C498812C08656200D7512F /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		24C498832C0865EB00D7512F /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
-		24C498862C086A7700D7512F /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
-		24C4988C2C088AD800D7512F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		24C498912C088BC900D7512F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		24DF9CFF2BD3754700582458 /* CalorieCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DF9D022BD3754700582458 /* CalorieCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieCounterApp.swift; sourceTree = "<group>"; };
@@ -184,6 +180,10 @@
 		24DF9D312BD3AA1000582458 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		24DF9D3A2BD3AA7200582458 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5755D5D516D0FD08ECB1D65C /* Pods_CalorieCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalorieCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		987200592C2BC9D200BF393A /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		9872005B2C2BC9D200BF393A /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		987200612C2BCD1A00BF393A /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		987200632C2BD23A00BF393A /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		98A3E88A2C16FCB200552FFA /* FoodMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMapper.swift; sourceTree = "<group>"; };
 		98A3E88C2C16FE9E00552FFA /* PanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanModel.swift; sourceTree = "<group>"; };
 		DD1DC5F028DBAAF84BEE93BF /* Pods-CalorieCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalorieCounter.release.xcconfig"; path = "Target Support Files/Pods-CalorieCounter/Pods-CalorieCounter.release.xcconfig"; sourceTree = "<group>"; };
@@ -195,8 +195,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98A3E8892C16F4B700552FFA /* SwiftUICharts in Frameworks */,
-				24C498922C088BC900D7512F /* Charts.framework in Frameworks */,
 				5A6CAE0E8E9E95E674A432F7 /* Pods_CalorieCounter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +254,7 @@
 				24C1CC622BFFB8D8003C7885 /* FoodSuggest.swift */,
 				98A3E88A2C16FCB200552FFA /* FoodMapper.swift */,
 				98A3E88C2C16FE9E00552FFA /* PanModel.swift */,
+				987200632C2BD23A00BF393A /* HistoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -528,25 +527,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		24C498852C086A4A00D7512F /* History */ = {
-			isa = PBXGroup;
-			children = (
-				24C498862C086A7700D7512F /* HistoryModel.swift */,
-				24C498882C088A6F00D7512F /* Chart */,
-			);
-			name = History;
-			path = "Histỏy";
-			sourceTree = "<group>";
-		};
-		24C498882C088A6F00D7512F /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-				245DCC0B2C0AE5EA00541CA1 /* HistoryChartView.swift */,
-				24C4988C2C088AD800D7512F /* HistoryView.swift */,
-			);
-			path = Chart;
-			sourceTree = "<group>";
-		};
 		24DF9CF62BD3754700582458 = {
 			isa = PBXGroup;
 			children = (
@@ -604,8 +584,8 @@
 			children = (
 				244C59BE2BF08DC800EECAE5 /* TabBar */,
 				240D6CAB2C144C4F00F31A39 /* Plan */,
-				24C498852C086A4A00D7512F /* History */,
 				244E71E62C02240A00381C6B /* AboutMe */,
+				9872005C2C2BC9D200BF393A /* History */,
 				24C1CC452BFE6511003C7885 /* ChatBox */,
 				244C59C22BF0A4D400EECAE5 /* Setting */,
 				243800F02BDF4F6A00223577 /* HeathStore */,
@@ -788,6 +768,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9872005A2C2BC9D200BF393A /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				987200592C2BC9D200BF393A /* HistoryView.swift */,
+				987200612C2BCD1A00BF393A /* ChartView.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		9872005C2C2BC9D200BF393A /* History */ = {
+			isa = PBXGroup;
+			children = (
+				987200602C2BCA1F00BF393A /* ViewModel */,
+				9872005A2C2BC9D200BF393A /* Chart */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		987200602C2BCA1F00BF393A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9872005B2C2BC9D200BF393A /* HistoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CDC2DCEAAC2234265DA93DE4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,7 +822,6 @@
 			);
 			name = CalorieCounter;
 			packageProductDependencies = (
-				98A3E8882C16F4B700552FFA /* SwiftUICharts */,
 			);
 			productName = CalorieCounter;
 			productReference = 24DF9CFF2BD3754700582458 /* CalorieCounter.app */;
@@ -847,7 +852,6 @@
 			);
 			mainGroup = 24DF9CF62BD3754700582458;
 			packageReferences = (
-				98A3E8872C16F4B700552FFA /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 24DF9D002BD3754700582458 /* Products */;
 			projectDirPath = "";
@@ -924,6 +928,7 @@
 				243800D62BDE784600223577 /* Utilities.swift in Sources */,
 				244E71E82C02241900381C6B /* AboutMeView.swift in Sources */,
 				243800F82BE2364A00223577 /* FoodViewModel.swift in Sources */,
+				9872005E2C2BC9D200BF393A /* HistoryView.swift in Sources */,
 				243800E82BDEBA8D00223577 /* CircularProgressView.swift in Sources */,
 				244E71EA2C02392400381C6B /* FoodToday.swift in Sources */,
 				243800DE2BDEB88D00223577 /* CaloriesEatenAndBurnedView.swift in Sources */,
@@ -934,7 +939,6 @@
 				24C1CC3D2BFE07B6003C7885 /* ChangeAgeView.swift in Sources */,
 				24C498842C0865EB00D7512F /* Number.swift in Sources */,
 				243800F22BDF4F7C00223577 /* HealthStore.swift in Sources */,
-				24C498872C086A7700D7512F /* HistoryModel.swift in Sources */,
 				243801002BE23D4400223577 /* AddMealViewModel.swift in Sources */,
 				244C59C92BF0ACBF00EECAE5 /* ProfileViewModel.swift in Sources */,
 				249FE0C22BD4F7330061017E /* CalculatorView.swift in Sources */,
@@ -964,11 +968,11 @@
 				240D6CAD2C144C5C00F31A39 /* PlanView.swift in Sources */,
 				249FE0CD2BD50B1B0061017E /* CalculatorResultView.swift in Sources */,
 				249FE0C72BD509240061017E /* BMI.swift in Sources */,
+				987200642C2BD23A00BF393A /* HistoryModel.swift in Sources */,
 				249FE0BF2BD4F3090061017E /* ActiveView.swift in Sources */,
 				24DF9D052BD3754700582458 /* ContentView.swift in Sources */,
 				243800EF2BDEBC6800223577 /* StepsProgressView.swift in Sources */,
 				249FE08B2BD3B7730061017E /* FormValidator.swift in Sources */,
-				245DCC0C2C0AE5EA00541CA1 /* HistoryChartView.swift in Sources */,
 				249FE08F2BD3C33D0061017E /* ViewConst.swift in Sources */,
 				24DF9D322BD3AA1000582458 /* LoginViewModel.swift in Sources */,
 				240D6CB32C144CEC00F31A39 /* PlanViewModel.swift in Sources */,
@@ -983,10 +987,10 @@
 				240D6CB82C1453A300F31A39 /* EnumConstant.swift in Sources */,
 				243801062BE2549700223577 /* FoodRow.swift in Sources */,
 				240D6CB52C144DB100F31A39 /* PlanHistoryView.swift in Sources */,
-				24C4988D2C088AD800D7512F /* HistoryView.swift in Sources */,
 				249FE0932BD406650061017E /* Constanst.swift in Sources */,
 				24C1CC5F2BFFB2E2003C7885 /* MessageRow.swift in Sources */,
 				24C1CC482BFE6537003C7885 /* ChatBoxView.swift in Sources */,
+				9872005F2C2BC9D200BF393A /* HistoryViewModel.swift in Sources */,
 				240D6CAA2C144BB800F31A39 /* CheckBox.swift in Sources */,
 				24C498802C062FFA00D7512F /* DateManager.swift in Sources */,
 				249FE0912BD4050A0061017E /* AppConfiguration.swift in Sources */,
@@ -998,6 +1002,7 @@
 				243800F52BE2355400223577 /* FoodView.swift in Sources */,
 				243800ED2BDEBC3300223577 /* MacroProgressCardView.swift in Sources */,
 				24DF9D1E2BD3792500582458 /* SplashView.swift in Sources */,
+				987200622C2BCD1A00BF393A /* ChartView.swift in Sources */,
 				249FE0B02BD4DFD30061017E /* HomeView.swift in Sources */,
 				24C1CC612BFFB301003C7885 /* Chat.swift in Sources */,
 			);
@@ -1211,25 +1216,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		98A3E8872C16F4B700552FFA /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/willdale/SwiftUICharts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.10.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		98A3E8882C16F4B700552FFA /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 98A3E8872C16F4B700552FFA /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 24DF9CF72BD3754700582458 /* Project object */;
 }

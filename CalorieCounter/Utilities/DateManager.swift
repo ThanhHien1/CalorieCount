@@ -43,4 +43,18 @@ class DateManager {
         return dateFormatter.string(from: date)
     }
 
+    func getLast7DaysDates() -> [String] {
+        var dates: [String] = []
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        for i in 1..<8 {
+            if let date = Calendar.current.date(byAdding: .day, value: -i, to: Date()) {
+                let formattedDate = dateFormatter.string(from: date)
+                dates.append(formattedDate)
+            }
+        }
+        
+        return dates
+    }
 }

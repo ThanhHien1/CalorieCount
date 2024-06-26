@@ -27,7 +27,7 @@ struct TabBarView: View {
                         Image(systemName: "calendar")
                         Text("Kế hoạch")
                     }.tag(2)
-                HistoryChartView()
+                HistoryView()
                     .tabItem {
                         Image(systemName: "chart.bar.xaxis.ascending")
                         Text("Lịch sử")
